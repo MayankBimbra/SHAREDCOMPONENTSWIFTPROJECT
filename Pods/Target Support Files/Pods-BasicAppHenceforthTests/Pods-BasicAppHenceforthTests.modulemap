@@ -1,0 +1,6 @@
+framework module Pods_BasicAppHenceforthTests {
+  umbrella header "Pods-BasicAppHenceforthTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
