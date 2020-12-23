@@ -2,11 +2,7 @@ import UIKit
 
 
 internal var topStatusHeight : CGFloat{
-    if UIDevice.isBigIphone{
-        return 44
-    }else{
-        return 22
-    }
+    return UIApplication.shared.statusBarFrame.height
 }
 
 internal var bottomStatusHeight : CGFloat{

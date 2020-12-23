@@ -8,7 +8,18 @@
 
 import UIKit
 
+#if os(iOS) || os(tvOS) || os(watchOS)
+    import UIKit.UIImage
+    typealias Image = UIImage
+#elseif os(OSX)
+    import AppKit.NSImage
+    typealias Image = NSImage
+#endif
+
 enum Asset : String {
+    case ic_splash1 = "one"
+    case ic_splash2 = "two"
+    case ic_splash3 = "three"
     case ic_hideeye_review = "visibility_off"
     case ic_eye_review = "visibility"
     case ic_checked = "check_box_fill"
@@ -24,11 +35,25 @@ enum Asset : String {
     case ic_cancel_unselected = "cancel_outline"
     case ic_cancel_selected = "cancel-1"
     case ic_checked_Green = "check_box-1"
+    case ic_back = "ic_back"
 //    case catsel = "ic_fill_oval"
 //    case catUnsel = "ic_oval_unfill"
+    
+    case profile_select = "profile_select"
+    case email = "email"
+    case ic_phone_number = "phone_number"
+    case user = "user"
+    case ic_edit_white = "ic_edit_white"
+    case verified = "verified"
     
     func image () -> UIImage{
         return UIImage(named: self.rawValue)!
     }
 }
 
+
+extension Image {
+    convenience init!(asset: Asset) {
+        self.init(named: asset.rawValue)
+    }
+}

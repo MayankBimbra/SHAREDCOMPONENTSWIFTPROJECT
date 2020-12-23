@@ -33,6 +33,7 @@ class CommonFunctions {
 //        return label.frame.height
 //    }
     
+    // MARK: - UI SETTING
     static func setbuttonBoarder(_ radius : CGFloat, _ btns : [UIButton]){
         for btn in btns{
             btn.layer.cornerRadius = radius
@@ -94,6 +95,72 @@ class CommonFunctions {
 //            btn.backgroundColor = Colors.dotiButtonColor.color()
             btn.setTitleColor(.white, for: .normal)
         }
+    }
+    
+    static func normalSkyTF(_ tf : SkyFloatingLabelTextField, img: UIImage?, placeHolder : String){
+        tf.textColor = UIColor.textColorMain
+        tf.lineColor = UIColor.textColorPlaceholder
+        tf.tintColor = UIColor.textColorMain
+        tf.titleColor = UIColor.textColorPlaceholder
+        tf.titleErrorColor = UIColor.textColorPlaceholder
+        tf.selectedTitleColor = UIColor.themeColor
+        tf.selectedLineColor = UIColor.themeColor
+        tf.lineErrorColor = UIColor.textColorPlaceholder
+        tf.placeholderColor = UIColor.textColorPlaceholder
+        
+        tf.lineHeight = 1
+        tf.selectedLineHeight = 1
+        
+        tf.placeholder = placeHolder
+        
+        tf.font = UIFont.MontserratMedium(Size.Medium.sizeValue())
+        tf.titleFont = UIFont.MontserratMedium(Size.Small.sizeValue())
+        tf.placeholderFont = UIFont.MontserratMedium(Size.Medium.sizeValue())
+            
+        if img != nil{
+            let imgVw = UIImageView(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
+            imgVw.contentMode = .bottom
+            imgVw.image = img?.imageWithInsets(insets: UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6))?.withRenderingMode(.alwaysTemplate)
+            imgVw.tintColor = UIColor.themeColor
+            tf.rightView = imgVw
+            tf.rightViewMode = .always
+        }
+    }
+    
+    static func normalSkyTFBtn(_ tf : SkyFloatingLabelTextField, btn: UIButton, placeHolder : String){
+        
+        tf.disableAutoFill()
+        
+        let img1 = Asset.ic_eye_review.image().imageWithInsets(insets: UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6))?.withRenderingMode(.alwaysTemplate)
+        let img2 = Asset.ic_hideeye_review.image().imageWithInsets(insets: UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6))?.withRenderingMode(.alwaysTemplate)
+
+        tf.textColor = UIColor.textColorMain
+        tf.lineColor = UIColor.textColorPlaceholder
+        tf.tintColor = UIColor.textColorMain
+        tf.titleColor = UIColor.textColorPlaceholder
+        tf.titleErrorColor = UIColor.textColorPlaceholder
+        tf.selectedTitleColor = UIColor.themeColor
+        tf.selectedLineColor = UIColor.themeColor
+        tf.lineErrorColor = UIColor.textColorPlaceholder
+        tf.placeholderColor = UIColor.textColorPlaceholder
+        
+        tf.lineHeight = 1
+        tf.selectedLineHeight = 1
+        
+        tf.placeholder = placeHolder
+        
+        tf.font = UIFont.MontserratMedium(Size.Medium.sizeValue())
+        tf.titleFont = UIFont.MontserratMedium(Size.Small.sizeValue())
+        tf.placeholderFont = UIFont.MontserratMedium(Size.Medium.sizeValue())
+            
+        if tf.isSecureTextEntry {
+            btn.setImage(img2, for: .normal)
+        }else{
+            btn.setImage(img1, for: .normal)
+        }
+        btn.tintColor = UIColor.themeColor
+        tf.rightView = btn
+        tf.rightViewMode = .always
     }
     
     static func toster(_ txt : String){
@@ -195,8 +262,12 @@ class CommonFunctions {
         return mutString
     }
     
-    static func sendAttText( _ texts : [String], fonts: [UIFont], color: [UIColor], alingment : NSTextAlignment) -> NSMutableAttributedString{
+    static func sendAttText( _ texts : [String], fonts: [UIFont], color: [UIColor], alingment : NSTextAlignment, spacing : CGFloat = 4) -> NSMutableAttributedString{
         
+        let paragraph = NSMutableParagraphStyle()
+        paragraph.alignment = alingment
+        paragraph.lineSpacing = spacing
+
         let mutString : NSMutableAttributedString = NSMutableAttributedString(string: "")
         
         for (num, text) in texts.enumerated() {
@@ -206,6 +277,7 @@ class CommonFunctions {
             mutString.append(attString)
             
         }
+        mutString.addAttributes([NSAttributedString.Key.paragraphStyle:paragraph], range: NSRange(location: 0, length: mutString.string.count))
         return mutString
     }
     

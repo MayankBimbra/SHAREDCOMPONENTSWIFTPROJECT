@@ -23,6 +23,7 @@ target 'BasicAppHenceforth' do
   pod 'Alamofire', '~> 4.9.1'
   pod 'FlagPhoneNumber'
   pod 'DropDown'
+  pod 'ActiveLabel'
   # Pods for BasicAppHenceforth
 
   target 'BasicAppHenceforthTests' do
