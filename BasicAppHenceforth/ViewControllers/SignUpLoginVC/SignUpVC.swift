@@ -169,7 +169,8 @@ extension SignUpVC: UITextFieldDelegate{
 extension SignUpVC{
     @objc func btnActSkip(_ sender: Any) {
         self.view.endEditing(true)
-
+        let vc = tabbarVC.instantiateFromAppStoryboard(appStoryboard: .Tabbar)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func btnActSignUp(_ sender: Any) {

@@ -67,6 +67,7 @@ enum L10n {
 
     // CHAT SCREEN
     case ChatHeader
+    case TypeMessage
     
     // NOTIFICATION
     case NotificationHeader
@@ -114,6 +115,15 @@ enum L10n {
     case OldPassword
     case NewPassword
     case UpdatePassword
+    
+    // contact us
+    case Name
+    case Message
+    
+    // logout popUp
+    case LogOutDesc
+    case Yes
+    case No
 }
 
 
@@ -214,6 +224,8 @@ extension L10n: CustomStringConvertible{
             
         case .ChatHeader:
             return L10n.tr("Chat")
+        case .TypeMessage:
+            return L10n.tr("Type message...")
 
         case .NotificationHeader:
             return L10n.tr("Alerts")
@@ -289,6 +301,18 @@ extension L10n: CustomStringConvertible{
             return L10n.tr("New Password")
         case .UpdatePassword:
             return L10n.tr("Update Password")
+            
+        case .Name:
+            return L10n.tr("Name")
+        case .Message:
+            return L10n.tr("Message")
+
+        case .LogOutDesc:
+            return L10n.tr("Are you sure you want to logout?")
+        case .Yes:
+            return L10n.tr("Yes")
+        case .No:
+            return L10n.tr("No")
 
         }
     }

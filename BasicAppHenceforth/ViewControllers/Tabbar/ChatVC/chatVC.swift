@@ -54,6 +54,7 @@ extension chatVC: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
+        let vc = chatInnerVC.instantiateFromAppStoryboard(appStoryboard: .Tabbar)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }

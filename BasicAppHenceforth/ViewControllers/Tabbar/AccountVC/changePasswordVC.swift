@@ -92,6 +92,6 @@ extension changePasswordVC{
     }
     
     @objc func btnActUpdatePassword(_ sender: UIButton){
-        
+        self.navigationController?.popViewController(animated: true)
     }
 }

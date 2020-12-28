@@ -122,7 +122,8 @@ extension LoginVC: UITextFieldDelegate{
 // MARK:- Extennal Functions
 extension LoginVC{
     @objc func btnActSkip(_ sender: Any) {
-        
+        let vc = tabbarVC.instantiateFromAppStoryboard(appStoryboard: .Tabbar)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func btnActLogin(_ sender: Any) {

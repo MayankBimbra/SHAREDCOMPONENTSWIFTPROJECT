@@ -18,6 +18,8 @@ enum CollectionViewCell : String{
 enum TableViewCell : String{
     case notificationTVC = "notificationTVC"
     case chatTVC = "chatTVC"
+    case chatInnerLeftTVC = "chatInnerLeftTVC"
+    case chatInnerRightTVC = "chatInnerRightTVC"
 
     func getValues() -> String{
         return self.rawValue

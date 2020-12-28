@@ -81,6 +81,9 @@
 		BEE82662256D36F60023CDED /* Montserrat-SemiBoldItalic.ttf in Sources */ = {isa = PBXBuildFile; fileRef = BEC991CE256CEF2500F7975C /* Montserrat-SemiBoldItalic.ttf */; };
 		BEE82663256D36F60023CDED /* Montserrat-Thin.ttf in Sources */ = {isa = PBXBuildFile; fileRef = BEC991C5256CEF2300F7975C /* Montserrat-Thin.ttf */; };
 		BEE82664256D36F60023CDED /* Montserrat-ThinItalic.ttf in Sources */ = {isa = PBXBuildFile; fileRef = BEC991CA256CEF2400F7975C /* Montserrat-ThinItalic.ttf */; };
+		D148757525996213004E236F /* chatInnerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D148757425996213004E236F /* chatInnerVC.swift */; };
+		D148757A259999D9004E236F /* chatInnerTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1487579259999D9004E236F /* chatInnerTVC.swift */; };
+		D14875822599A42C004E236F /* contactUsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14875812599A42C004E236F /* contactUsVC.swift */; };
 		D1489BC2258372F600069784 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1489BC1258372F600069784 /* Constant.swift */; };
 		D1489BC7258373D700069784 /* SplashScreenCVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1489BC6258373D700069784 /* SplashScreenCVC.swift */; };
 		D1489BCD2583760200069784 /* Nexa_Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D1489BCC258375A500069784 /* Nexa_Bold.otf */; };
@@ -236,6 +239,9 @@
 		BEC99217256D22DD00F7975C /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		BEC9921C256D279700F7975C /* FlagKit.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = FlagKit.xcassets; sourceTree = "<group>"; };
 		CD88E597477D4E326AAC3886 /* Pods_BasicAppHenceforth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BasicAppHenceforth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D148757425996213004E236F /* chatInnerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chatInnerVC.swift; sourceTree = "<group>"; };
+		D1487579259999D9004E236F /* chatInnerTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chatInnerTVC.swift; sourceTree = "<group>"; };
+		D14875812599A42C004E236F /* contactUsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = contactUsVC.swift; sourceTree = "<group>"; };
 		D1489BC1258372F600069784 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		D1489BC6258373D700069784 /* SplashScreenCVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenCVC.swift; sourceTree = "<group>"; };
 		D1489BCB258375A500069784 /* Nexa_Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Nexa_Light.otf; sourceTree = "<group>"; };
@@ -596,6 +602,8 @@
 			children = (
 				D1866A172592033C00E0E8B0 /* chatVC.swift */,
 				D1866A1F25920C6A00E0E8B0 /* chatTVC.swift */,
+				D148757425996213004E236F /* chatInnerVC.swift */,
+				D1487579259999D9004E236F /* chatInnerTVC.swift */,
 			);
 			path = ChatVC;
 			sourceTree = "<group>";
@@ -617,6 +625,7 @@
 				D1D711472593A24600ACCE16 /* notificationAskVC.swift */,
 				D1D711512593B22A00ACCE16 /* changePasswordVC.swift */,
 				D1D711562593B73700ACCE16 /* webPageVC.swift */,
+				D14875812599A42C004E236F /* contactUsVC.swift */,
 			);
 			path = AccountVC;
 			sourceTree = "<group>";
@@ -942,6 +951,7 @@
 				BEE82659256D36F60023CDED /* Montserrat-ExtraLight.ttf in Sources */,
 				BEE8265A256D36F60023CDED /* Montserrat-ExtraLightItalic.ttf in Sources */,
 				BEE8265B256D36F60023CDED /* Montserrat-Italic.ttf in Sources */,
+				D148757A259999D9004E236F /* chatInnerTVC.swift in Sources */,
 				BEE8265C256D36F60023CDED /* Montserrat-Light.ttf in Sources */,
 				D1866A122591F8B900E0E8B0 /* basePopUpVC.swift in Sources */,
 				BEE8265D256D36F60023CDED /* Montserrat-LightItalic.ttf in Sources */,
@@ -967,6 +977,7 @@
 				D1D711522593B22A00ACCE16 /* changePasswordVC.swift in Sources */,
 				D18669EF2590F16E00E0E8B0 /* ForgotPasswordVC.swift in Sources */,
 				BEC9914F256CD85100F7975C /* CustomLoader.swift in Sources */,
+				D14875822599A42C004E236F /* contactUsVC.swift in Sources */,
 				BEC99151256CD85100F7975C /* Extension+UIView.swift in Sources */,
 				D16A526D259086A200256C9C /* phoneVerificationVC.swift in Sources */,
 				BEC99148256CD85100F7975C /* StoryBoard.swift in Sources */,
@@ -995,6 +1006,7 @@
 				BEC99120256CD80500F7975C /* commonFunction.swift in Sources */,
 				BEC9911D256CD80500F7975C /* VAMonthView.swift in Sources */,
 				D1866A0C2591D66600E0E8B0 /* loginAskPopUp.swift in Sources */,
+				D148757525996213004E236F /* chatInnerVC.swift in Sources */,
 				D1866A032591CB3900E0E8B0 /* homeVC.swift in Sources */,
 				BEC99124256CD80500F7975C /* Images.swift in Sources */,
 				BEC9911F256CD80500F7975C /* CommonAPis.swift in Sources */,
@@ -1197,6 +1209,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GFSZHD28XL;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = BasicAppHenceforth/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1218,6 +1231,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GFSZHD28XL;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = BasicAppHenceforth/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (

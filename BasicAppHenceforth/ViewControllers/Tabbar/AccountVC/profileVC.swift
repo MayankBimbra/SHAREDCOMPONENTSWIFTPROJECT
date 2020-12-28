@@ -156,7 +156,8 @@ extension profileVC{
     }
     
     @objc func btnActContactUs(_ sender: UIButton){
-        
+        let vc = contactUsVC.instantiateFromAppStoryboard(appStoryboard: .Account)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 
     @objc func btnActHelpCenter(_ sender: UIButton){
@@ -164,26 +165,41 @@ extension profileVC{
     }
 
     @objc func btnActAboutUs(_ sender: UIButton){
-        
+        let vc = webPageVC.instantiateFromAppStoryboard(appStoryboard: .Account)
+        vc.screenType = .AboutUs
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 
     @objc func btnActRateApp(_ sender: UIButton){
-        
+        if let url = URL(string: "https://apps.apple.com/in/app/rxhub/id1520523866?action=write-review") {
+          UIApplication.shared.open(url)
+        }
     }
 
     @objc func btnActShareApp(_ sender: UIButton){
-        
+        let items = ["Hey, checked this app on appstore", URL(string: "https://apps.apple.com/in/app/rxhub/id1520523866")!] as [Any]
+        let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        self.present(ac, animated: true)
     }
 
     @objc func btnActPrivacyPolicy(_ sender: UIButton){
-        
+        let vc = webPageVC.instantiateFromAppStoryboard(appStoryboard: .Account)
+        vc.screenType = .PrivacyPolicy
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 
     @objc func btnActTermsCond(_ sender: UIButton){
-        
+        let vc = webPageVC.instantiateFromAppStoryboard(appStoryboard: .Account)
+        vc.screenType = .TermsAndCond
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 
     @objc func btnActLogOut(_ sender: UIButton){
-        
+        let alert = UIAlertController(title: L10n.Log_Out.description, message: L10n.LogOutDesc.description, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: L10n.Yes.description, style: .destructive, handler: { _ in
+            CommonFunctions.logout()
+        }))
+        alert.addAction(UIAlertAction(title: L10n.No.description, style: .cancel, handler: { _ in }))
+        self.present(alert, animated: true, completion: nil)
     }
 }

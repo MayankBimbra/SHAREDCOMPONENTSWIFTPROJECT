@@ -201,6 +201,12 @@ class CommonFunctions {
         }
     }
     
+    static func logout(){
+        let vc = SignUpVC.instantiateFromAppStoryboard(appStoryboard: AppStoryboard.Main)
+        CommonFunctions.getNavigationController().viewControllers.insert(vc, at: 0)
+        CommonFunctions.getNavigationController().popToRootViewController(animated: false)
+    }
+    
     static func setBorderAndColorView(_ view : [UIView]){
         for vw in view{
             vw.layer.cornerRadius = 6.0
