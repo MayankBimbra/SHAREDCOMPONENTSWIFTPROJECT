@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import IQKeyboardManagerSwift
+import GrowingTextView
 import FlagPhoneNumber
 import SkyFloatingLabelTextField
 
@@ -24,14 +24,20 @@ class editProfileVC: headerVC {
     @IBOutlet weak var tfWork: SkyFloatingLabelTextField!
     
     @IBOutlet weak var lblAbout: UILabel!
-    @IBOutlet weak var tvAbout: IQTextView!
+    @IBOutlet weak var tvAbout: GrowingTextView!
     @IBOutlet weak var vwAbout: UIView!
+    @IBOutlet weak var constTopUpper: NSLayoutConstraint!
     
+
     fileprivate lazy var btnPhoneNumber : UIButton = {
-        let btn = UIButton(frame: CGRect(x: 0, y: 14, width: 44, height: 30))
+        let btn = UIButton(frame: CGRect(x: 0, y: 14, width: 52, height: 30))
         btn.titleLabel?.font = UIFont.MontserratMedium(Size.Medium.sizeValue())
         btn.setTitleColor(UIColor.textColorMain, for: .normal)
         btn.setTitle("+971", for: .normal)
+        let img = Asset.ic_downArrow.image().withRenderingMode(.alwaysTemplate)
+        btn.setImage(img, for: .normal)
+        btn.tintColor = UIColor.textColorMain
+        btn.semanticContentAttribute = .forceRightToLeft
         return btn
     }()
     
@@ -39,7 +45,6 @@ class editProfileVC: headerVC {
     //MARK:- Variables
     var selectedValue = "+971"
     var countryCode = ""
-
     
     
     // MARK: - OVERRIDE FUNCTIONS
@@ -71,13 +76,13 @@ extension editProfileVC{
                                     placeHolder: L10n.Business.description)
 
         
-        let phoneVw = UIView(frame: CGRect(x: 0, y: 0, width: 48, height: 44))
+        let phoneVw = UIView(frame: CGRect(x: 0, y: 0, width: 52, height: 44))
         phoneVw.backgroundColor = UIColor.clear
-        let lineVw = UIView(frame: CGRect(x: 43, y: 20, width: 1, height: 18))
-        lineVw.backgroundColor = UIColor.textColorPlaceholder
+//        let lineVw = UIView(frame: CGRect(x: 43, y: 20, width: 1, height: 18))
+//        lineVw.backgroundColor = UIColor.textColorPlaceholder
         
         phoneVw.addSubview(btnPhoneNumber)
-        phoneVw.addSubview(lineVw)
+//        phoneVw.addSubview(lineVw)
 
         tfPhoneNumber.title = L10n.PhoneNumber.description
         tfPhoneNumber.leftView = phoneVw
@@ -95,11 +100,12 @@ extension editProfileVC{
         tvAbout.font = UIFont.MontserratMedium(Size.Medium.sizeValue())
         tvAbout.textColor = UIColor.textColorMain
         tvAbout.tintColor = UIColor.textColorMain
-        tvAbout.placeholderTextColor = UIColor.textColorPlaceholder
+        tvAbout.placeholderColor = UIColor.textColorPlaceholder
         tvAbout.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        tvAbout.placeholder = L10n.TellUsAboutYoursef.description
+        tvAbout.placeholder = ""//L10n.TellUsAboutYoursef.description
         
-        lblAbout.font = UIFont.MontserratMedium(Size.Small.sizeValue())
+//        lblAbout.font = UIFont.MontserratMedium(Size.Small.sizeValue())
+        lblAbout.font = UIFont.MontserratMedium(Size.Medium.sizeValue())
         lblAbout.text = L10n.AboutText.description
         lblAbout.textColor = UIColor.textColorPlaceholder
 
@@ -176,10 +182,29 @@ extension editProfileVC: UITextViewDelegate{
         let currentString: NSString = textView.text! as NSString
         let newString: NSString =
             currentString.replacingCharacters(in: range, with: text) as NSString
-        if tvAbout == textView{
-            return newString.length <= 500
+        if textView.text == "" && text != ""{
+            lblAbout.textColor = UIColor.themeColor
+            vwAbout.backgroundColor = UIColor.themeColor
+            lblAbout.text = L10n.AboutText.description.uppercased()
+            constTopUpper.constant = -20
+            lblAbout.font = UIFont.MontserratMedium(Size.Small.sizeValue())
+            UIView.animate(withDuration: 0.3) {
+                self.view.layoutIfNeeded()
+            }
         }
-        return true
+        if newString == ""{
+            if lblAbout.text != L10n.Message.description{
+                lblAbout.textColor = UIColor.textColorPlaceholder
+                vwAbout.backgroundColor = UIColor.textColorPlaceholder
+                lblAbout.text = L10n.AboutText.description
+                constTopUpper.constant = 0
+                UIView.animate(withDuration: 0.2) {
+                    self.view.layoutIfNeeded()
+                }
+                lblAbout.font = UIFont.MontserratMedium(Size.Medium.sizeValue())
+            }
+        }
+        return newString.length <= 520
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {

@@ -82,6 +82,12 @@ extension chatInnerVC{
         tblView.estimatedRowHeight = 120
         tblView.reloadData()
     }
+    
+    func scrollToAbove(_ height: CGFloat){
+        if tblView.contentSize.height - tblView.contentOffset.y > tblView.frame.height - height{
+            tblView.setContentOffset(CGPoint(x: 0, y: tblView.contentOffset.y + height), animated: true)
+        }
+    }
 }
 
 
@@ -148,7 +154,8 @@ extension chatInnerVC{
         if let userInfo = notification.userInfo{
             let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue)
             let rect = keyboardFrame.cgRectValue
-            btmConstValue.constant = CGFloat(rect.height)
+            btmConstValue.constant = CGFloat(rect.height) - self.view.safeAreaInsets.bottom + 12
+            scrollToAbove(rect.height)
             UIView.animate(withDuration: 0.3) {
                 self.view.layoutIfNeeded()
             }

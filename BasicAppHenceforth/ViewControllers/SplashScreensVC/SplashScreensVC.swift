@@ -162,7 +162,12 @@ extension SplashScreensVC{
     }
     
     @objc func btnActSkip(_ sender: Any) {
-        let vc = SignUpVC.instantiateFromAppStoryboard(appStoryboard: .Main)
-        self.navigationController?.pushViewController(vc, animated: true)
+        if currentSelectedPage == 0{
+            collView.scrollToItem(at: IndexPath(item: 1, section: 0), at: [.centeredHorizontally, .centeredVertically], animated: true)
+        }else if currentSelectedPage == 1{
+            collView.scrollToItem(at: IndexPath(item: 2, section: 0), at: [.centeredHorizontally, .centeredVertically], animated: true)
+        }else{
+            
+        }
     }
 }

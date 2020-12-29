@@ -21,13 +21,17 @@ class contactUsVC: headerVC {
     @IBOutlet weak var tvMsg: GrowingTextView!
     @IBOutlet weak var vwMsg: UIView!
     @IBOutlet weak var btnSubmit: UIButton!
-
+    @IBOutlet weak var constTopUpper: NSLayoutConstraint!
     
     fileprivate lazy var btnPhoneNumber : UIButton = {
-        let btn = UIButton(frame: CGRect(x: 0, y: 14, width: 44, height: 30))
+        let btn = UIButton(frame: CGRect(x: 0, y: 14, width: 52, height: 30))
         btn.titleLabel?.font = UIFont.MontserratMedium(Size.Medium.sizeValue())
         btn.setTitleColor(UIColor.textColorMain, for: .normal)
         btn.setTitle("+971", for: .normal)
+        let img = Asset.ic_downArrow.image().withRenderingMode(.alwaysTemplate)
+        btn.setImage(img, for: .normal)
+        btn.tintColor = UIColor.textColorMain
+        btn.semanticContentAttribute = .forceRightToLeft
         return btn
     }()
     
@@ -35,7 +39,6 @@ class contactUsVC: headerVC {
     // MARK:- VARIABLES
     var selectedValue = "+971"
     var countryCode = ""
-    
     
     
     // MARK: - OVERRIDE FUNCTIONS
@@ -58,13 +61,13 @@ extension contactUsVC{
         //MARK:- Implement country code in textfield
         btnPhoneNumber.addTarget(self, action: #selector(btnActCountryCode(_:)), for: .touchUpInside)
         
-        let phoneVw = UIView(frame: CGRect(x: 0, y: 0, width: 48, height: 44))
+        let phoneVw = UIView(frame: CGRect(x: 0, y: 0, width: 52, height: 44))
         phoneVw.backgroundColor = UIColor.clear
-        let lineVw = UIView(frame: CGRect(x: 43, y: 20, width: 1, height: 18))
-        lineVw.backgroundColor = UIColor.textColorPlaceholder
+//        let imgVw = UIImageView(frame: CGRect(x: 44, y: 0, width: 8, height: 44))
+//        lineVw.backgroundColor = UIColor.textColorPlaceholder
         
         phoneVw.addSubview(btnPhoneNumber)
-        phoneVw.addSubview(lineVw)
+//        phoneVw.addSubview(lineVw)
 
         CommonFunctions.normalSkyTF(tfPhoneNumber, img: Asset.ic_phone_number.image(), placeHolder: "             \(L10n.PhoneNumber.description)")
         tfPhoneNumber.title = L10n.PhoneNumber.description
@@ -78,10 +81,11 @@ extension contactUsVC{
         tvMsg.tintColor = UIColor.textColorMain
         tvMsg.placeholderColor = UIColor.textColorPlaceholder
         tvMsg.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        tvMsg.placeholder = L10n.TypeMessage.description
+        tvMsg.placeholder = ""//L10n.TypeMessage.description
         
-        lblMsg.font = UIFont.MontserratMedium(Size.Small.sizeValue())
-        lblMsg.text = L10n.Message.description.uppercased()
+        lblMsg.font = UIFont.MontserratMedium(Size.Medium.sizeValue())
+//        lblMsg.font = UIFont.MontserratMedium(Size.Small.sizeValue())
+        lblMsg.text = L10n.Message.description
         lblMsg.textColor = UIColor.textColorPlaceholder
 
         vwMsg.backgroundColor = UIColor.textColorPlaceholder
@@ -131,6 +135,35 @@ extension contactUsVC: UITextFieldDelegate{
 
 // MARK: - UI TEXTVIEW DELEGATE
 extension contactUsVC: UITextViewDelegate{
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let currentString: NSString = textView.text! as NSString
+        let newString: NSString =
+            currentString.replacingCharacters(in: range, with: text) as NSString
+        if textView.text == "" && text != ""{
+            lblMsg.textColor = UIColor.themeColor
+            vwMsg.backgroundColor = UIColor.themeColor
+            lblMsg.text = L10n.Message.description.uppercased()
+            constTopUpper.constant = -20
+            lblMsg.font = UIFont.MontserratMedium(Size.Small.sizeValue())
+            UIView.animate(withDuration: 0.3) {
+                self.view.layoutIfNeeded()
+            }
+        }
+        if newString == ""{
+            if lblMsg.text != L10n.Message.description{
+                lblMsg.textColor = UIColor.textColorPlaceholder
+                vwMsg.backgroundColor = UIColor.textColorPlaceholder
+                lblMsg.text = L10n.Message.description
+                constTopUpper.constant = 0
+                UIView.animate(withDuration: 0.2) {
+                    self.view.layoutIfNeeded()
+                }
+                lblMsg.font = UIFont.MontserratMedium(Size.Medium.sizeValue())
+            }
+        }
+        return newString.length <= 520
+    }
+    
     func textViewDidBeginEditing(_ textView: UITextView) {
         lblMsg.textColor = UIColor.themeColor
         vwMsg.backgroundColor = UIColor.themeColor

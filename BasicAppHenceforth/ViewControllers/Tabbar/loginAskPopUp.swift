@@ -70,10 +70,12 @@ extension loginAskPopUp{
 // MARK: - EXTERNAL FUNCTIONS
 extension loginAskPopUp{
     @objc func btnActSignIn(_ sender: UIButton){
+        CommonFunctions.logout()
         stopAnimation()
     }
     
     @objc func btnActSignUp(_ sender: UIButton){
+        CommonFunctions.logout(false)
         stopAnimation()
     }
 

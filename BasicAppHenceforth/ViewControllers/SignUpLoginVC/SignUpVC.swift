@@ -28,10 +28,14 @@ class SignUpVC: headerVC {
     @IBOutlet weak var lblTermsPrivacy: ActiveLabel!
         
     fileprivate lazy var btnPhoneNumber : UIButton = {
-        let btn = UIButton(frame: CGRect(x: 0, y: 14, width: 44, height: 30))
+        let btn = UIButton(frame: CGRect(x: 0, y: 14, width: 52, height: 30))
         btn.titleLabel?.font = UIFont.MontserratMedium(Size.Medium.sizeValue())
         btn.setTitleColor(UIColor.textColorMain, for: .normal)
         btn.setTitle("+971", for: .normal)
+        let img = Asset.ic_downArrow.image().withRenderingMode(.alwaysTemplate)
+        btn.setImage(img, for: .normal)
+        btn.tintColor = UIColor.textColorMain
+        btn.semanticContentAttribute = .forceRightToLeft
         return btn
     }()
     
@@ -76,13 +80,13 @@ extension SignUpVC{
         //MARK:- Implement country code in textfield
         btnPhoneNumber.addTarget(self, action: #selector(btnActCountryCode(_:)), for: .touchUpInside)
         
-        let phoneVw = UIView(frame: CGRect(x: 0, y: 0, width: 48, height: 44))
+        let phoneVw = UIView(frame: CGRect(x: 0, y: 0, width: 52, height: 44))
         phoneVw.backgroundColor = UIColor.clear
-        let lineVw = UIView(frame: CGRect(x: 43, y: 20, width: 1, height: 18))
-        lineVw.backgroundColor = UIColor.textColorPlaceholder
+//        let lineVw = UIView(frame: CGRect(x: 43, y: 20, width: 1, height: 18))
+//        lineVw.backgroundColor = UIColor.textColorPlaceholder
         
         phoneVw.addSubview(btnPhoneNumber)
-        phoneVw.addSubview(lineVw)
+//        phoneVw.addSubview(lineVw)
 
         CommonFunctions.normalSkyTF(tfPhoneNumber, img: Asset.ic_phone_number.image(), placeHolder: "             \(L10n.PhoneNumber.description)")
         tfPhoneNumber.title = L10n.PhoneNumber.description

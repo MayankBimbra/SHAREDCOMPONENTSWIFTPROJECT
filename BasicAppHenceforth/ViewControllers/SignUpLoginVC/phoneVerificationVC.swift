@@ -74,7 +74,7 @@ extension phoneVerificationVC{
         
         CommonFunctions.setbuttonBoarder(4, [btnNext])
         btnNext.titleLabel?.font = UIFont.MontserratSemiBold(Size.Medium.sizeValue())
-        btnNext.setTitle(L10n.Next.description, for: .normal)
+        btnNext.setTitle(L10n.SUBMIT.description, for: .normal)
         btnNext.setTitleColor(UIColor.appWhiteColor, for: .normal)
         btnNext.addTarget(self, action: #selector(btnActNext(_:)), for: .touchUpInside)
 

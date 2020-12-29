@@ -21,7 +21,7 @@ class chatInnerLeftTVC: UITableViewCell {
         lblMsg.textColor = UIColor.appBlackColor
         lblTime.textColor = UIColor.textColorTwo
         
-        lblMsg.text = "Hello?"
+        lblMsg.text = "Hello?. How are you? When you will free to check?"
         lblTime.text = "10:00AM"
         
         // Initialization code

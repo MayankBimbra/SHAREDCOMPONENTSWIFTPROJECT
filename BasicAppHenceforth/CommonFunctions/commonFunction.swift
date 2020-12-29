@@ -201,8 +201,13 @@ class CommonFunctions {
         }
     }
     
-    static func logout(){
-        let vc = SignUpVC.instantiateFromAppStoryboard(appStoryboard: AppStoryboard.Main)
+    static func logout(_ isLogout : Bool = true){
+        var vc : UIViewController!
+        if isLogout{
+            vc = LoginVC.instantiateFromAppStoryboard(appStoryboard: AppStoryboard.Main)
+        }else{
+            vc = SignUpVC.instantiateFromAppStoryboard(appStoryboard: AppStoryboard.Main)
+        }
         CommonFunctions.getNavigationController().viewControllers.insert(vc, at: 0)
         CommonFunctions.getNavigationController().popToRootViewController(animated: false)
     }

@@ -46,6 +46,7 @@ enum Asset : String {
     case ic_edit_white = "ic_edit_white"
     case verified = "verified"
     case ic_send = "send"
+    case ic_downArrow = "ic_downArrow"
     
     func image () -> UIImage{
         return UIImage(named: self.rawValue)!
