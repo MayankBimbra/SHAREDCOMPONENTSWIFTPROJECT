@@ -48,6 +48,14 @@ enum Asset : String {
     case ic_send = "send"
     case ic_downArrow = "ic_downArrow"
     
+    case ic_AttachFile = "attach_file"
+    case ic_ContentCopy = "content_copy"
+    case ic_Delete = "delete"
+    case ic_Forward = "forward"
+    case ic_Play_Circle_Outline = "play_circle_outline"
+    case ic_Reply = "reply"
+    case ic_Share = "share"
+
     func image () -> UIImage{
         return UIImage(named: self.rawValue)!
     }

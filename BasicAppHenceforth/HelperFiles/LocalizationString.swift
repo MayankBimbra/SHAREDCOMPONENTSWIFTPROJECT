@@ -153,9 +153,9 @@ extension L10n: CustomStringConvertible{
         case .CreateNewAccount:
             return L10n.tr("Create New Account")
         case .AlreadyAccount:
-            return L10n.tr("Already have a account ?")
+            return L10n.tr("Already have an account ?")
         case .AlreadyAccountLogin:
-            return L10n.tr(" Login")
+            return L10n.tr(" Sign In")
         case .FirstName:
             return L10n.tr("First Name")
         case .LastName:
@@ -223,7 +223,7 @@ extension L10n: CustomStringConvertible{
             return L10n.tr("SIGN UP")
             
         case .ChatHeader:
-            return L10n.tr("Chat")
+            return L10n.tr("Chats")
         case .TypeMessage:
             return L10n.tr("Type message...")
 
