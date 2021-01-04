@@ -77,7 +77,7 @@ class VAMonthView: UIView {
         blockButton.isHidden = true
         backgroundColor = .clear
         blockButton.setTitle("Block this month", for: .normal)
-        monthsData = self.month
+//        monthsData = self.month
     }
     
     required init?(coder aDecoder: NSCoder) {

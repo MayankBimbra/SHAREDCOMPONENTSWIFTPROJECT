@@ -6,7 +6,10 @@
 //
 
 import UIKit
+import AVKit
+import AVFoundation
 import GrowingTextView
+import MobileCoreServices
 import IQKeyboardManagerSwift
 
 class chatInnerVC: UIViewController {
@@ -16,14 +19,32 @@ class chatInnerVC: UIViewController {
     @IBOutlet weak var imgViewDP: UIImageView!
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var tvChat: GrowingTextView!
-    @IBOutlet weak var btnSend: UIButton!
+    @IBOutlet weak var imgViewSend: UIImageView!
     @IBOutlet weak var btmConstValue: NSLayoutConstraint!
     @IBOutlet weak var tblView: UITableView!
-    
+    @IBOutlet weak var btnAttach: UIButton!
+    @IBOutlet weak var viewVideo: UIView!
+    @IBOutlet weak var imgViewMicInner: UIImageView!
+    @IBOutlet weak var lblTimer: UILabel!
+    @IBOutlet weak var constAudioAnim: NSLayoutConstraint!
+    @IBOutlet weak var stackTopView: UIStackView!
+    @IBOutlet weak var btnCopy: UIButton!
+    @IBOutlet weak var btnReply: UIButton!
+    @IBOutlet weak var btnDelete: UIButton!
+    @IBOutlet weak var btnShare: UIButton!
+    @IBOutlet weak var btnFoward: UIButton!
     
     
     // MARK: - VARIABLES
     let sendImage = Asset.ic_send.image().withRenderingMode(.alwaysTemplate)
+    let audioImage = Asset.ic_mic_white.image().withRenderingMode(.alwaysTemplate)
+    var recordingSession: AVAudioSession!
+    var audioRecorder: AVAudioRecorder!
+    var audioPlayer: AVAudioPlayer!
+    var timer : Timer!
+    var voiceTimerCounter = 0
+    var voiceTimer:Timer!
+    var selectedCells : [IndexPath] = []
     
     
     // MARK: - OVERRIDE FUNCTIONS
@@ -69,23 +90,88 @@ extension chatInnerVC{
         tvChat.textContainerInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         tvChat.layer.cornerRadius = tvChat.frame.height/2
 
-        btnSend.layer.cornerRadius = btnSend.frame.height/2
-        btnSend.setImage(sendImage, for: .normal)
-        btnSend.tintColor = UIColor.bGColor
-        
-        btnSend.addTarget(self, action: #selector(btnActSend(_:)),
-                          for: .touchUpInside)
+        imgViewSend.layer.cornerRadius = imgViewSend.frame.height/2
+        imgViewSend.image = audioImage
+        imgViewSend.tintColor = UIColor.appWhiteColor
+        viewVideo.layer.cornerRadius = viewVideo.frame.height/2
+        viewVideo.backgroundColor = UIColor.unreadColor
+        viewVideo.layer.borderColor = UIColor.bGColor.cgColor
+        viewVideo.layer.borderWidth = 1
+
         btnBack.addTarget(self, action: #selector(btnActBack(_:)),
                           for: .touchUpInside)
+        btnAttach.addTarget(self, action: #selector(btnActAttach(_:)),
+                            for: .touchUpInside)
+        
+        let tapAct = UITapGestureRecognizer(target: self,
+                                            action: #selector(tapActSend(_:)))
+        let longPressAct = UILongPressGestureRecognizer(target: self,
+                                                        action: #selector(longPressActSend(_:)))
+        imgViewSend.addGestureRecognizer(tapAct)
+        imgViewSend.addGestureRecognizer(longPressAct)
+        
+        imgViewMicInner.image = audioImage
+        imgViewMicInner.tintColor = UIColor.themeColor
         
         tblView.rowHeight = UITableView.automaticDimension
         tblView.estimatedRowHeight = 120
         tblView.reloadData()
+        
+        lblTimer.font = UIFont.MontserratMedium(Size.Medium.sizeValue())
+        lblTimer.textColor = UIColor.textColorMain
+        btnBack.tintColor = UIColor.appWhiteColor
+        
+        do{
+            try AVAudioSession.sharedInstance().overrideOutputAudioPort(AVAudioSession.PortOverride.speaker)
+        }catch(let error){
+            print(error)
+        }
+        
+        btnCopy.addTarget(self, action: #selector(btnActCopy(_:)), for: .touchUpInside)
+        btnReply.addTarget(self, action: #selector(btnActReply(_:)), for: .touchUpInside)
+        btnDelete.addTarget(self, action: #selector(btnActDelete(_:)), for: .touchUpInside)
+        btnShare.addTarget(self, action: #selector(btnActShare(_:)), for: .touchUpInside)
+        btnFoward.addTarget(self, action: #selector(btnActForward(_:)), for: .touchUpInside)
     }
     
     func scrollToAbove(_ height: CGFloat){
         if tblView.contentSize.height - tblView.contentOffset.y > tblView.frame.height - height{
             tblView.setContentOffset(CGPoint(x: 0, y: tblView.contentOffset.y + height), animated: true)
+        }
+    }
+    
+    func gestSelection(){
+        if selectedCells.count == 0{
+            imgViewDP.isHidden = false
+            lblName.isHidden = false
+            stackTopView.isHidden = true
+            btnBack.setImage(Asset.ic_back_white.image().withRenderingMode(.alwaysTemplate), for: .normal)
+        }else{
+            imgViewDP.isHidden = true
+            lblName.isHidden = true
+            stackTopView.isHidden = false
+            btnBack.setImage(Asset.ic_cancel_unselected.image().withRenderingMode(.alwaysTemplate), for: .normal)
+        }
+    }
+
+    func prodTimeString(time: TimeInterval) -> String {
+        let prodMinutes = Int(time) / 60 % 60
+        let prodSeconds = Int(time) % 60
+        return String(format: "%02d:%02d", prodMinutes, prodSeconds)
+    }
+    
+    func tagCreator(_ index: IndexPath) -> Int{
+        let sec = index.section
+        let row = index.row
+        
+        if row < 10{
+            return Int("\(sec)000\(row)") ?? 0
+        } else if row < 100{
+            return Int("\(sec)00\(row)") ?? 0
+        } else if row < 1000{
+            return Int("\(sec)0\(row)") ?? 0
+        } else {
+            return Int("\(sec)\(row)") ?? 0
         }
     }
 }
@@ -98,15 +184,70 @@ extension chatInnerVC: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return 16
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row % 2 == 0{
+        let kTag = tagCreator(indexPath)
+        if indexPath.row % 8 == 0{
             let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.chatInnerLeftTVC.getValues(), for: indexPath) as! chatInnerLeftTVC
+            cell.contentView.tag = kTag
+            cell.lngPressGest.addTarget(self, action: #selector(longPressActMsgs(_:)))
+            cell.tapPressGest.addTarget(self, action: #selector(tapPressActMsgs(_:)))
+            cell.onSelected(selectedCells.contains(indexPath))
             return cell
-        }else{
+        }else if indexPath.row % 8 == 1{
             let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.chatInnerRightTVC.getValues(), for: indexPath) as! chatInnerRightTVC
+            cell.contentView.tag = kTag
+            cell.lngPressGest.addTarget(self, action: #selector(longPressActMsgs(_:)))
+            cell.tapPressGest.addTarget(self, action: #selector(tapPressActMsgs(_:)))
+            cell.onSelected(selectedCells.contains(indexPath))
+            return cell
+        }else if indexPath.row % 8 == 2{
+            let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.chatInnerVideoLeftTVC.getValues(), for: indexPath) as! chatInnerVideoLeftTVC
+            cell.contentView.tag = kTag
+            cell.lngPressGest.addTarget(self, action: #selector(longPressActMsgs(_:)))
+            cell.tapPressGest.addTarget(self, action: #selector(tapPressActMsgs(_:)))
+            cell.forPicture()
+            cell.onSelected(selectedCells.contains(indexPath))
+            return cell
+        }else if indexPath.row % 8 == 3{
+            let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.chatInnerVideoRightTVC.getValues(), for: indexPath) as! chatInnerVideoRightTVC
+            cell.contentView.tag = kTag
+            cell.lngPressGest.addTarget(self, action: #selector(longPressActMsgs(_:)))
+            cell.tapPressGest.addTarget(self, action: #selector(tapPressActMsgs(_:)))
+            cell.forPicture()
+            cell.onSelected(selectedCells.contains(indexPath))
+            return cell
+        }else if indexPath.row % 8 == 4{
+            let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.chatInnerVideoLeftTVC.getValues(), for: indexPath) as! chatInnerVideoLeftTVC
+            cell.contentView.tag = kTag
+            cell.lngPressGest.addTarget(self, action: #selector(longPressActMsgs(_:)))
+            cell.tapPressGest.addTarget(self, action: #selector(tapPressActMsgs(_:)))
+            cell.forVideo()
+            cell.onSelected(selectedCells.contains(indexPath))
+            return cell
+        }else if indexPath.row % 8 == 5{
+            let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.chatInnerVideoRightTVC.getValues(), for: indexPath) as! chatInnerVideoRightTVC
+            cell.contentView.tag = kTag
+            cell.lngPressGest.addTarget(self, action: #selector(longPressActMsgs(_:)))
+            cell.tapPressGest.addTarget(self, action: #selector(tapPressActMsgs(_:)))
+            cell.forVideo()
+            cell.onSelected(selectedCells.contains(indexPath))
+            return cell
+        }else if indexPath.row % 8 == 6{
+            let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.chatInnerAudioLeftTVC.getValues(), for: indexPath) as! chatInnerAudioLeftTVC
+            cell.contentView.tag = kTag
+            cell.lngPressGest.addTarget(self, action: #selector(longPressActMsgs(_:)))
+            cell.tapPressGest.addTarget(self, action: #selector(tapPressActMsgs(_:)))
+            cell.onSelected(selectedCells.contains(indexPath))
+            return cell
+        }else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.chatInnerAudioRightTVC.getValues(), for: indexPath) as! chatInnerAudioRightTVC
+            cell.contentView.tag = kTag
+            cell.lngPressGest.addTarget(self, action: #selector(longPressActMsgs(_:)))
+            cell.tapPressGest.addTarget(self, action: #selector(tapPressActMsgs(_:)))
+            cell.onSelected(selectedCells.contains(indexPath))
             return cell
         }
     }
@@ -139,9 +280,11 @@ extension chatInnerVC: UITextViewDelegate{
         let newString: NSString =
             currentString.replacingCharacters(in: range, with: text) as NSString
         if newString.length == 0{
-            btnSend.tintColor = UIColor.bGColor
+            imgViewSend.image = audioImage
+            btnAttach.isHidden = false
         }else{
-            btnSend.tintColor = UIColor.white
+            imgViewSend.image = sendImage
+            btnAttach.isHidden = true
         }
         return newString.length <= 520
     }
@@ -169,11 +312,148 @@ extension chatInnerVC{
         }
     }
 
-    @objc func btnActBack(_ sender: UIButton){
-        self.navigationController?.popViewController(animated: true)
+    @objc func btnActAttach(_ sender: UIButton){
+        self.view.endEditing(true)
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: L10n.Camera.description, style: .default, handler: { _ in
+            print("Camera")
+        }))
+        alert.addAction(UIAlertAction(title: L10n.Gallery.description, style: .default, handler: { _ in
+            print("Gallery")
+        }))
+        alert.addAction(UIAlertAction(title: L10n.Location.description, style: .default, handler: { _ in
+            print("Location")
+        }))
+        alert.addAction(UIAlertAction(title: L10n.Cancel.description, style: .cancel, handler: { _ in
+            print("Cancel")
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
     
-    @objc func btnActSend(_ sender: UIButton){
-        tvChat.text = ""
+    @objc func btnActBack(_ sender: UIButton){
+        if selectedCells.count > 0{
+            selectedCells = []
+            tblView.reloadData()
+            gestSelection()
+        }else{
+            self.navigationController?.popViewController(animated: true)
+        }
     }
+        
+    @objc func tapActSend(_ sender: UITapGestureRecognizer){
+        tvChat.text = ""
+        imgViewSend.image = audioImage
+        btnAttach.isHidden = false
+    }
+    
+    @objc func longPressActSend(_ sender: UILongPressGestureRecognizer){
+        if sender.state == UIGestureRecognizer.State.began {
+            if tvChat.text == ""{
+                if self.viewVideo.isHidden {
+                    voiceTimerCounter = 0
+                    self.voiceTimer =  Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
+                    self.lblTimer.text = "00:00"
+                    self.viewVideo.isHidden = false
+                    self.constAudioAnim.constant = -(self.imgViewSend.frame.minX - 12)
+                    UIView.animate(withDuration: 0.2, delay: 0.0, options: .transitionFlipFromLeft, animations: {
+                        self.view.layoutIfNeeded()
+                    }, completion: nil)
+                }
+//                self.startRecording()
+            }
+        } else if sender.state == UIGestureRecognizer.State.ended {
+//            if audioRecorder == nil {
+//            } else {
+                self.voiceTimer.invalidate()
+                self.constAudioAnim.constant = 0
+                UIView.animate(withDuration: 0.5, delay: 0.5, options: .transitionFlipFromLeft, animations: {
+                    self.view.layoutIfNeeded()
+                    self.viewVideo.isHidden = true
+                }, completion: nil)
+//                self.finishRecording(success: true)
+//            }
+        }
+    }
+    
+    @objc func updateCounter() {
+        voiceTimerCounter += 1
+        self.lblTimer.text = prodTimeString(time: TimeInterval(voiceTimerCounter))
+        if voiceTimerCounter >= 120{
+            self.voiceTimer.invalidate()
+            self.constAudioAnim.constant = 0
+            UIView.animate(withDuration: 0.5, delay: 0.5, options: .transitionFlipFromLeft, animations: {
+                self.view.layoutIfNeeded()
+                self.viewVideo.isHidden = true
+            }, completion: nil)
+//            self.finishRecording(success: true)
+
+        }
+    }
+    
+    @objc func longPressActMsgs(_ sender: UILongPressGestureRecognizer){
+        if sender.state == UIGestureRecognizer.State.began {
+            let kRow = (sender.view?.tag ?? 0)%10000
+            let kSection = (sender.view?.tag ?? 0)/10000
+            let kIndexPath = IndexPath(row: kRow, section: kSection)
+            if selectedCells.contains(kIndexPath){
+                let filterSel = selectedCells.filter { (index) -> Bool in
+                    if index.row == kIndexPath.row && index.section == kIndexPath.section{
+                        return false
+                    }else{
+                        return true
+                    }
+                }
+                selectedCells = filterSel
+            }else{
+                selectedCells.append(kIndexPath)
+            }
+            tblView.reloadRows(at: [kIndexPath], with: .fade)
+        }
+        gestSelection()
+    }
+    
+    @objc func tapPressActMsgs(_ sender: UITapGestureRecognizer){
+        if selectedCells.count == 0{
+            return
+        }
+        
+        let kRow = (sender.view?.tag ?? 0)%10000
+        let kSection = (sender.view?.tag ?? 0)/10000
+        let kIndexPath = IndexPath(row: kRow, section: kSection)
+        if selectedCells.contains(kIndexPath){
+            let filterSel = selectedCells.filter { (index) -> Bool in
+                if index.row == kIndexPath.row && index.section == kIndexPath.section{
+                    return false
+                }else{
+                    return true
+                }
+            }
+            selectedCells = filterSel
+        }else{
+            selectedCells.append(kIndexPath)
+        }
+        tblView.reloadRows(at: [kIndexPath], with: .fade)
+        gestSelection()
+    }
+    
+    @objc func btnActCopy(_ sender: UIButton){
+        
+    }
+
+    @objc func btnActReply(_ sender: UIButton){
+        
+    }
+
+    @objc func btnActDelete(_ sender: UIButton){
+        
+    }
+
+    @objc func btnActShare(_ sender: UIButton){
+        
+    }
+
+    @objc func btnActForward(_ sender: UIButton){
+        
+    }
+
 }

@@ -20,6 +20,10 @@ enum TableViewCell : String{
     case chatTVC = "chatTVC"
     case chatInnerLeftTVC = "chatInnerLeftTVC"
     case chatInnerRightTVC = "chatInnerRightTVC"
+    case chatInnerVideoLeftTVC = "chatInnerVideoLeftTVC"
+    case chatInnerVideoRightTVC = "chatInnerVideoRightTVC"
+    case chatInnerAudioLeftTVC = "chatInnerAudioLeftTVC"
+    case chatInnerAudioRightTVC = "chatInnerAudioRightTVC"
 
     func getValues() -> String{
         return self.rawValue

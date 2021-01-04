@@ -68,6 +68,10 @@ enum L10n {
     // CHAT SCREEN
     case ChatHeader
     case TypeMessage
+    case Camera
+    case Gallery
+    case Location
+    case Cancel
     
     // NOTIFICATION
     case NotificationHeader
@@ -124,6 +128,20 @@ enum L10n {
     case LogOutDesc
     case Yes
     case No
+    
+    case InternetNotAvailable
+    
+    // ERRORS
+    case PleaseEnterFirstName
+    case PleaseEnterLastName
+    case PleaseEnterEmail
+    case PleaseEnterValidEmail
+    case PleaseEnterPassword
+    case PleaseEnterValidPassword
+    case PleaseEnterConfirmPassword
+    case PleaseEnterSamePassword
+    case PleaseEnterPhoneNumber
+    case PleaseEnterValidPhoneNumber
 }
 
 
@@ -226,6 +244,14 @@ extension L10n: CustomStringConvertible{
             return L10n.tr("Chats")
         case .TypeMessage:
             return L10n.tr("Type message...")
+        case .Camera:
+            return L10n.tr("Camera")
+        case .Gallery:
+            return L10n.tr("Gallery")
+        case .Location:
+            return L10n.tr("Location")
+        case .Cancel:
+            return L10n.tr("Cancel")
 
         case .NotificationHeader:
             return L10n.tr("Alerts")
@@ -313,6 +339,30 @@ extension L10n: CustomStringConvertible{
             return L10n.tr("Yes")
         case .No:
             return L10n.tr("No")
+
+        case .InternetNotAvailable:
+            return L10n.tr("Internet Not Available")
+
+        case .PleaseEnterFirstName:
+            return L10n.tr("Please Enter First Name")
+        case .PleaseEnterLastName:
+            return L10n.tr("Please Enter Last Name")
+        case .PleaseEnterEmail:
+            return L10n.tr("Please Enter Email")
+        case .PleaseEnterValidEmail:
+            return L10n.tr("Please Enter Valid Email")
+        case .PleaseEnterPassword:
+            return L10n.tr("Please Enter Password")
+        case .PleaseEnterValidPassword:
+            return L10n.tr("Please Enter Valid Password")
+        case .PleaseEnterConfirmPassword:
+            return L10n.tr("Please Enter Confirm Password")
+        case .PleaseEnterSamePassword:
+            return L10n.tr("Password Should Be Same")
+        case .PleaseEnterPhoneNumber:
+            return L10n.tr("Please Enter Phone Number")
+        case .PleaseEnterValidPhoneNumber:
+            return L10n.tr("Please Enter Valid Phone Number")
 
         }
     }

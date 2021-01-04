@@ -9,7 +9,8 @@
 import UIKit
 
 class SpinnerView: UIView {
-    var showColor = Colors.redColorLoginbnb.color().cgColor
+    
+    var showColor = UIColor.themeColor.cgColor
     
     override var layer: CAShapeLayer {
         get {

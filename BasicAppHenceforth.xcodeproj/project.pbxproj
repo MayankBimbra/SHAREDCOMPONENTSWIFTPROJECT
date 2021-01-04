@@ -44,22 +44,19 @@
 		BEC9913F256CD85100F7975C /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC9912A256CD85000F7975C /* Location.swift */; };
 		BEC99140256CD85100F7975C /* BottomPaginationLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC9912B256CD85000F7975C /* BottomPaginationLoader.swift */; };
 		BEC99141256CD85100F7975C /* UIColor+Entension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC9912C256CD85000F7975C /* UIColor+Entension.swift */; };
-		BEC99142256CD85100F7975C /* UIImage+Extension+Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC9912D256CD85000F7975C /* UIImage+Extension+Loader.swift */; };
-		BEC99143256CD85100F7975C /* ExtensionUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC9912E256CD85000F7975C /* ExtensionUI.swift */; };
-		BEC99144256CD85100F7975C /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC9912F256CD85000F7975C /* UITextField+Extension.swift */; };
-		BEC99145256CD85100F7975C /* Extension+UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC99130256CD85000F7975C /* Extension+UILabel.swift */; };
-		BEC99146256CD85100F7975C /* Extension+UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC99131256CD85000F7975C /* Extension+UITextField.swift */; };
+		BEC99143256CD85100F7975C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC9912E256CD85000F7975C /* Constants.swift */; };
+		BEC99144256CD85100F7975C /* UITextFieldPaddingClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC9912F256CD85000F7975C /* UITextFieldPaddingClass.swift */; };
+		BEC99145256CD85100F7975C /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC99130256CD85000F7975C /* UILabel+Extension.swift */; };
+		BEC99146256CD85100F7975C /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC99131256CD85000F7975C /* UITextField+Extension.swift */; };
 		BEC99147256CD85100F7975C /* UiBoarderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC99132256CD85000F7975C /* UiBoarderView.swift */; };
 		BEC99148256CD85100F7975C /* StoryBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC99133256CD85000F7975C /* StoryBoard.swift */; };
 		BEC99149256CD85100F7975C /* DesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC99134256CD85000F7975C /* DesignableView.swift */; };
-		BEC9914A256CD85100F7975C /* ExtensionDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC99135256CD85000F7975C /* ExtensionDate.swift */; };
-		BEC9914B256CD85100F7975C /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC99136256CD85000F7975C /* Fonts.swift */; };
+		BEC9914B256CD85100F7975C /* UIFonts+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC99136256CD85000F7975C /* UIFonts+Extension.swift */; };
 		BEC9914C256CD85100F7975C /* loadingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC99137256CD85000F7975C /* loadingButton.swift */; };
 		BEC9914D256CD85100F7975C /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC99138256CD85000F7975C /* UIImage+Extension.swift */; };
 		BEC9914E256CD85100F7975C /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC99139256CD85000F7975C /* ShadowView.swift */; };
-		BEC9914F256CD85100F7975C /* CustomLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC9913A256CD85000F7975C /* CustomLoader.swift */; };
-		BEC99150256CD85100F7975C /* Entension+UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC9913B256CD85000F7975C /* Entension+UIDevice.swift */; };
-		BEC99151256CD85100F7975C /* Extension+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC9913C256CD85000F7975C /* Extension+UIView.swift */; };
+		BEC99150256CD85100F7975C /* UIDevice+Entension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC9913B256CD85000F7975C /* UIDevice+Entension.swift */; };
+		BEC99151256CD85100F7975C /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC9913C256CD85000F7975C /* UIView+Extension.swift */; };
 		BEC99152256CD85100F7975C /* cameraPickerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC9913D256CD85000F7975C /* cameraPickerExtension.swift */; };
 		BEC99218256D22DD00F7975C /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEC99217256D22DD00F7975C /* SignUpVC.swift */; };
 		BEC9921D256D279800F7975C /* FlagKit.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEC9921C256D279700F7975C /* FlagKit.xcassets */; };
@@ -128,6 +125,11 @@
 		D1866A34259238D800E0E8B0 /* profileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1866A33259238D800E0E8B0 /* profileVC.swift */; };
 		D1866A3C2592CF4500E0E8B0 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1866A3B2592CF4500E0E8B0 /* Profile.storyboard */; };
 		D1866A422592D4B100E0E8B0 /* profileInnerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1866A412592D4B100E0E8B0 /* profileInnerVC.swift */; };
+		D1A4F0AC25A050D300395961 /* chatInnerVideoTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A4F0AB25A050D300395961 /* chatInnerVideoTVC.swift */; };
+		D1A4F0B125A051B200395961 /* chatInnerAudioTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A4F0B025A051B200395961 /* chatInnerAudioTVC.swift */; };
+		D1A4F0DC25A23F2800395961 /* APIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A4F0DB25A23F2800395961 /* APIHandler.swift */; };
+		D1A4F0E425A23F9800395961 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A4F0E325A23F9800395961 /* Reachability.swift */; };
+		D1A4F0EB25A2429400395961 /* SignUpVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A4F0EA25A2429400395961 /* SignUpVM.swift */; };
 		D1D71140259316BA00ACCE16 /* editProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D7113F259316BA00ACCE16 /* editProfileVC.swift */; };
 		D1D711482593A24600ACCE16 /* notificationAskVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D711472593A24600ACCE16 /* notificationAskVC.swift */; };
 		D1D7114D2593A25F00ACCE16 /* Account.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1D7114C2593A25F00ACCE16 /* Account.storyboard */; };
@@ -201,22 +203,19 @@
 		BEC9912A256CD85000F7975C /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		BEC9912B256CD85000F7975C /* BottomPaginationLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomPaginationLoader.swift; sourceTree = "<group>"; };
 		BEC9912C256CD85000F7975C /* UIColor+Entension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Entension.swift"; sourceTree = "<group>"; };
-		BEC9912D256CD85000F7975C /* UIImage+Extension+Loader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension+Loader.swift"; sourceTree = "<group>"; };
-		BEC9912E256CD85000F7975C /* ExtensionUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionUI.swift; sourceTree = "<group>"; };
-		BEC9912F256CD85000F7975C /* UITextField+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
-		BEC99130256CD85000F7975C /* Extension+UILabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+UILabel.swift"; sourceTree = "<group>"; };
-		BEC99131256CD85000F7975C /* Extension+UITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+UITextField.swift"; sourceTree = "<group>"; };
+		BEC9912E256CD85000F7975C /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		BEC9912F256CD85000F7975C /* UITextFieldPaddingClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextFieldPaddingClass.swift; sourceTree = "<group>"; };
+		BEC99130256CD85000F7975C /* UILabel+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
+		BEC99131256CD85000F7975C /* UITextField+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		BEC99132256CD85000F7975C /* UiBoarderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UiBoarderView.swift; sourceTree = "<group>"; };
 		BEC99133256CD85000F7975C /* StoryBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryBoard.swift; sourceTree = "<group>"; };
 		BEC99134256CD85000F7975C /* DesignableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DesignableView.swift; sourceTree = "<group>"; };
-		BEC99135256CD85000F7975C /* ExtensionDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionDate.swift; sourceTree = "<group>"; };
-		BEC99136256CD85000F7975C /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		BEC99136256CD85000F7975C /* UIFonts+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFonts+Extension.swift"; sourceTree = "<group>"; };
 		BEC99137256CD85000F7975C /* loadingButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loadingButton.swift; sourceTree = "<group>"; };
 		BEC99138256CD85000F7975C /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		BEC99139256CD85000F7975C /* ShadowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
-		BEC9913A256CD85000F7975C /* CustomLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLoader.swift; sourceTree = "<group>"; };
-		BEC9913B256CD85000F7975C /* Entension+UIDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Entension+UIDevice.swift"; sourceTree = "<group>"; };
-		BEC9913C256CD85000F7975C /* Extension+UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+UIView.swift"; sourceTree = "<group>"; };
+		BEC9913B256CD85000F7975C /* UIDevice+Entension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+Entension.swift"; sourceTree = "<group>"; };
+		BEC9913C256CD85000F7975C /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		BEC9913D256CD85000F7975C /* cameraPickerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cameraPickerExtension.swift; sourceTree = "<group>"; };
 		BEC991BD256CEF2100F7975C /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Medium.ttf"; sourceTree = "<group>"; };
 		BEC991BE256CEF2100F7975C /* Montserrat-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraLight.ttf"; sourceTree = "<group>"; };
@@ -268,6 +267,11 @@
 		D1866A33259238D800E0E8B0 /* profileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = profileVC.swift; sourceTree = "<group>"; };
 		D1866A3B2592CF4500E0E8B0 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		D1866A412592D4B100E0E8B0 /* profileInnerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = profileInnerVC.swift; sourceTree = "<group>"; };
+		D1A4F0AB25A050D300395961 /* chatInnerVideoTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chatInnerVideoTVC.swift; sourceTree = "<group>"; };
+		D1A4F0B025A051B200395961 /* chatInnerAudioTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = chatInnerAudioTVC.swift; sourceTree = "<group>"; };
+		D1A4F0DB25A23F2800395961 /* APIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHandler.swift; sourceTree = "<group>"; };
+		D1A4F0E325A23F9800395961 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		D1A4F0EA25A2429400395961 /* SignUpVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVM.swift; sourceTree = "<group>"; };
 		D1D7113F259316BA00ACCE16 /* editProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = editProfileVC.swift; sourceTree = "<group>"; };
 		D1D711472593A24600ACCE16 /* notificationAskVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notificationAskVC.swift; sourceTree = "<group>"; };
 		D1D7114C2593A25F00ACCE16 /* Account.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Account.storyboard; sourceTree = "<group>"; };
@@ -352,9 +356,12 @@
 		BEC99060256CD6A100F7975C /* BasicAppHenceforth */ = {
 			isa = PBXGroup;
 			children = (
+				D1A4F0E825A2422000395961 /* ViewModals */,
+				D1A4F0DA25A23B2800395961 /* APIsFunctions */,
+				D1A4F0D625A23A8700395961 /* Localizations */,
 				BEC990CB256CD78A00F7975C /* AppDelegate */,
 				BEC991BC256CEF1300F7975C /* Fonts */,
-				BEC99128256CD85000F7975C /* ExtensionFiels */,
+				BEC99128256CD85000F7975C /* ExtensionFields */,
 				BEC990F4256CD80400F7975C /* CommonFunctions */,
 				BEC990ED256CD7D800F7975C /* CoreData */,
 				D1007D23257E11BF00B96E86 /* HelperFiles */,
@@ -438,7 +445,6 @@
 			children = (
 				BEC990F5256CD80400F7975C /* image.m */,
 				BEC990F6256CD80400F7975C /* VACalanderPodFiles */,
-				BEC99108256CD80400F7975C /* CommonAPis.swift */,
 				BEC99109256CD80400F7975C /* commonFunction.swift */,
 				BEC9910B256CD80500F7975C /* Horsebnb-Bridging-Header.h */,
 				BEC9910C256CD80500F7975C /* spinerView.swift */,
@@ -486,33 +492,20 @@
 			path = VACalendar;
 			sourceTree = "<group>";
 		};
-		BEC99128256CD85000F7975C /* ExtensionFiels */ = {
+		BEC99128256CD85000F7975C /* ExtensionFields */ = {
 			isa = PBXGroup;
 			children = (
-				BEC99129256CD85000F7975C /* labelPadding.swift */,
-				BEC9912A256CD85000F7975C /* Location.swift */,
-				BEC9912B256CD85000F7975C /* BottomPaginationLoader.swift */,
 				BEC9912C256CD85000F7975C /* UIColor+Entension.swift */,
-				BEC9912D256CD85000F7975C /* UIImage+Extension+Loader.swift */,
-				BEC9912E256CD85000F7975C /* ExtensionUI.swift */,
-				BEC9912F256CD85000F7975C /* UITextField+Extension.swift */,
-				BEC99130256CD85000F7975C /* Extension+UILabel.swift */,
-				BEC99131256CD85000F7975C /* Extension+UITextField.swift */,
+				BEC99130256CD85000F7975C /* UILabel+Extension.swift */,
+				BEC99131256CD85000F7975C /* UITextField+Extension.swift */,
 				BEC99132256CD85000F7975C /* UiBoarderView.swift */,
-				BEC99133256CD85000F7975C /* StoryBoard.swift */,
-				BEC99134256CD85000F7975C /* DesignableView.swift */,
-				BEC99135256CD85000F7975C /* ExtensionDate.swift */,
-				BEC99136256CD85000F7975C /* Fonts.swift */,
-				BEC99137256CD85000F7975C /* loadingButton.swift */,
+				BEC99136256CD85000F7975C /* UIFonts+Extension.swift */,
 				BEC99138256CD85000F7975C /* UIImage+Extension.swift */,
-				BEC99139256CD85000F7975C /* ShadowView.swift */,
-				BEC9913A256CD85000F7975C /* CustomLoader.swift */,
-				BEC9913B256CD85000F7975C /* Entension+UIDevice.swift */,
-				BEC9913C256CD85000F7975C /* Extension+UIView.swift */,
-				BEC9913D256CD85000F7975C /* cameraPickerExtension.swift */,
+				BEC9913B256CD85000F7975C /* UIDevice+Entension.swift */,
+				BEC9913C256CD85000F7975C /* UIView+Extension.swift */,
 				D16A5267258FBE0800256C9C /* UITapGesture+Extension.swift */,
 			);
-			path = ExtensionFiels;
+			path = ExtensionFields;
 			sourceTree = "<group>";
 		};
 		BEC991B5256CEE2D00F7975C /* SplashScreensVC */ = {
@@ -566,7 +559,16 @@
 		D1007D23257E11BF00B96E86 /* HelperFiles */ = {
 			isa = PBXGroup;
 			children = (
-				D166FDBD258365BB001F36A7 /* LocalizationString.swift */,
+				BEC9912B256CD85000F7975C /* BottomPaginationLoader.swift */,
+				BEC9912E256CD85000F7975C /* Constants.swift */,
+				BEC99133256CD85000F7975C /* StoryBoard.swift */,
+				BEC99139256CD85000F7975C /* ShadowView.swift */,
+				BEC9913D256CD85000F7975C /* cameraPickerExtension.swift */,
+				BEC99137256CD85000F7975C /* loadingButton.swift */,
+				BEC99134256CD85000F7975C /* DesignableView.swift */,
+				BEC9912F256CD85000F7975C /* UITextFieldPaddingClass.swift */,
+				BEC9912A256CD85000F7975C /* Location.swift */,
+				BEC99129256CD85000F7975C /* labelPadding.swift */,
 				D1489BC1258372F600069784 /* Constant.swift */,
 				D16A52712590990A00256C9C /* otpTextField.swift */,
 				D16A52AA2590AEA700256C9C /* checkmarkView.swift */,
@@ -604,6 +606,8 @@
 				D1866A1F25920C6A00E0E8B0 /* chatTVC.swift */,
 				D148757425996213004E236F /* chatInnerVC.swift */,
 				D1487579259999D9004E236F /* chatInnerTVC.swift */,
+				D1A4F0AB25A050D300395961 /* chatInnerVideoTVC.swift */,
+				D1A4F0B025A051B200395961 /* chatInnerAudioTVC.swift */,
 			);
 			path = ChatVC;
 			sourceTree = "<group>";
@@ -637,6 +641,40 @@
 				D1D7113F259316BA00ACCE16 /* editProfileVC.swift */,
 			);
 			path = ProfileVC;
+			sourceTree = "<group>";
+		};
+		D1A4F0D625A23A8700395961 /* Localizations */ = {
+			isa = PBXGroup;
+			children = (
+				D166FDBD258365BB001F36A7 /* LocalizationString.swift */,
+			);
+			path = Localizations;
+			sourceTree = "<group>";
+		};
+		D1A4F0DA25A23B2800395961 /* APIsFunctions */ = {
+			isa = PBXGroup;
+			children = (
+				BEC99108256CD80400F7975C /* CommonAPis.swift */,
+				D1A4F0DB25A23F2800395961 /* APIHandler.swift */,
+				D1A4F0E325A23F9800395961 /* Reachability.swift */,
+			);
+			path = APIsFunctions;
+			sourceTree = "<group>";
+		};
+		D1A4F0E825A2422000395961 /* ViewModals */ = {
+			isa = PBXGroup;
+			children = (
+				D1A4F0E925A2423000395961 /* LoginSignUpModules */,
+			);
+			path = ViewModals;
+			sourceTree = "<group>";
+		};
+		D1A4F0E925A2423000395961 /* LoginSignUpModules */ = {
+			isa = PBXGroup;
+			children = (
+				D1A4F0EA25A2429400395961 /* SignUpVM.swift */,
+			);
+			path = LoginSignUpModules;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -940,6 +978,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1A4F0DC25A23F2800395961 /* APIHandler.swift in Sources */,
 				BEE82653256D36F60023CDED /* Montserrat-Black.ttf in Sources */,
 				BEE82654256D36F60023CDED /* Montserrat-BlackItalic.ttf in Sources */,
 				BEE82655256D36F60023CDED /* Montserrat-Bold.ttf in Sources */,
@@ -961,6 +1000,7 @@
 				BEE82660256D36F60023CDED /* Montserrat-Regular.ttf in Sources */,
 				BEE82661256D36F60023CDED /* Montserrat-SemiBold.ttf in Sources */,
 				BEE82662256D36F60023CDED /* Montserrat-SemiBoldItalic.ttf in Sources */,
+				D1A4F0EB25A2429400395961 /* SignUpVM.swift in Sources */,
 				D1D711482593A24600ACCE16 /* notificationAskVC.swift in Sources */,
 				D1866A26259230C200E0E8B0 /* notificationVC.swift in Sources */,
 				BEE82663256D36F60023CDED /* Montserrat-Thin.ttf in Sources */,
@@ -969,30 +1009,29 @@
 				D1866A182592033C00E0E8B0 /* chatVC.swift in Sources */,
 				BEC9906C256CD6A100F7975C /* BasicAppHenceforth.xcdatamodeld in Sources */,
 				D166FDBE258365BB001F36A7 /* LocalizationString.swift in Sources */,
-				BEC99142256CD85100F7975C /* UIImage+Extension+Loader.swift in Sources */,
 				BEC99113256CD80500F7975C /* VAMonth.swift in Sources */,
 				D1489BC2258372F600069784 /* Constant.swift in Sources */,
 				BEC99118256CD80500F7975C /* VAWeekDaysView.swift in Sources */,
 				BEC99140256CD85100F7975C /* BottomPaginationLoader.swift in Sources */,
 				D1D711522593B22A00ACCE16 /* changePasswordVC.swift in Sources */,
 				D18669EF2590F16E00E0E8B0 /* ForgotPasswordVC.swift in Sources */,
-				BEC9914F256CD85100F7975C /* CustomLoader.swift in Sources */,
 				D14875822599A42C004E236F /* contactUsVC.swift in Sources */,
-				BEC99151256CD85100F7975C /* Extension+UIView.swift in Sources */,
+				BEC99151256CD85100F7975C /* UIView+Extension.swift in Sources */,
+				D1A4F0E425A23F9800395961 /* Reachability.swift in Sources */,
 				D16A526D259086A200256C9C /* phoneVerificationVC.swift in Sources */,
 				BEC99148256CD85100F7975C /* StoryBoard.swift in Sources */,
 				BEC9914E256CD85100F7975C /* ShadowView.swift in Sources */,
 				BEC99117256CD80500F7975C /* VACalendarView.swift in Sources */,
 				BEC99141256CD85100F7975C /* UIColor+Entension.swift in Sources */,
 				BEC99149256CD85100F7975C /* DesignableView.swift in Sources */,
-				BEC99144256CD85100F7975C /* UITextField+Extension.swift in Sources */,
+				BEC99144256CD85100F7975C /* UITextFieldPaddingClass.swift in Sources */,
 				BEC9911B256CD80500F7975C /* VADayView.swift in Sources */,
 				BEC99152256CD85100F7975C /* cameraPickerExtension.swift in Sources */,
-				BEC99146256CD85100F7975C /* Extension+UITextField.swift in Sources */,
+				BEC99146256CD85100F7975C /* UITextField+Extension.swift in Sources */,
 				BEC9913F256CD85100F7975C /* Location.swift in Sources */,
 				BEC99112256CD80500F7975C /* VAMonthHeaderView.swift in Sources */,
 				D1D71140259316BA00ACCE16 /* editProfileVC.swift in Sources */,
-				BEC99145256CD85100F7975C /* Extension+UILabel.swift in Sources */,
+				BEC99145256CD85100F7975C /* UILabel+Extension.swift in Sources */,
 				BEC99116256CD80500F7975C /* VAWeekView.swift in Sources */,
 				D16A52AB2590AEA700256C9C /* checkmarkView.swift in Sources */,
 				D1866A422592D4B100E0E8B0 /* profileInnerVC.swift in Sources */,
@@ -1002,22 +1041,23 @@
 				D16A52A62590ADDC00256C9C /* phoneVerifySuccessVC.swift in Sources */,
 				BEC9910F256CD80500F7975C /* image.m in Sources */,
 				D1866A2E2592318D00E0E8B0 /* notificationTVC.swift in Sources */,
-				BEC99143256CD85100F7975C /* ExtensionUI.swift in Sources */,
+				BEC99143256CD85100F7975C /* Constants.swift in Sources */,
 				BEC99120256CD80500F7975C /* commonFunction.swift in Sources */,
 				BEC9911D256CD80500F7975C /* VAMonthView.swift in Sources */,
 				D1866A0C2591D66600E0E8B0 /* loginAskPopUp.swift in Sources */,
+				D1A4F0AC25A050D300395961 /* chatInnerVideoTVC.swift in Sources */,
 				D148757525996213004E236F /* chatInnerVC.swift in Sources */,
 				D1866A032591CB3900E0E8B0 /* homeVC.swift in Sources */,
 				BEC99124256CD80500F7975C /* Images.swift in Sources */,
 				BEC9911F256CD80500F7975C /* CommonAPis.swift in Sources */,
 				BEC99218256D22DD00F7975C /* SignUpVC.swift in Sources */,
 				BEC99115256CD80500F7975C /* VACalendar.swift in Sources */,
-				BEC99150256CD85100F7975C /* Entension+UIDevice.swift in Sources */,
+				BEC99150256CD85100F7975C /* UIDevice+Entension.swift in Sources */,
 				BEC9914C256CD85100F7975C /* loadingButton.swift in Sources */,
 				BEC99122256CD80500F7975C /* spinerView.swift in Sources */,
 				D1866A34259238D800E0E8B0 /* profileVC.swift in Sources */,
 				BEC99066256CD6A100F7975C /* SplashScreensVC.swift in Sources */,
-				BEC9914A256CD85100F7975C /* ExtensionDate.swift in Sources */,
+				D1A4F0B125A051B200395961 /* chatInnerAudioTVC.swift in Sources */,
 				BEC99147256CD85100F7975C /* UiBoarderView.swift in Sources */,
 				BEC9911C256CD80500F7975C /* VADay.swift in Sources */,
 				D18669EA2590E29F00E0E8B0 /* LoginVC.swift in Sources */,
@@ -1028,7 +1068,7 @@
 				BEC99119256CD80500F7975C /* VAWeek.swift in Sources */,
 				D16A52722590990A00256C9C /* otpTextField.swift in Sources */,
 				BEC9913E256CD85100F7975C /* labelPadding.swift in Sources */,
-				BEC9914B256CD85100F7975C /* Fonts.swift in Sources */,
+				BEC9914B256CD85100F7975C /* UIFonts+Extension.swift in Sources */,
 				BEC9911A256CD80500F7975C /* VAFormatters.swift in Sources */,
 				BEC9914D256CD85100F7975C /* UIImage+Extension.swift in Sources */,
 			);

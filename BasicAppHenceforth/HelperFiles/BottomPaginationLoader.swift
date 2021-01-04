@@ -22,6 +22,7 @@ public class MTRefreshFooterAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
     public var view: UIView {
         return self
     }
+    
     public var insets: UIEdgeInsets = UIEdgeInsets.zero
     public var trigger: CGFloat = 48.0
     public var executeIncremental: CGFloat = 48.0
@@ -31,11 +32,13 @@ public class MTRefreshFooterAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
         topLine.backgroundColor = UIColor.init(red: 214/255.0, green: 211/255.0, blue: 206/255.0, alpha: 1.0)
         return topLine
     }()
+    
     private let bottomLine: UIView = {
         let bottomLine = UIView.init(frame: CGRect.zero)
         bottomLine.backgroundColor = UIColor.init(red: 214/255.0, green: 211/255.0, blue: 206/255.0, alpha: 1.0)
         return bottomLine
     }()
+    
     private let titleLabel: UILabel = {
         let label = UILabel.init(frame: CGRect.zero)
         label.font = UIFont.systemFont(ofSize: 14.0)
@@ -43,6 +46,7 @@ public class MTRefreshFooterAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
         label.textAlignment = .center
         return label
     }()
+    
     private let indicatorView: UIActivityIndicatorView = {
         let indicatorView = UIActivityIndicatorView.init(style: .gray)
         indicatorView.isHidden = true
@@ -65,12 +69,6 @@ public class MTRefreshFooterAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
         fatalError("init(coder:) has not been implemented")
     }
     
-//    public func refreshAnimationDidBegin(view: ESRefreshComponent) {
-//    }
-//
-//    public func refreshAnimationDidEnd(view: ESRefreshComponent) {
-//    }
-    
     public func refreshAnimationBegin(view: ESRefreshComponent) {
         indicatorView.startAnimating()
         indicatorView.isHidden = false
@@ -80,8 +78,6 @@ public class MTRefreshFooterAnimator: UIView, ESRefreshProtocol, ESRefreshAnimat
         indicatorView.stopAnimating()
         indicatorView.isHidden = true
     }
-    
-
     
     public func refresh(view: ESRefreshComponent, progressDidChange progress: CGFloat) {
         // do nothing

@@ -165,24 +165,5 @@ class CameraGalleryPicker: NSObject, FusumaDelegate{
         
         return normalizedImage
     }
-    
-    
-//    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-//        picker.dismiss(animated: true, completion: nil)
-//        if let listener = canceledListner{
-//            listener()
-//        }
-//    }
-//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-//
-//        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-//
-//            pickedListner!(pickedImage)
-//
-//        }
-//        //
-//        picker.dismiss(animated: true, completion: nil)
-//
-//    }
 }
 

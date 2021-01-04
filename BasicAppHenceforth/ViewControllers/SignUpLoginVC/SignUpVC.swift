@@ -27,6 +27,9 @@ class SignUpVC: headerVC {
     @IBOutlet weak var lblAttributtedLogin: UILabel!
     @IBOutlet weak var lblTermsPrivacy: ActiveLabel!
         
+    var btnEye1 : UIButton!
+    var btnEye2 : UIButton!
+
     fileprivate lazy var btnPhoneNumber : UIButton = {
         let btn = UIButton(frame: CGRect(x: 0, y: 14, width: 52, height: 30))
         btn.titleLabel?.font = UIFont.MontserratMedium(Size.Medium.sizeValue())
@@ -43,6 +46,7 @@ class SignUpVC: headerVC {
     //MARK:- Variables
     var selectedValue = "+971"
     var countryCode = ""
+    var signUpVM = SignUpVM.shared
     
     
     // MARK: - OVERRIDE FUNCTIONS
@@ -56,21 +60,21 @@ class SignUpVC: headerVC {
 //MARK:- SetUp View Did Load Data
 extension SignUpVC{
     func setUpUI(){
-        
+        signUpVM.controller = self
         lblHeader.text = L10n.CreateNewAccount.description
         btnRight.setTitle(L10n.SKIP.description, for: .normal)
         
         CommonFunctions.normalSkyTF(tfFirstName, img: Asset.user.image(), placeHolder: L10n.FirstName.description)
         CommonFunctions.normalSkyTF(tfLastName, img: Asset.user.image(), placeHolder: L10n.LastName.description)
         CommonFunctions.normalSkyTF(tfEmail, img: Asset.email.image(), placeHolder: L10n.Email.description)
-        let btneye1 = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
-        btneye1.tag = 0
-        let btneye2 = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
-        btneye2.tag = 1
-        btneye1.addTarget(self, action: #selector(btnActEye(_:)) , for: .touchUpInside)
-        btneye2.addTarget(self, action: #selector(btnActEye(_:)) , for: .touchUpInside)
-        CommonFunctions.normalSkyTFBtn(tfPassword, btn: btneye1, placeHolder: L10n.Password.description)
-        CommonFunctions.normalSkyTFBtn(tfConfirmPassword, btn: btneye2, placeHolder: L10n.ConfirmPassword.description)
+        btnEye1 = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
+        btnEye1.tag = 0
+        btnEye2 = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
+        btnEye2.tag = 1
+        btnEye1.addTarget(self, action: #selector(btnActEye(_:)) , for: .touchUpInside)
+        btnEye2.addTarget(self, action: #selector(btnActEye(_:)) , for: .touchUpInside)
+        CommonFunctions.normalSkyTFBtn(tfPassword, btn: btnEye1, placeHolder: L10n.Password.description)
+        CommonFunctions.normalSkyTFBtn(tfConfirmPassword, btn: btnEye2, placeHolder: L10n.ConfirmPassword.description)
 
         CommonFunctions.setbuttonBoarder(4, [btnSignUp, btnFbLogin, btnAppleLogin, btnGoogleLogin])
         
@@ -95,7 +99,7 @@ extension SignUpVC{
         
         // attributed label setting with gesture
         let first = [NSAttributedString.Key.foregroundColor: UIColor.textColorOne, NSAttributedString.Key.font: UIFont.MontserratMedium(Size.Medium.sizeValue())]
-        let second = [NSAttributedString.Key.foregroundColor: Colors.greenThemeColor.color(), NSAttributedString.Key.font: UIFont.MontserratMedium(Size.Medium.sizeValue())] as [NSAttributedString.Key : Any]
+        let second = [NSAttributedString.Key.foregroundColor: UIColor.themeColor, NSAttributedString.Key.font: UIFont.MontserratMedium(Size.Medium.sizeValue())] as [NSAttributedString.Key : Any]
         let One = NSMutableAttributedString(string: L10n.AlreadyAccount.description, attributes: first)
         let Two = NSMutableAttributedString(string: L10n.AlreadyAccountLogin.description, attributes: second)
         let tap = UITapGestureRecognizer(target: self, action: #selector(myMethodToHandleTap(_:)))
@@ -126,6 +130,16 @@ extension SignUpVC{
             CommonFunctions.toster("Privacy Policy")
         }
     }
+    
+    func phoneNumberIsError(_ error: Bool){
+        if error{
+            btnPhoneNumber.tintColor = UIColor.errorColor
+            btnPhoneNumber.setTitleColor(UIColor.errorColor, for: .normal)
+        }else{
+            btnPhoneNumber.tintColor = UIColor.textColorMain
+            btnPhoneNumber.setTitleColor(UIColor.textColorMain, for: .normal)
+        }
+    }
 }
 
 
@@ -136,12 +150,37 @@ extension SignUpVC: UITextFieldDelegate{
         let newString: NSString =
             currentString.replacingCharacters(in: range, with: string) as NSString
         if tfPhoneNumber == textField{
+            CommonFunctions.normalSkyTF(tfPhoneNumber,
+                                        img: Asset.ic_phone_number.image(),
+                                        placeHolder: "             \(L10n.PhoneNumber.description)")
+            self.phoneNumberIsError(false)
             return newString.length <= 15
         }else if tfFirstName == textField || tfLastName == textField{
+            if tfFirstName == textField{
+                CommonFunctions.normalSkyTF(tfFirstName,
+                                            img: Asset.user.image(),
+                                            placeHolder: L10n.FirstName.description)
+            }else if tfLastName == textField{
+                CommonFunctions.normalSkyTF(tfLastName,
+                                            img: Asset.user.image(),
+                                            placeHolder: L10n.LastName.description)
+            }
             return newString.length <= 20
         }else if tfPassword == textField || tfConfirmPassword == textField{
+            if tfPassword == textField{
+                CommonFunctions.normalSkyTFBtn(tfPassword,
+                                               btn: btnEye1,
+                                               placeHolder: L10n.Password.description)
+            }else if tfConfirmPassword == textField{
+                CommonFunctions.normalSkyTFBtn(tfConfirmPassword,
+                                               btn: btnEye2,
+                                               placeHolder: L10n.ConfirmPassword.description)
+            }
             return newString.length <= 20
         }else if tfEmail == textField{
+            CommonFunctions.normalSkyTF(tfEmail,
+                                        img: Asset.email.image(),
+                                        placeHolder: L10n.Email.description)
             return newString.length <= 40
         }
         return true
@@ -179,8 +218,9 @@ extension SignUpVC{
     
     @IBAction func btnActSignUp(_ sender: Any) {
         self.view.endEditing(true)
-        let vc = phoneVerificationVC.instantiateFromAppStoryboard(appStoryboard: AppStoryboard.Main)
-        self.navigationController?.pushViewController(vc, animated: true)
+        signUpVM.signUpChk()
+//        let vc = phoneVerificationVC.instantiateFromAppStoryboard(appStoryboard: AppStoryboard.Main)
+//        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func btnActAppleLogin(_ sender: Any) {
