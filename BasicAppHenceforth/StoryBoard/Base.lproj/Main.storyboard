@@ -222,7 +222,7 @@
                                         <rect key="frame" x="0.0" y="56" width="414" height="796"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BTp-lP-cA2">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="624.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="627.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="i7T-KU-03c">
                                                         <rect key="frame" x="20" y="20" width="374" height="344"/>
@@ -351,8 +351,8 @@
                                                             </view>
                                                         </subviews>
                                                     </stackView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Rv-rU-ncN">
-                                                        <rect key="frame" x="20" y="417" width="374" height="48"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Rv-rU-ncN" customClass="LoadingButton" customModule="BasicAppHenceforth" customModuleProvider="target">
+                                                        <rect key="frame" x="20" y="421" width="374" height="48"/>
                                                         <color key="backgroundColor" name="ThemeColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="48" id="l1l-Zt-PMd"/>
@@ -366,13 +366,13 @@
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OR CONTINUE WITH" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e3F-WV-ixn">
-                                                        <rect key="frame" x="144.5" y="485" width="125.5" height="15"/>
+                                                        <rect key="frame" x="149.5" y="489" width="115" height="14"/>
                                                         <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="12"/>
                                                         <color key="textColor" name="TextColorTwo"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="TIN-uV-QcY">
-                                                        <rect key="frame" x="20" y="520" width="374" height="44"/>
+                                                        <rect key="frame" x="20" y="523" width="374" height="44"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qS9-aC-0bS">
                                                                 <rect key="frame" x="0.0" y="0.0" width="111.5" height="44"/>
@@ -404,7 +404,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have a account ? Login" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dnx-eU-AsA">
-                                                        <rect key="frame" x="20" y="584" width="374" height="20.5"/>
+                                                        <rect key="frame" x="20" y="587" width="374" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -426,7 +426,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="5Rv-rU-ncN" secondAttribute="trailing" constant="20" id="PQY-oI-58c"/>
                                                     <constraint firstItem="i7T-KU-03c" firstAttribute="top" secondItem="BTp-lP-cA2" secondAttribute="top" constant="20" id="Pgl-eQ-1lN"/>
                                                     <constraint firstItem="dnx-eU-AsA" firstAttribute="leading" secondItem="BTp-lP-cA2" secondAttribute="leading" constant="20" id="Vd5-2G-dcn"/>
-                                                    <constraint firstItem="5Rv-rU-ncN" firstAttribute="top" secondItem="uLh-ae-rqd" secondAttribute="bottom" constant="16" id="VeA-Je-pBt"/>
+                                                    <constraint firstItem="5Rv-rU-ncN" firstAttribute="top" secondItem="uLh-ae-rqd" secondAttribute="bottom" constant="20" id="VeA-Je-pBt"/>
                                                     <constraint firstItem="e3F-WV-ixn" firstAttribute="top" secondItem="5Rv-rU-ncN" secondAttribute="bottom" constant="20" id="YIt-ae-mTi"/>
                                                     <constraint firstAttribute="trailing" secondItem="dnx-eU-AsA" secondAttribute="trailing" constant="20" id="eNt-hp-lo5"/>
                                                     <constraint firstAttribute="trailing" secondItem="i7T-KU-03c" secondAttribute="trailing" constant="20" id="ihL-SZ-Mt5"/>
@@ -558,7 +558,7 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cWX-oN-gsL">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cWX-oN-gsL" customClass="LoadingButton" customModule="BasicAppHenceforth" customModuleProvider="target">
                                 <rect key="frame" x="20" y="262.5" width="374" height="48"/>
                                 <color key="backgroundColor" name="ThemeColor"/>
                                 <constraints>
@@ -677,7 +677,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p8s-8P-DVd">
-                                                <rect key="frame" x="0.0" y="56" width="414" height="608.5"/>
+                                                <rect key="frame" x="0.0" y="56" width="414" height="607.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="CaI-2w-Xdo">
                                                         <rect key="frame" x="20" y="242.5" width="374" height="104"/>
@@ -732,7 +732,7 @@
                                                             <color key="titleColor" name="ThemeColor"/>
                                                         </state>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PJ9-8p-HVS">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PJ9-8p-HVS" customClass="LoadingButton" customModule="BasicAppHenceforth" customModuleProvider="target">
                                                         <rect key="frame" x="20" y="400.5" width="374" height="48"/>
                                                         <color key="backgroundColor" name="ThemeColor"/>
                                                         <constraints>
@@ -744,13 +744,13 @@
                                                         </state>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OR CONTINUE WITH" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SNg-l8-OI3">
-                                                        <rect key="frame" x="144.5" y="468.5" width="125.5" height="15"/>
+                                                        <rect key="frame" x="149.5" y="468.5" width="115" height="14"/>
                                                         <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="12"/>
                                                         <color key="textColor" name="TextColorTwo"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="VFQ-TD-cck">
-                                                        <rect key="frame" x="20" y="503.5" width="374" height="44"/>
+                                                        <rect key="frame" x="20" y="502.5" width="374" height="44"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EdQ-82-n1D">
                                                                 <rect key="frame" x="0.0" y="0.0" width="111.5" height="44"/>
@@ -773,7 +773,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have a account ? Login" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sok-A4-KJb" customClass="ActiveLabel" customModule="ActiveLabel">
-                                                        <rect key="frame" x="20" y="567.5" width="374" height="21"/>
+                                                        <rect key="frame" x="20" y="566.5" width="374" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -904,7 +904,7 @@
                                     <constraint firstItem="w5T-rC-1D5" firstAttribute="top" secondItem="zti-cY-wZh" secondAttribute="top" id="yuD-wb-VbL"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oZX-nV-bPe">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oZX-nV-bPe" customClass="LoadingButton" customModule="BasicAppHenceforth" customModuleProvider="target">
                                 <rect key="frame" x="20" y="236.5" width="374" height="48"/>
                                 <color key="backgroundColor" name="ThemeColor"/>
                                 <constraints>
@@ -960,22 +960,22 @@
     </scenes>
     <designables>
         <designable name="2Ic-Dy-jk5">
-            <size key="intrinsicContentSize" width="374" height="39.579671875000003"/>
+            <size key="intrinsicContentSize" width="374" height="38.823671875000002"/>
         </designable>
         <designable name="2iv-Iu-ZPE">
-            <size key="intrinsicContentSize" width="374" height="39.579671875000003"/>
+            <size key="intrinsicContentSize" width="374" height="38.823671875000002"/>
         </designable>
         <designable name="95k-K3-eQH">
-            <size key="intrinsicContentSize" width="374" height="39.579671875000003"/>
+            <size key="intrinsicContentSize" width="374" height="38.823671875000002"/>
         </designable>
         <designable name="WzS-gH-yei">
-            <size key="intrinsicContentSize" width="374" height="39.579671875000003"/>
+            <size key="intrinsicContentSize" width="374" height="38.823671875000002"/>
         </designable>
         <designable name="mLO-4H-gNj">
-            <size key="intrinsicContentSize" width="374" height="39.579671875000003"/>
+            <size key="intrinsicContentSize" width="374" height="38.823671875000002"/>
         </designable>
         <designable name="mhJ-z8-rlo">
-            <size key="intrinsicContentSize" width="374" height="39.579671875000003"/>
+            <size key="intrinsicContentSize" width="374" height="38.823671875000002"/>
         </designable>
         <designable name="p2O-pZ-vjb">
             <size key="intrinsicContentSize" width="42" height="21"/>
@@ -984,16 +984,16 @@
             <size key="intrinsicContentSize" width="236" height="21"/>
         </designable>
         <designable name="u3f-99-IMh">
-            <size key="intrinsicContentSize" width="374" height="39.579671875000003"/>
+            <size key="intrinsicContentSize" width="374" height="38.823671875000002"/>
         </designable>
         <designable name="uLh-ae-rqd">
             <size key="intrinsicContentSize" width="42" height="21"/>
         </designable>
         <designable name="w5T-rC-1D5">
-            <size key="intrinsicContentSize" width="374" height="39.579671875000003"/>
+            <size key="intrinsicContentSize" width="374" height="38.823671875000002"/>
         </designable>
         <designable name="wKs-rb-ffu">
-            <size key="intrinsicContentSize" width="374" height="39.579671875000003"/>
+            <size key="intrinsicContentSize" width="374" height="38.823671875000002"/>
         </designable>
     </designables>
     <resources>

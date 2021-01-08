@@ -54,7 +54,8 @@ class profileVC: headerVC {
     
     
     // MARK: - VARIABLES
-    
+    var profileVM = ProfileVM.shared
+
     
     
     // MARK: - OVERRIDE FUNCTIONS
@@ -62,12 +63,19 @@ class profileVC: headerVC {
         super.viewDidLoad()
         setUpUI()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        lblName.text = "\(userData.shared.firstName) \(userData.shared.lastName)"
+        
+    }
 }
 
 
 // MARK: - SET UP UI
 extension profileVC{
     func setUpUI(){
+        profileVM.controller = self
         lblHeader.text = L10n.SETTING.description
         
         imgViewProfileOuter.layer.cornerRadius = imgViewProfileOuter.frame.height/2
@@ -113,6 +121,8 @@ extension profileVC{
         btnPrivacyPolicy.addTarget(self, action: #selector(btnActPrivacyPolicy(_:)), for: .touchUpInside)
         btnTermsCond.addTarget(self, action: #selector(btnActTermsCond(_:)), for: .touchUpInside)
         btnLogOut.addTarget(self, action: #selector(btnActLogOut(_:)), for: .touchUpInside)
+        
+        lblName.text = "\(userData.shared.firstName) \(userData.shared.lastName)"
     }
     
     func headingSetting(_ lbl: UILabel, txt: String){
@@ -197,6 +207,7 @@ extension profileVC{
     @objc func btnActLogOut(_ sender: UIButton){
         let alert = UIAlertController(title: L10n.Log_Out.description, message: L10n.LogOutDesc.description, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: L10n.Yes.description, style: .destructive, handler: { _ in
+            self.profileVM.logoutAPI()
             CommonFunctions.logout()
         }))
         alert.addAction(UIAlertAction(title: L10n.No.description, style: .cancel, handler: { _ in }))

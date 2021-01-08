@@ -63,7 +63,7 @@ class CommonFunctions {
         if img != nil{
             let imgVw = UIImageView(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
             imgVw.contentMode = .bottom
-            imgVw.image = img?.imageWithInsets(insets: UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6))?.withRenderingMode(.alwaysTemplate)
+            imgVw.image = img?.imageWithInsets(insets: UIEdgeInsets(top: 12, left: 6, bottom: 0, right: 6))?.withRenderingMode(.alwaysTemplate)
             imgVw.tintColor = UIColor.themeColor
             tf.rightView = imgVw
             tf.rightViewMode = .always
@@ -93,7 +93,7 @@ class CommonFunctions {
         if img != nil{
             let imgVw = UIImageView(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
             imgVw.contentMode = .bottom
-            imgVw.image = img?.imageWithInsets(insets: UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6))?.withRenderingMode(.alwaysTemplate)
+            imgVw.image = img?.imageWithInsets(insets: UIEdgeInsets(top: 12, left: 6, bottom: 0, right: 6))?.withRenderingMode(.alwaysTemplate)
             imgVw.tintColor = UIColor.errorColor
             tf.rightView = imgVw
             tf.rightViewMode = .always
@@ -104,8 +104,8 @@ class CommonFunctions {
         
         tf.disableAutoFill()
         
-        let img1 = Asset.ic_eye_review.image().imageWithInsets(insets: UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6))?.withRenderingMode(.alwaysTemplate)
-        let img2 = Asset.ic_hideeye_review.image().imageWithInsets(insets: UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6))?.withRenderingMode(.alwaysTemplate)
+        let img1 = Asset.ic_eye_review.image().imageWithInsets(insets: UIEdgeInsets(top: 12, left: 6, bottom: 0, right: 6))?.withRenderingMode(.alwaysTemplate)
+        let img2 = Asset.ic_hideeye_review.image().imageWithInsets(insets: UIEdgeInsets(top: 12, left: 6, bottom: 0, right: 6))?.withRenderingMode(.alwaysTemplate)
 
         tf.textColor = UIColor.textColorMain
         tf.lineColor = UIColor.textColorPlaceholder
@@ -140,8 +140,8 @@ class CommonFunctions {
         
         tf.disableAutoFill()
         
-        let img1 = Asset.ic_eye_review.image().imageWithInsets(insets: UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6))?.withRenderingMode(.alwaysTemplate)
-        let img2 = Asset.ic_hideeye_review.image().imageWithInsets(insets: UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6))?.withRenderingMode(.alwaysTemplate)
+        let img1 = Asset.ic_eye_review.image().imageWithInsets(insets: UIEdgeInsets(top: 12, left: 6, bottom: 0, right: 6))?.withRenderingMode(.alwaysTemplate)
+        let img2 = Asset.ic_hideeye_review.image().imageWithInsets(insets: UIEdgeInsets(top: 12, left: 6, bottom: 0, right: 6))?.withRenderingMode(.alwaysTemplate)
 
         tf.textColor = UIColor.errorColor
         tf.lineColor = UIColor.errorColor

@@ -24,19 +24,19 @@ class SignUpVM {
             return
         }
         
-        if controller?.tfFirstName.text == ""{
+        if controller?.tfFirstName.text?.trimmingCharacters(in: .whitespacesAndNewlines) == ""{
             controller?.tfFirstName.shake()
             CommonFunctions.toster(L10n.PleaseEnterFirstName.description)
             CommonFunctions.errorSkyTF(controller!.tfFirstName,
                                        img: Asset.user.image(),
                                        placeHolder: L10n.FirstName.description)
-        }else if controller?.tfLastName.text == ""{
+        }else if controller?.tfLastName.text?.trimmingCharacters(in: .whitespacesAndNewlines) == ""{
             controller?.tfLastName.shake()
             CommonFunctions.errorSkyTF(controller!.tfLastName,
                                        img: Asset.user.image(),
                                        placeHolder: L10n.LastName.description)
             CommonFunctions.toster(L10n.PleaseEnterLastName.description)
-        }else if controller?.tfEmail.text == ""{
+        }else if controller?.tfEmail.text?.trimmingCharacters(in: .whitespacesAndNewlines) == ""{
             controller?.tfEmail.shake()
             CommonFunctions.errorSkyTF(controller!.tfEmail,
                                        img: Asset.email.image(),
@@ -48,7 +48,7 @@ class SignUpVM {
                                        img: Asset.email.image(),
                                        placeHolder: L10n.Email.description)
             CommonFunctions.toster(L10n.PleaseEnterValidEmail.description)
-        }else if controller?.tfPassword.text == ""{
+        }else if controller?.tfPassword.text?.trimmingCharacters(in: .whitespacesAndNewlines) == ""{
             controller?.tfPassword.shake()
             CommonFunctions.toster(L10n.PleaseEnterPassword.description)
             CommonFunctions.errorSkyTFBtn(controller!.tfPassword,
@@ -60,7 +60,7 @@ class SignUpVM {
             CommonFunctions.errorSkyTFBtn(controller!.tfPassword,
                                           btn: controller!.btnEye1,
                                           placeHolder: L10n.Password.description)
-        }else if controller?.tfConfirmPassword.text == ""{
+        }else if controller?.tfConfirmPassword.text?.trimmingCharacters(in: .whitespacesAndNewlines) == ""{
             controller?.tfConfirmPassword.shake()
             CommonFunctions.toster(L10n.PleaseEnterConfirmPassword.description)
             CommonFunctions.errorSkyTFBtn(controller!.tfConfirmPassword,
@@ -70,13 +70,13 @@ class SignUpVM {
             controller?.tfConfirmPassword.shake()
             controller?.tfPassword.shake()
             CommonFunctions.toster(L10n.PleaseEnterSamePassword.description)
-        }else if controller?.tfPhoneNumber.text == ""{
+        }else if controller?.tfPhoneNumber.text?.trimmingCharacters(in: .whitespacesAndNewlines) == ""{
             controller?.tfPhoneNumber.shake()
             controller?.phoneNumberIsError(true)
             CommonFunctions.toster(L10n.PleaseEnterPhoneNumber.description)
             CommonFunctions.errorSkyTF(controller!.tfPhoneNumber,
                                        img: Asset.ic_phone_number.image(),
-                                       placeHolder: "             \(L10n.PhoneNumber.description)")
+                                       placeHolder: "              \(L10n.PhoneNumber.description)")
 //        }else if !CommonFunctions.isValidPhoneNumber((controller?.tfPhoneNumber.text)!){
 //            controller?.tfPhoneNumber.shake()
 //            CommonFunctions.toster(L10n.PleaseEnterValidPhoneNumber.description)
@@ -90,6 +90,46 @@ class SignUpVM {
     }
     
     func signUpAccount(){
+        let params : [String: AnyObject] = [
+            "first_name" : controller!.tfFirstName.text!.trimmingCharacters(in: .whitespacesAndNewlines) as AnyObject,
+            "last_name" : controller!.tfLastName.text!.trimmingCharacters(in: .whitespacesAndNewlines) as AnyObject,
+            "email" : controller!.tfEmail.text!.trimmingCharacters(in: .whitespacesAndNewlines) as AnyObject,
+            "password" : controller!.tfPassword.text! as AnyObject,
+            "fcm_id" : deviceInfo.fcmId as AnyObject,
+            "device_id" : deviceInfo.deviceId as AnyObject,
+            "device_type" : deviceInfo.deviceType as AnyObject,
+            "phone_no" : controller!.tfPhoneNumber.text!.trimmingCharacters(in: .whitespacesAndNewlines) as AnyObject,
+            "country_code" : controller!.selectedValue as AnyObject,
+        ]
+        self.controller?.view.endEditing(true)
+        controller?.view.isUserInteractionEnabled = false
+        controller?.btnSignUp.showLoading()
         
+        ApiHandler.callApiWithParameters(url: appConstantURL().signUpURL, withParameters: params, ofType: SignUpAPI.self, success2: { (response) in
+            self.controller?.view.isUserInteractionEnabled = true
+            self.controller?.btnSignUp.hideLoading()
+
+            userData.shared.fromSignUpData(response)
+            
+            let vc = phoneVerificationVC.instantiateFromAppStoryboard(appStoryboard: AppStoryboard.Main)
+            self.controller!.navigationController?.pushViewController(vc, animated: true)
+            
+            self.controller?.tfFirstName.text = ""
+            self.controller?.tfLastName.text = ""
+            self.controller?.tfEmail.text = ""
+            self.controller?.tfPassword.text = ""
+            self.controller?.tfConfirmPassword.text = ""
+            self.controller?.tfPhoneNumber.text = ""
+
+            print(response)
+        }, failure: { (reload, error) in
+            self.controller?.view.isUserInteractionEnabled = true
+            self.controller?.btnSignUp.hideLoading()
+            if reload{
+                self.signUpAccount()
+            }else{
+                print(error)
+            }
+        }, method: .POST, img: nil, imageParamater: "", headerPresent: false)
     }
 }

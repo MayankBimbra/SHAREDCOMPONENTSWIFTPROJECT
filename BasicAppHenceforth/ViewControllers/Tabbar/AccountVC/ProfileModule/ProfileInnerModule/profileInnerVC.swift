@@ -33,7 +33,8 @@ class profileInnerVC: headerVC {
     
     
     // MARK: - VARIABLES
-    
+    var profileInnerVM = ProfileInnerVM.shared
+
     
     
     // MARK: - OVERRIDE FUNCTIONS
@@ -41,6 +42,14 @@ class profileInnerVC: headerVC {
         isBackEnabled = true
         super.viewDidLoad()
         setUpUI()
+        profileInnerVM.controller = self
+        profileInnerVM.getProfileAPI()
+        profileInnerVM.setUIData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        profileInnerVM.setUIData()
     }
 }
 
@@ -56,19 +65,12 @@ extension profileInnerVC{
         profileViewOuter.layer.borderColor = UIColor.themeColor.cgColor
 
         imgViewDP.layer.cornerRadius = imgViewDP.frame.height/2
-
-        lblNameJoining.attributedText = CommonFunctions.sendAttText(["\(L10n.HiText.description)Katy", "\n\(L10n.JoinedText.description)October,2020"], fonts: [UIFont.MontserratMedium(Size.XXXLarge.sizeValue()), UIFont.MontserratMedium(Size.Medium.sizeValue())], color: [UIColor.black, UIColor.textColorOne], alingment: .left, spacing: 4)
         
         lblAbout.attributedText = CommonFunctions.sendAttText([L10n.AboutText.description], fonts: [UIFont.MontserratMedium(Size.Header.sizeValue())], color: [UIColor.appBlackColor], alingment: .left, spacing: 4)
-        lblAboutDesc.attributedText = CommonFunctions.sendAttText(["Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus dictum purus eget quam ultrices tincidunt. Sed hendrerit venenatis pulvinar."], fonts: [UIFont.MontserratMedium(Size.Medium.sizeValue())], color: [UIColor.textColorOne], alingment: .left, spacing: 4)
         
         lblEmailText.attributedText = CommonFunctions.sendAttText([L10n.Email.description], fonts: [UIFont.MontserratMedium(Size.Small.sizeValue())], color: [UIColor.textColorTwo], alingment: .left, spacing: 4)
-        lblEmailVerified.attributedText = CommonFunctions.sendAttText(["katy123@gmail.com"], fonts: [UIFont.MontserratMedium(Size.Medium.sizeValue())], color: [UIColor.appBlackColor], alingment: .left, spacing: 4)
         lblPhoneNumText.attributedText = CommonFunctions.sendAttText([L10n.PhoneNumber.description], fonts: [UIFont.MontserratMedium(Size.Small.sizeValue())], color: [UIColor.textColorTwo], alingment: .left, spacing: 4)
-        lblPhoneNumVerified.attributedText = CommonFunctions.sendAttText(["+91987654310"], fonts: [UIFont.MontserratMedium(Size.Medium.sizeValue())], color: [UIColor.appBlackColor], alingment: .left, spacing: 4)
         lblBusinessText.attributedText = CommonFunctions.sendAttText([L10n.Business.description], fonts: [UIFont.MontserratMedium(Size.Small.sizeValue())], color: [UIColor.textColorTwo], alingment: .left, spacing: 4)
-        lblBusinessVerified.attributedText = CommonFunctions.sendAttText(["UI/UX Designer"], fonts: [UIFont.MontserratMedium(Size.Medium.sizeValue())], color: [UIColor.appBlackColor], alingment: .left, spacing: 4)
-
         
         btnRight.addTarget(self, action: #selector(btnActEdit(_:)), for: .touchUpInside)
     }

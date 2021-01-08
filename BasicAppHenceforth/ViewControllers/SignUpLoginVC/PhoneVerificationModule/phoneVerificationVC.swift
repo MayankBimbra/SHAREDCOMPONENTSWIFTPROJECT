@@ -19,14 +19,14 @@ class phoneVerificationVC: headerVC {
     @IBOutlet weak var tf5: otpTextField!
     @IBOutlet weak var tf6: otpTextField!
     @IBOutlet weak var lblDidntReceiveCode: ActiveLabel!
-    @IBOutlet weak var btnNext: UIButton!
+    @IBOutlet weak var btnNext: LoadingButton!
     @IBOutlet weak var lblWrongError: UILabel!
     
     
     
     // MARK: - VARAIBLES
-    
-    
+    var phoneVerifyVM = phoneVerificationVM.shared
+
     
     // MARK: - OVERRIDE FUNCTIONS
     override func viewDidLoad() {
@@ -41,8 +41,9 @@ class phoneVerificationVC: headerVC {
 extension phoneVerificationVC{
     func setUpUI(){
         lblHeader.text = L10n.PhoneNumberVerification.description
-        
-        lblSubHeading.attributedText = CommonFunctions.sendAttText([L10n.EnterCodeVerification.description, "+919876543210"], fonts: [UIFont.MontserratMedium(Size.Medium.sizeValue()), UIFont.MontserratSemiBold(Size.Medium.sizeValue())], color: [UIColor.textColorOne, UIColor.black], alingment: .left)
+        phoneVerifyVM.controller = self
+
+        lblSubHeading.attributedText = CommonFunctions.sendAttText([L10n.EnterCodeVerification.description, "\(userData.shared.countryCode)\(userData.shared.phoneNumber)"], fonts: [UIFont.MontserratMedium(Size.Medium.sizeValue()), UIFont.MontserratSemiBold(Size.Medium.sizeValue())], color: [UIColor.textColorOne, UIColor.black], alingment: .left)
         
         let tfs : [otpTextField] = [tf1, tf2, tf3, tf4, tf5, tf6]
         for tf in tfs{
@@ -55,18 +56,7 @@ extension phoneVerificationVC{
             tf.otpDelegate = self
         }
         
-        let customType = ActiveType.custom(pattern: "\\\(L10n.SendAgain.description)\\b") //Regex that looks for "with"
-        lblDidntReceiveCode.enabledTypes = [customType]
-        lblDidntReceiveCode.text = L10n.DidntReceiveCode.description + L10n.SendAgain.description
-        lblDidntReceiveCode.textColor = UIColor.textColorOne
-        lblDidntReceiveCode.customColor[customType] = UIColor.themeColor
-        lblDidntReceiveCode.customSelectedColor[customType] = UIColor.themeColor
-        lblDidntReceiveCode.font = UIFont.MontserratMedium(Size.Medium.sizeValue())
-            
-        lblDidntReceiveCode.handleCustomTap(for: customType) { element in
-            CommonFunctions.toster("Send Again")
-            self.lblWrongError.isHidden = false
-        }
+        makingSendAgainLabel()
         
         lblWrongError.text = L10n.EnterWrongOTP.description
         lblWrongError.font = UIFont.MontserratMedium(Size.Medium.sizeValue())
@@ -78,6 +68,21 @@ extension phoneVerificationVC{
         btnNext.setTitleColor(UIColor.appWhiteColor, for: .normal)
         btnNext.addTarget(self, action: #selector(btnActNext(_:)), for: .touchUpInside)
 
+    }
+    
+    func makingSendAgainLabel(){
+        let customType = ActiveType.custom(pattern: "\\\(L10n.SendAgain.description)\\b") //Regex that looks for "with"
+        lblDidntReceiveCode.enabledTypes = [customType]
+        lblDidntReceiveCode.text = L10n.DidntReceiveCode.description + L10n.SendAgain.description
+        lblDidntReceiveCode.textColor = UIColor.textColorOne
+        lblDidntReceiveCode.customColor[customType] = UIColor.themeColor
+        lblDidntReceiveCode.customSelectedColor[customType] = UIColor.themeColor
+        lblDidntReceiveCode.font = UIFont.MontserratMedium(Size.Medium.sizeValue())
+            
+        lblDidntReceiveCode.handleCustomTap(for: customType) { element in
+            self.phoneVerifyVM.resendCodeAPI()
+//            self.lblWrongError.isHidden = false
+        }
     }
 }
 
@@ -105,6 +110,14 @@ extension phoneVerificationVC: UITextFieldDelegate, MyTextFieldDelegate{
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange,
                    replacementString string: String) -> Bool {
+
+        self.tf1.layer.borderColor = UIColor.clear.cgColor
+        self.tf2.layer.borderColor = UIColor.clear.cgColor
+        self.tf3.layer.borderColor = UIColor.clear.cgColor
+        self.tf4.layer.borderColor = UIColor.clear.cgColor
+        self.tf5.layer.borderColor = UIColor.clear.cgColor
+        self.tf6.layer.borderColor = UIColor.clear.cgColor
+        
         if !string.isNumeric && string != ""{
             return false
         }
@@ -161,7 +174,6 @@ extension phoneVerificationVC: UITextFieldDelegate, MyTextFieldDelegate{
 // MARK: - EXTERNAL FUNCTIONS
 extension phoneVerificationVC{
     @objc func btnActNext(_ sender: UIButton){
-        let vc = phoneVerifySuccessVC.instantiateFromAppStoryboard(appStoryboard: .Main)
-        self.navigationController?.pushViewController(vc, animated: false)
+        phoneVerifyVM.checkVerificationOTP()
     }
 }

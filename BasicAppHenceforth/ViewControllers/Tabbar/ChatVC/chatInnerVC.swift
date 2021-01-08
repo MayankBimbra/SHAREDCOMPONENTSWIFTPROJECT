@@ -297,8 +297,10 @@ extension chatInnerVC{
         if let userInfo = notification.userInfo{
             let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue)
             let rect = keyboardFrame.cgRectValue
+            if btmConstValue.constant < 20{
+                scrollToAbove(rect.height)
+            }
             btmConstValue.constant = CGFloat(rect.height) - self.view.safeAreaInsets.bottom + 12
-            scrollToAbove(rect.height)
             UIView.animate(withDuration: 0.3) {
                 self.view.layoutIfNeeded()
             }
@@ -414,6 +416,7 @@ extension chatInnerVC{
     
     @objc func tapPressActMsgs(_ sender: UITapGestureRecognizer){
         if selectedCells.count == 0{
+            self.view.endEditing(true)
             return
         }
         

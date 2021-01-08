@@ -516,6 +516,7 @@
                         <outlet property="constTopUpper" destination="rAX-MT-dig" id="V5G-MW-Rqm"/>
                         <outlet property="imgViewDP" destination="5qG-Af-GSJ" id="MBZ-gg-uKy"/>
                         <outlet property="lblAbout" destination="WEr-fg-hXm" id="iXZ-mp-sL4"/>
+                        <outlet property="scrllView" destination="W1N-Wk-sqg" id="rca-lr-9Ev"/>
                         <outlet property="tfEmail" destination="6Tt-cH-RMn" id="hWW-zt-Lmz"/>
                         <outlet property="tfFirstName" destination="vIx-kK-bcC" id="vZW-Hh-r6H"/>
                         <outlet property="tfLastName" destination="oiK-kA-bgd" id="HRq-7G-fMT"/>
@@ -532,22 +533,22 @@
     </scenes>
     <designables>
         <designable name="6Tt-cH-RMn">
-            <size key="intrinsicContentSize" width="374" height="38.823671875000002"/>
+            <size key="intrinsicContentSize" width="374" height="39.579671875000003"/>
         </designable>
         <designable name="M82-ch-l9y">
-            <size key="intrinsicContentSize" width="374" height="38.823671875000002"/>
+            <size key="intrinsicContentSize" width="374" height="39.579671875000003"/>
         </designable>
         <designable name="SSK-x5-WLI">
-            <size key="intrinsicContentSize" width="374" height="38.823671875000002"/>
+            <size key="intrinsicContentSize" width="374" height="39.579671875000003"/>
         </designable>
         <designable name="oiK-kA-bgd">
-            <size key="intrinsicContentSize" width="374" height="38.823671875000002"/>
+            <size key="intrinsicContentSize" width="374" height="39.579671875000003"/>
         </designable>
         <designable name="tTO-wV-5LR">
             <size key="intrinsicContentSize" width="-1" height="30"/>
         </designable>
         <designable name="vIx-kK-bcC">
-            <size key="intrinsicContentSize" width="374" height="38.823671875000002"/>
+            <size key="intrinsicContentSize" width="374" height="39.579671875000003"/>
         </designable>
     </designables>
     <resources>

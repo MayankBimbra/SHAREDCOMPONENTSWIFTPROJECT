@@ -17,7 +17,7 @@ class chatBaseVideoPhotoTVC: chatBaseTVC {
         super.awakeFromNib()
         lblBaseTime.font = UIFont.MontserratSemiBold(Size.VSmall.sizeValue())
         lblBaseTime.textColor = UIColor.textColorTwo
-        imgViewBasePic.layer.cornerRadius = 4
+        imgViewBasePic.layer.cornerRadius = 8
     }
     
     func forVideo(){

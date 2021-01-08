@@ -16,12 +16,14 @@ class tabbarVC: UITabBarController {
         self.tabBar.barTintColor = UIColor.appWhiteColor
         self.tabBar.tintColor = UIColor.themeColor
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
-            let popOverVC = loginAskPopUp()
-            self.addChild(popOverVC)
-            popOverVC.view.frame = self.view.frame
-            self.view.addSubview(popOverVC.view)
-            popOverVC.didMove(toParent: self)
+        if userData.shared.accessToken == ""{
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+                let popOverVC = loginAskPopUp()
+                self.addChild(popOverVC)
+                popOverVC.view.frame = self.view.frame
+                self.view.addSubview(popOverVC.view)
+                popOverVC.didMove(toParent: self)
+            }
         }
     }
 }

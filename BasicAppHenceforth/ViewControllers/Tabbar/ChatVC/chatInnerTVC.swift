@@ -92,7 +92,7 @@ class leftView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        self.roundCorners([.topLeft, .topRight, .bottomRight], radius: 8)
+        self.roundCorners([.topLeft, .topRight, .bottomRight], radius: 12)
     }
 }
 
@@ -100,6 +100,6 @@ class rightView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        self.roundCorners([.topLeft, .topRight, .bottomLeft], radius: 8)
+        self.roundCorners([.topLeft, .topRight, .bottomLeft], radius: 12)
     }
 }

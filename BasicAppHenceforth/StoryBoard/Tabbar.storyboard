@@ -766,7 +766,6 @@
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="zjQ-PO-ijN" secondAttribute="bottom" constant="16" id="1pB-Fw-5YE"/>
                                                 <constraint firstAttribute="trailing" secondItem="ii3-gF-gCe" secondAttribute="trailing" id="AqG-Fd-gEZ"/>
                                                 <constraint firstAttribute="bottom" secondItem="ii3-gF-gCe" secondAttribute="bottom" id="B9t-S5-LBl"/>
                                                 <constraint firstItem="X0U-4r-8U9" firstAttribute="leading" secondItem="zjQ-PO-ijN" secondAttribute="trailing" constant="16" id="Ee8-ym-0vY"/>
@@ -778,7 +777,8 @@
                                                 <constraint firstItem="X0U-4r-8U9" firstAttribute="top" secondItem="zjQ-PO-ijN" secondAttribute="top" id="prD-O2-fXE"/>
                                                 <constraint firstItem="9iO-Ga-5rN" firstAttribute="top" secondItem="X0U-4r-8U9" secondAttribute="top" id="pra-nk-peQ"/>
                                                 <constraint firstItem="zjQ-PO-ijN" firstAttribute="top" secondItem="GoU-lz-saG" secondAttribute="top" constant="16" id="rcM-aA-5Oa"/>
-                                                <constraint firstItem="ii3-gF-gCe" firstAttribute="top" secondItem="X0U-4r-8U9" secondAttribute="bottom" priority="250" constant="16" id="u06-dd-Lmt"/>
+                                                <constraint firstItem="ii3-gF-gCe" firstAttribute="top" relation="greaterThanOrEqual" secondItem="X0U-4r-8U9" secondAttribute="bottom" constant="16" id="u06-dd-Lmt"/>
+                                                <constraint firstItem="ii3-gF-gCe" firstAttribute="top" secondItem="zjQ-PO-ijN" secondAttribute="bottom" priority="250" constant="16" id="wOz-eG-qsq"/>
                                                 <constraint firstItem="9iO-Ga-5rN" firstAttribute="leading" secondItem="X0U-4r-8U9" secondAttribute="trailing" constant="12" id="xxv-zd-BC5"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -851,8 +851,8 @@
                                                                     <constraint firstAttribute="height" constant="66" id="iIO-hx-sUa"/>
                                                                 </constraints>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Katy Perry" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l9f-Eq-8nD">
-                                                                <rect key="frame" x="102" y="24" width="292" height="20.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l9f-Eq-8nD">
+                                                                <rect key="frame" x="102" y="24" width="292" height="0.0"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -1581,7 +1581,7 @@
                                 <rect key="frame" x="20" y="149" width="374" height="644"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CONTENT GOES HERE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5NO-5w-O6G">
-                                        <rect key="frame" x="20" y="313.5" width="334" height="17.5"/>
+                                        <rect key="frame" x="20" y="314" width="334" height="16.5"/>
                                         <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="14"/>
                                         <color key="textColor" name="TextColorTwo"/>
                                         <nil key="highlightedColor"/>

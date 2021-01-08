@@ -65,6 +65,12 @@ enum L10n {
     case SignPopUpOr
     case SignPopUpSignUp
 
+    // HOME SCREEN
+    case GoodMorning
+    case GoodNight
+    case GoodAfternoon
+    case GoodEvening
+
     // CHAT SCREEN
     case ChatHeader
     case TypeMessage
@@ -142,6 +148,13 @@ enum L10n {
     case PleaseEnterSamePassword
     case PleaseEnterPhoneNumber
     case PleaseEnterValidPhoneNumber
+    case PleaseEnterOldPassword
+    case PleaseEnterNewPassword
+    case PleaseEnterName
+    case PleaseEnterMessage
+
+    
+    case PleaseEnterOTP
 }
 
 
@@ -240,6 +253,15 @@ extension L10n: CustomStringConvertible{
         case .SignPopUpSignUp:
             return L10n.tr("SIGN UP")
             
+        case .GoodMorning:
+            return L10n.tr("Good Morning")
+        case .GoodNight:
+            return L10n.tr("Good Night")
+        case .GoodAfternoon:
+            return L10n.tr("Good Afternoon")
+        case .GoodEvening:
+            return L10n.tr("Good Evening")
+
         case .ChatHeader:
             return L10n.tr("Chats")
         case .TypeMessage:
@@ -354,7 +376,7 @@ extension L10n: CustomStringConvertible{
         case .PleaseEnterPassword:
             return L10n.tr("Please Enter Password")
         case .PleaseEnterValidPassword:
-            return L10n.tr("Please Enter Valid Password")
+            return L10n.tr("Please Enter Valid Password. Password should be minimum 8 alphanumeric characters, with one special and one upper and lowercase character.")
         case .PleaseEnterConfirmPassword:
             return L10n.tr("Please Enter Confirm Password")
         case .PleaseEnterSamePassword:
@@ -363,6 +385,17 @@ extension L10n: CustomStringConvertible{
             return L10n.tr("Please Enter Phone Number")
         case .PleaseEnterValidPhoneNumber:
             return L10n.tr("Please Enter Valid Phone Number")
+        case .PleaseEnterOldPassword:
+            return L10n.tr("Please Enter Old Password")
+        case .PleaseEnterNewPassword:
+            return L10n.tr("Please Enter New Password")
+        case .PleaseEnterName:
+            return L10n.tr("Please Enter Name")
+        case .PleaseEnterMessage:
+            return L10n.tr("Please Enter Message")
+
+        case .PleaseEnterOTP:
+            return L10n.tr("Please Enter OTP")
 
         }
     }

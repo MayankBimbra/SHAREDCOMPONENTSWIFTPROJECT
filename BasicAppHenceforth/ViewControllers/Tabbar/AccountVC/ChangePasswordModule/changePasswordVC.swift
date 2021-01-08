@@ -13,13 +13,15 @@ class changePasswordVC: headerVC {
     // MARK: - UI COMPONENTS
     @IBOutlet weak var tfNewPassword: SkyFloatingLabelTextField!
     @IBOutlet weak var tfConfirmPassword: SkyFloatingLabelTextField!
-    @IBOutlet weak var btnUpdatePassword: UIButton!
+    @IBOutlet weak var btnUpdatePassword: LoadingButton!
     
     
     
     // MARK: - VARIABLES
-    
-    
+    var changePasswordVM = ChangePasswordVM.shared
+    var btneye1 : UIButton = UIButton()
+    var btneye2 : UIButton = UIButton()
+
     
     // MARK: - OVERRIDE FUNCTIONS
     override func viewDidLoad() {
@@ -33,10 +35,11 @@ class changePasswordVC: headerVC {
 // MARK: - SET UP UI
 extension changePasswordVC{
     func setUpUI(){
+        changePasswordVM.controller = self
         lblHeader.text = L10n.Change_Password.description
-        let btneye1 = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
+        btneye1 = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
         btneye1.tag = 0
-        let btneye2 = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
+        btneye2 = UIButton(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
         btneye2.tag = 1
         btneye1.addTarget(self, action: #selector(btnActEye(_:)) , for: .touchUpInside)
         btneye2.addTarget(self, action: #selector(btnActEye(_:)) , for: .touchUpInside)
@@ -74,6 +77,11 @@ extension changePasswordVC: UITextFieldDelegate{
         let newString: NSString =
             currentString.replacingCharacters(in: range, with: string) as NSString
         if tfNewPassword == textField || tfConfirmPassword == textField{
+            if tfNewPassword == textField{
+                CommonFunctions.normalSkyTFBtn(tfNewPassword, btn: btneye1, placeHolder: L10n.OldPassword.description)
+            }else if tfConfirmPassword == textField{
+                CommonFunctions.normalSkyTFBtn(tfConfirmPassword, btn: btneye2, placeHolder: L10n.NewPassword.description)
+            }
             return newString.length <= 20
         }
         return true
@@ -92,6 +100,7 @@ extension changePasswordVC{
     }
     
     @objc func btnActUpdatePassword(_ sender: UIButton){
-        self.navigationController?.popViewController(animated: true)
+        changePasswordVM.checkValidations()
+//        self.navigationController?.popViewController(animated: true)
     }
 }

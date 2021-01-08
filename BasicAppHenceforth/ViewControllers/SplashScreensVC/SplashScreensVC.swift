@@ -58,7 +58,19 @@ class SplashScreensVC: UIViewController {
 
 // MARK: - SETUP UI
 extension SplashScreensVC{
-    func setUpUI(){
+    func setUpUI(){        
+        userData.shared.getData()
+        if userData.shared.accessToken != ""{
+            if userData.shared.isPhoneVerified == 0{
+                let vc = phoneVerificationVC.instantiateFromAppStoryboard(appStoryboard: .Main)
+                self.navigationController?.pushViewController(vc, animated: false)
+            }else{
+                let vc = tabbarVC.instantiateFromAppStoryboard(appStoryboard: .Tabbar)
+                self.navigationController?.pushViewController(vc, animated: false)
+            }
+        }
+        
+        btnSkip.isHidden = true
         collView.contentInsetAdjustmentBehavior = .never
         if #available(iOS 13.0, *) {
             collView.automaticallyAdjustsScrollIndicatorInsets = false
@@ -105,9 +117,9 @@ extension SplashScreensVC{
         }
         currentSelectedPage = num
         if num == pages.count - 1{
-            btnSkip.isHidden = true
+//            btnSkip.isHidden = true
         }else{
-            btnSkip.isHidden = false
+//            btnSkip.isHidden = false
         }
         for (kNum, vw) in stackViews.enumerated(){
             if kNum == num{

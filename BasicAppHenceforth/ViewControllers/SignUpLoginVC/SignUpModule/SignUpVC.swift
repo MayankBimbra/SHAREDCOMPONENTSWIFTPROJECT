@@ -19,7 +19,7 @@ class SignUpVC: headerVC {
     @IBOutlet weak var tfPassword: SkyFloatingLabelTextField!
     @IBOutlet weak var tfConfirmPassword: SkyFloatingLabelTextField!
     @IBOutlet weak var tfPhoneNumber: SkyFloatingLabelTextField!
-    @IBOutlet weak var btnSignUp: UIButton!
+    @IBOutlet weak var btnSignUp: LoadingButton!
     @IBOutlet weak var lblOrContinue: UILabel!
     @IBOutlet weak var btnAppleLogin: UIButton!
     @IBOutlet weak var btnGoogleLogin: UIButton!
@@ -92,7 +92,8 @@ extension SignUpVC{
         phoneVw.addSubview(btnPhoneNumber)
 //        phoneVw.addSubview(lineVw)
 
-        CommonFunctions.normalSkyTF(tfPhoneNumber, img: Asset.ic_phone_number.image(), placeHolder: "             \(L10n.PhoneNumber.description)")
+        CommonFunctions.normalSkyTF(tfPhoneNumber, img: Asset.ic_phone_number.image(),
+                                    placeHolder: "              \(L10n.PhoneNumber.description)")
         tfPhoneNumber.title = L10n.PhoneNumber.description
         tfPhoneNumber.leftView = phoneVw
         tfPhoneNumber.leftViewMode = .always
@@ -152,7 +153,7 @@ extension SignUpVC: UITextFieldDelegate{
         if tfPhoneNumber == textField{
             CommonFunctions.normalSkyTF(tfPhoneNumber,
                                         img: Asset.ic_phone_number.image(),
-                                        placeHolder: "             \(L10n.PhoneNumber.description)")
+                                        placeHolder: "              \(L10n.PhoneNumber.description)")
             self.phoneNumberIsError(false)
             return newString.length <= 15
         }else if tfFirstName == textField || tfLastName == textField{

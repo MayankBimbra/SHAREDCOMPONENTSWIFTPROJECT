@@ -13,8 +13,6 @@ import SkyFloatingLabelTextField
 class editProfileVC: headerVC {
     
     // MARK: - UI COMPONENTS
-    
-    
     @IBOutlet weak var imgViewDP: UIImageView!
     @IBOutlet weak var btnDP: UIButton!
     @IBOutlet weak var tfFirstName: SkyFloatingLabelTextField!
@@ -27,6 +25,7 @@ class editProfileVC: headerVC {
     @IBOutlet weak var tvAbout: GrowingTextView!
     @IBOutlet weak var vwAbout: UIView!
     @IBOutlet weak var constTopUpper: NSLayoutConstraint!
+    @IBOutlet weak var scrllView: UIScrollView!
     
 
     fileprivate lazy var btnPhoneNumber : UIButton = {
@@ -45,13 +44,19 @@ class editProfileVC: headerVC {
     //MARK:- Variables
     var selectedValue = "+971"
     var countryCode = ""
-    
+    var keyboardHeight : CGFloat = 0
+
     
     // MARK: - OVERRIDE FUNCTIONS
     override func viewDidLoad() {
         isBackEnabled = true
         super.viewDidLoad()
         setUpUI()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
     }
 }
 
@@ -71,7 +76,7 @@ extension editProfileVC{
         CommonFunctions.normalSkyTF(tfEmail, img: nil,
                                     placeHolder: L10n.Email.description)
         CommonFunctions.normalSkyTF(tfPhoneNumber, img: nil,
-                                    placeHolder: "             \(L10n.PhoneNumber.description)")
+                                    placeHolder: "              \(L10n.PhoneNumber.description)")
         CommonFunctions.normalSkyTF(tfWork, img: nil,
                                     placeHolder: L10n.Business.description)
 
@@ -185,7 +190,7 @@ extension editProfileVC: UITextViewDelegate{
         if textView.text == "" && text != ""{
             lblAbout.textColor = UIColor.themeColor
             vwAbout.backgroundColor = UIColor.themeColor
-            lblAbout.text = L10n.AboutText.description.uppercased()
+            lblAbout.text = L10n.AboutText.description
             constTopUpper.constant = -20
             lblAbout.font = UIFont.MontserratMedium(Size.Small.sizeValue())
             UIView.animate(withDuration: 0.3) {
@@ -193,7 +198,7 @@ extension editProfileVC: UITextViewDelegate{
             }
         }
         if newString == ""{
-            if lblAbout.text != L10n.Message.description{
+//            if lblAbout.text != L10n.Message.description{
                 lblAbout.textColor = UIColor.textColorPlaceholder
                 vwAbout.backgroundColor = UIColor.textColorPlaceholder
                 lblAbout.text = L10n.AboutText.description
@@ -202,8 +207,9 @@ extension editProfileVC: UITextViewDelegate{
                     self.view.layoutIfNeeded()
                 }
                 lblAbout.font = UIFont.MontserratMedium(Size.Medium.sizeValue())
-            }
+//            }
         }
+        scrllView.setContentOffset(CGPoint(x: 0, y: textView.frame.maxY - (scrllView.frame.height - keyboardHeight + self.view.safeAreaInsets.bottom - 12)), animated: true)
         return newString.length <= 520
     }
     
@@ -221,6 +227,14 @@ extension editProfileVC: UITextViewDelegate{
 
 // MARK: - EXTERNAL FUNCTIONS
 extension editProfileVC{
+    @objc func keyboardWillShow(_ notification: NSNotification){
+        if let userInfo = notification.userInfo{
+            let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue)
+            let rect = keyboardFrame.cgRectValue
+            keyboardHeight = rect.height
+        }
+    }
+    
     @objc func btnActSave(_ sender: UIButton){
         self.view.endEditing(true)
         self.navigationController?.popViewController(animated: true)

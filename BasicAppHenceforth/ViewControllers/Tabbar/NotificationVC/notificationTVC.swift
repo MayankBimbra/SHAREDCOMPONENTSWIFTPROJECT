@@ -24,7 +24,7 @@ class notificationTVC: UITableViewCell {
         lblDate.font = UIFont.MontserratMedium(Size.Small.sizeValue())
         lblDate.textColor = UIColor.textColorTwo
 
-        lblNotification.text = "Lorem ipsum dolor sit amet adipiscing elit. Etiam sodales metus."
+        lblNotification.text = "Lorem ipsum dolor sit amet adipiscing elit. Etiam sodales metus. dsfsfds fsfsfdsfsdfsfd sdfsf dsf sdf sdf dsfsdfs dfsf s"
         lblDate.text = "Today"
         
         // Initialization code

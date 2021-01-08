@@ -46,7 +46,7 @@ class ApiHandler: NSObject {
         
         if headerPresent{
 //            headers = ["content_type" : L102Language.currentAppleLanguage()]
-//            headers = ["Authorization" : "\(userData.shared.accessToken)"]
+            headers = ["Authorization" : "\(userData.shared.accessToken)"]
         }
         
         print("\(appConstantURL().BASE_URL)\(url)")
