@@ -67,7 +67,7 @@ class profileVC: headerVC {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         lblName.text = "\(userData.shared.firstName) \(userData.shared.lastName)"
-        
+        imgViewDP.yy_setImage(with: URL(string: CommonFunctions.getImage(userData.shared.profileImage, quality: .medium)), placeholder: nil)
     }
 }
 
@@ -123,6 +123,9 @@ extension profileVC{
         btnLogOut.addTarget(self, action: #selector(btnActLogOut(_:)), for: .touchUpInside)
         
         lblName.text = "\(userData.shared.firstName) \(userData.shared.lastName)"
+        
+        imgViewDP.yy_setImage(with: URL(string: CommonFunctions.getImage(userData.shared.profileImage, quality: .medium)), placeholder: nil)
+
     }
     
     func headingSetting(_ lbl: UILabel, txt: String){
@@ -208,6 +211,7 @@ extension profileVC{
         let alert = UIAlertController(title: L10n.Log_Out.description, message: L10n.LogOutDesc.description, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: L10n.Yes.description, style: .destructive, handler: { _ in
             self.profileVM.logoutAPI()
+            userData.shared.deleteData()
             CommonFunctions.logout()
         }))
         alert.addAction(UIAlertAction(title: L10n.No.description, style: .cancel, handler: { _ in }))

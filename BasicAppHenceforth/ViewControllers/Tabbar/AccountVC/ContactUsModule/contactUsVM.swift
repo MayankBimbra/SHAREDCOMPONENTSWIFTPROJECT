@@ -66,8 +66,7 @@ class ContactUsVM {
         
         let params : [String: AnyObject] = [
             "email" : self.controller!.tfEmail.text?.trimmingCharacters(in: .whitespacesAndNewlines) as AnyObject,
-            "first_name" : self.controller!.tfName.text?.trimmingCharacters(in: .whitespacesAndNewlines) as AnyObject,
-            "last_name" : self.controller!.tfName.text?.trimmingCharacters(in: .whitespacesAndNewlines) as AnyObject,
+            "name" : self.controller!.tfName.text?.trimmingCharacters(in: .whitespacesAndNewlines) as AnyObject,
             "phone_number" : self.controller!.tfPhoneNumber.text?.trimmingCharacters(in: .whitespacesAndNewlines) as AnyObject,
             "country_code" : self.controller!.countryCode.trimmingCharacters(in: .whitespacesAndNewlines) as AnyObject,
             "message" : self.controller!.tvMsg.text?.trimmingCharacters(in: .whitespacesAndNewlines) as AnyObject

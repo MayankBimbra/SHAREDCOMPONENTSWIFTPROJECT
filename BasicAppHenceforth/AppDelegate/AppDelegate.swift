@@ -11,6 +11,9 @@ import Firebase
 import UserNotifications
 import GoogleMaps
 import GooglePlaces
+import FacebookCore
+import FacebookLogin
+import GoogleSignIn
 import IQKeyboardManagerSwift
 
 @main
@@ -18,20 +21,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-
-    class var shared: AppDelegate{
-        struct singleTon {
-            static let instance = AppDelegate()
-        }
-        return singleTon.instance
+    class func shared() -> AppDelegate {
+        return UIApplication.shared.delegate as! AppDelegate
     }
-
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         Thread.sleep(forTimeInterval: 2.0)
-        
+        GIDSignIn.sharedInstance().clientID = googleAuth().googleClientKey
         self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
         
         //MARK:- IQ KeyBoard Manager
@@ -102,10 +100,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-    
-    class func sharedInstance() -> AppDelegate {
-        return UIApplication.shared.delegate as! AppDelegate
-    }
-
 }
 
+extension AppDelegate{
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        let fbhandled = ApplicationDelegate.shared.application(app, open: url, sourceApplication: options  [UIApplication.OpenURLOptionsKey.sourceApplication] as! String?, annotation: options [UIApplication.OpenURLOptionsKey.annotation])
+
+        return fbhandled
+    }
+       
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        return ApplicationDelegate.shared.application( application,
+                                                       open: url,
+                                                       sourceApplication: sourceApplication,
+                                                       annotation: annotation)
+    }
+}

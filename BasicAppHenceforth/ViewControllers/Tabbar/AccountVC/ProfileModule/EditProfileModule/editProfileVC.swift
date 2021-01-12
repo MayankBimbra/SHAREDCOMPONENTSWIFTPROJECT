@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import YPImagePicker
 import GrowingTextView
 import FlagPhoneNumber
 import SkyFloatingLabelTextField
@@ -28,7 +29,7 @@ class editProfileVC: headerVC {
     @IBOutlet weak var scrllView: UIScrollView!
     
 
-    fileprivate lazy var btnPhoneNumber : UIButton = {
+    public lazy var btnPhoneNumber : UIButton = {
         let btn = UIButton(frame: CGRect(x: 0, y: 14, width: 52, height: 30))
         btn.titleLabel?.font = UIFont.MontserratMedium(Size.Medium.sizeValue())
         btn.setTitleColor(UIColor.textColorMain, for: .normal)
@@ -45,13 +46,16 @@ class editProfileVC: headerVC {
     var selectedValue = "+971"
     var countryCode = ""
     var keyboardHeight : CGFloat = 0
-
+    var editProfileVM : EditProfileVM = EditProfileVM.shared
+    var uploadedPhotoURL : String = ""
+    
     
     // MARK: - OVERRIDE FUNCTIONS
     override func viewDidLoad() {
         isBackEnabled = true
         super.viewDidLoad()
         setUpUI()
+        editProfileVM.setData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -64,6 +68,7 @@ class editProfileVC: headerVC {
 // MARK: - SET UP UI
 extension editProfileVC{
     func setUpUI(){
+        editProfileVM.controller = self
         lblHeader.text = L10n.EditProfile.description
         btnRight.setTitle(L10n.SAVE.description, for: .normal)
         
@@ -140,6 +145,16 @@ extension editProfileVC{
         mView.addSubview(imgVw)
         return mView
     }
+    
+    func phoneNumberIsError(_ error: Bool){
+        if error{
+            btnPhoneNumber.tintColor = UIColor.errorColor
+            btnPhoneNumber.setTitleColor(UIColor.errorColor, for: .normal)
+        }else{
+            btnPhoneNumber.tintColor = UIColor.textColorMain
+            btnPhoneNumber.setTitleColor(UIColor.textColorMain, for: .normal)
+        }
+    }
 }
 
 
@@ -168,12 +183,26 @@ extension editProfileVC: UITextFieldDelegate{
         let newString: NSString =
             currentString.replacingCharacters(in: range, with: string) as NSString
         if tfPhoneNumber == textField{
+            self.phoneNumberIsError(false)
+            CommonFunctions.normalSkyTF(tfPhoneNumber, img: nil,
+                                        placeHolder: "              \(L10n.PhoneNumber.description)")
             return newString.length <= 15
         }else if tfFirstName == textField || tfLastName == textField{
+            if tfFirstName == textField {
+                CommonFunctions.normalSkyTF(tfFirstName, img: nil,
+                                            placeHolder: L10n.FirstName.description)
+            }else{
+                CommonFunctions.normalSkyTF(tfLastName, img: nil,
+                                            placeHolder: L10n.LastName.description)
+            }
             return newString.length <= 20
         }else if tfWork == textField{
+            CommonFunctions.normalSkyTF(tfWork, img: nil,
+                                        placeHolder: L10n.Business.description)
             return newString.length <= 40
         }else if tfEmail == textField{
+            CommonFunctions.normalSkyTF(tfEmail, img: nil,
+                                        placeHolder: L10n.Email.description)
             return newString.length <= 40
         }
         return true
@@ -184,6 +213,8 @@ extension editProfileVC: UITextFieldDelegate{
 // MARK: - UI TEXTVIEW DELEGATE
 extension editProfileVC: UITextViewDelegate{
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        textView.tintColor = UIColor.textColorMain
+        textView.textColor = UIColor.textColorMain
         let currentString: NSString = textView.text! as NSString
         let newString: NSString =
             currentString.replacingCharacters(in: range, with: text) as NSString
@@ -214,7 +245,11 @@ extension editProfileVC: UITextViewDelegate{
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        lblAbout.textColor = UIColor.themeColor
+        if tvAbout.text == ""{
+            lblAbout.textColor = UIColor.textColorPlaceholder
+        }else{
+            lblAbout.textColor = UIColor.themeColor
+        }
         vwAbout.backgroundColor = UIColor.themeColor
     }
     
@@ -237,7 +272,7 @@ extension editProfileVC{
     
     @objc func btnActSave(_ sender: UIButton){
         self.view.endEditing(true)
-        self.navigationController?.popViewController(animated: true)
+        editProfileVM.checkValidations()
     }
     
     @objc func btnActEmailVerify(_ sender: UIButton){
@@ -247,12 +282,16 @@ extension editProfileVC{
 
     @objc func btnActDP(_ sender: UIButton){
         self.view.endEditing(true)
-
+        mediaPickerController.shared.openingMediaController(self, media: .Photo, max: 1) { (imgs) in
+            self.imgViewDP.image = imgs[0]
+            self.editProfileVM.uploadingPhoto(imgs[0])
+        } videos: { _ in
+            print("error")
+        }
     }
 
     @objc func btnActPhoneNumberVerify(_ sender: UIButton){
         self.view.endEditing(true)
-
     }
 
     @objc func btnActCountryCode(_ sender: UIButton){
@@ -267,6 +306,7 @@ extension editProfileVC{
             self?.selectedValue = country.phoneCode
             self?.countryCode = country.code.rawValue
         }
-        self.present(counListing, animated: true, completion: nil)
+        let navController = UINavigationController(rootViewController: counListing)
+        self.present(navController, animated: true, completion: nil)
     }
 }

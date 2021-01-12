@@ -18,25 +18,72 @@
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.henceforth.viral</string>
+				<string>fb1185671144876283</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.app.myeve</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.henceforth.viral</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.580674692835-sohnkdhcfs343l8diam2r2npfjbq1tq0</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>FacebookAppID</key>
+	<string>1185671144876283</string>
+	<key>FacebookDisplayName</key>
+	<string>Basic App</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-share-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-    <key>NSAppTransportSecurity</key>
-        <dict>
-            <key>NSAllowsArbitraryLoads</key>
-            <true/>
-            <key>NSExceptionDomains</key>
-            <dict>
-                <key>yourdomain.com</key>
-                <dict>
-                    <key>NSIncludesSubdomains</key>
-                    <true/>
-                    <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
-                    <false/>
-                </dict>
-           </dict>
-      </dict>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>app-transfer.com</key>
+			<dict>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+				<false/>
+			</dict>
+		</dict>
+	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>yourWording</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>yourWording</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>yourWording</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Montserrat-Black.ttf</string>
@@ -58,8 +105,8 @@
 		<string>Montserrat-SemiBoldItalic.ttf</string>
 		<string>Montserrat-SemiBold.ttf</string>
 		<string>Montserrat-Medium.ttf</string>
-        <string>Nexa_Bold.otf</string>
-        <string>Nexa_Light.otf</string>
+		<string>Nexa_Bold.otf</string>
+		<string>Nexa_Light.otf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>

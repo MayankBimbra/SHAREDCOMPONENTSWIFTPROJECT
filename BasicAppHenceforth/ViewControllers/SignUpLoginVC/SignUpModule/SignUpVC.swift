@@ -21,9 +21,9 @@ class SignUpVC: headerVC {
     @IBOutlet weak var tfPhoneNumber: SkyFloatingLabelTextField!
     @IBOutlet weak var btnSignUp: LoadingButton!
     @IBOutlet weak var lblOrContinue: UILabel!
-    @IBOutlet weak var btnAppleLogin: UIButton!
-    @IBOutlet weak var btnGoogleLogin: UIButton!
-    @IBOutlet weak var btnFbLogin: UIButton!
+    @IBOutlet weak var btnAppleLogin: LoadingButton!
+    @IBOutlet weak var btnGoogleLogin: LoadingButton!
+    @IBOutlet weak var btnFbLogin: LoadingButton!
     @IBOutlet weak var lblAttributtedLogin: UILabel!
     @IBOutlet weak var lblTermsPrivacy: ActiveLabel!
         
@@ -47,7 +47,8 @@ class SignUpVC: headerVC {
     var selectedValue = "+971"
     var countryCode = ""
     var signUpVM = SignUpVM.shared
-    
+    var socialVM = SocialVM.shared
+
     
     // MARK: - OVERRIDE FUNCTIONS
     override func viewDidLoad() {
@@ -61,6 +62,7 @@ class SignUpVC: headerVC {
 extension SignUpVC{
     func setUpUI(){
         signUpVM.controller = self
+        socialVM.controller = self
         lblHeader.text = L10n.CreateNewAccount.description
         btnRight.setTitle(L10n.SKIP.description, for: .normal)
         
@@ -124,11 +126,21 @@ extension SignUpVC{
         lblTermsPrivacy.font = UIFont.MontserratMedium(Size.Medium.sizeValue())
             
         lblTermsPrivacy.handleCustomTap(for: customType) { element in
-            CommonFunctions.toster("Terms and Cond")
+            let vc = webPageVC.instantiateFromAppStoryboard(appStoryboard: .Account)
+            vc.screenType = .TermsAndCond
+            self.navigationController?.pushViewController(vc, animated: true)
         }
         
         lblTermsPrivacy.handleCustomTap(for: customType2) { element in
-            CommonFunctions.toster("Privacy Policy")
+            let vc = webPageVC.instantiateFromAppStoryboard(appStoryboard: .Account)
+            vc.screenType = .PrivacyPolicy
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        
+        if #available(iOS 13.0, *) {
+            btnAppleLogin.isHidden = false
+        } else {
+            btnAppleLogin.isHidden = true
         }
     }
     
@@ -220,26 +232,54 @@ extension SignUpVC{
     @IBAction func btnActSignUp(_ sender: Any) {
         self.view.endEditing(true)
         signUpVM.signUpChk()
-//        let vc = phoneVerificationVC.instantiateFromAppStoryboard(appStoryboard: AppStoryboard.Main)
-//        self.navigationController?.pushViewController(vc, animated: true)
     }
     
+    @available(iOS 13.0, *)
     @IBAction func btnActAppleLogin(_ sender: Any) {
         self.view.endEditing(true)
-        let vc = tabbarVC.instantiateFromAppStoryboard(appStoryboard: .Tabbar)
-        self.navigationController?.pushViewController(vc, animated: true)
+        btnAppleLogin.showLoading()
+        self.view.isUserInteractionEnabled = false
+        appleLoginClass.shared.appleLogin(self) { (result) in
+            self.socialVM.socialLoginAPI(fbId: nil, googleID: nil, appleID: result.id ?? "", firstName: result.firstName ?? "", lastName: result.lastName ?? "", email: result.email ?? "") {
+                self.btnAppleLogin.hideLoading()
+                self.view.isUserInteractionEnabled = true
+            }
+        } failure: {
+            self.btnAppleLogin.hideLoading()
+            self.view.isUserInteractionEnabled = true
+        }
     }
     
     @IBAction func btnActGoogleLogin(_ sender: Any) {
         self.view.endEditing(true)
-        let vc = tabbarVC.instantiateFromAppStoryboard(appStoryboard: .Tabbar)
-        self.navigationController?.pushViewController(vc, animated: true)
+        btnGoogleLogin.showLoading()
+        self.view.isUserInteractionEnabled = false
+        googleLoginClass.shared.googleLogin(self) { (result) in
+            print(result)
+            self.socialVM.socialLoginAPI(fbId: nil, googleID: result.id ?? "", appleID: nil, firstName: result.firstName ?? "", lastName: result.lastName ?? "", email: result.email ?? "") {
+                self.btnGoogleLogin.hideLoading()
+                self.view.isUserInteractionEnabled = true
+            }
+        } failure: {
+            self.btnGoogleLogin.hideLoading()
+            self.view.isUserInteractionEnabled = true
+        }
     }
     
     @IBAction func btnActFacebookLogin(_ sender: Any) {
         self.view.endEditing(true)
-        let vc = tabbarVC.instantiateFromAppStoryboard(appStoryboard: .Tabbar)
-        self.navigationController?.pushViewController(vc, animated: true)
+        btnFbLogin.showLoading()
+        self.view.isUserInteractionEnabled = false
+        fbLoginClass.facebookLogin(view: self) { (result) in
+            print(result)
+            self.socialVM.socialLoginAPI(fbId: result.id ?? "", googleID: nil, appleID: nil, firstName: result.firstName ?? "", lastName: result.lastName ?? "", email: result.email ?? "") {
+                self.btnFbLogin.hideLoading()
+                self.view.isUserInteractionEnabled = true
+            }
+        } failure: { (error) in
+            self.btnFbLogin.hideLoading()
+            self.view.isUserInteractionEnabled = true
+        }
     }
     
     @objc func btnActEye(_ sender: UIButton){
@@ -256,13 +296,15 @@ extension SignUpVC{
         pTf.displayMode = .list
         let counListing : FPNCountryListViewController = FPNCountryListViewController(style: .grouped)
         counListing.showCountryPhoneCode = true
+//        counListing.searchController =
         counListing.setup(repository: pTf.countryRepository)
         counListing.didSelect = {[weak self] country in
             self?.btnPhoneNumber.setTitle(country.phoneCode, for: .normal)
             self?.selectedValue = country.phoneCode
             self?.countryCode = country.code.rawValue
         }
-        self.present(counListing, animated: true, completion: nil)
+        let navController = UINavigationController(rootViewController: counListing)
+        self.present(navController, animated: true, completion: nil)
     }
     
     @objc func myMethodToHandleTap(_ sender : UITapGestureRecognizer){

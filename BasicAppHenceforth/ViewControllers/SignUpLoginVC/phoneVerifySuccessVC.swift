@@ -60,7 +60,7 @@ extension phoneVerifySuccessVC{
             } completion: { _ in
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
                     let vc = tabbarVC.instantiateFromAppStoryboard(appStoryboard: .Tabbar)
-                    self.navigationController?.pushViewController(vc, animated: true)
+                    self.navigationController?.pushViewController(vc, animated: false)
                 }
             }
         }

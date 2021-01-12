@@ -12,18 +12,22 @@ class appConstantURL{
     let forgotURL = "forgot/password"
     let changePassowrdURL = "change/password"
     let contactUsURL = "contact-us"
-    let logoutURL = "logout"
-    
+    let resetNotificationsURL = "reset/notifications"
+    let contentDataURL = "content"
     let getProfileURL = "profile"
-    
+    let editProfileURL = "profile"
+    let logoutURL = "logout"
+
     let notificationAPI = "notification"
     let chatListingAPI = "chat/listing"
-
+    let chatIntListingAPI = "chat/messages"
+    
+    let uploadImageURL = "upload/local"
 }
 
 
-enum  Image_Quality : String {
+enum Image_Quality : String {
     case medium = "&folder=medium"
     case small = "&folder=small"
-    case large = ""
+    case large = "&folder=orig"
 }

@@ -24,26 +24,21 @@ class webPageVC: headerVC {
     
     // MARK: - VARIABLES
     var screenType : WebPageType = .AboutUs
-    
+    var webPageVM : WebPageVM = WebPageVM.shared
     
     
     // MARK: - OVERRIDE FUNCTIONS
     override func viewDidLoad() {
         isBackEnabled = true
         super.viewDidLoad()
+        
+        webPageVM.controller = self
+        
+        viewImage.isHidden = true
+        lblData.isHidden = true
 
         self.lblHeader.text = screenType.rawValue
 
-        if screenType == .AboutUs{
-            viewImage.isHidden = false
-            lblData.text = "This is about Us text"
-            imgView.backgroundColor = .bGColor
-        }else if screenType == .PrivacyPolicy{
-            viewImage.isHidden = true
-            lblData.text = "This is privacy policy text"
-        }else{
-            viewImage.isHidden = true
-            lblData.text = "This is Terms and Condition text"
-        }
+        webPageVM.getContentDataAPI()        
     }
 }

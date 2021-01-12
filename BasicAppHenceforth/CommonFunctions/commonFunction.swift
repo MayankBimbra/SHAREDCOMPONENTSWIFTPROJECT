@@ -370,14 +370,6 @@ class CommonFunctions {
         }
     }
     
-    static func getImage(_ name : String, quality: Image_Quality) -> String{
-        if name == ""{
-            return ""
-        }else{
-            return "\(appConstantURL().BASE_URL)image?filename=\(name)\(quality.rawValue)"
-        }
-    }
-    
     static func showLoader(){
         let topView = getTopMostViewController()?.view
         let loadingView = UIView(frame : CGRect(x: 0, y: 0, width: topView?.frame.width ?? 0, height: topView?.frame.height ?? 0))
@@ -452,16 +444,18 @@ class CommonFunctions {
     }
 }
 
-extension String{
-    public func toTime(inputFormate:String,outPutFormate:String)->String{
-      var finalstring = ""
-      let InputdateForamte = DateFormatter()
-      InputdateForamte.dateFormat = inputFormate
-      let outputdateForamte = DateFormatter()
-      outputdateForamte.dateFormat = outPutFormate
-      if let inputdate = InputdateForamte.date(from: self){
-        finalstring = outputdateForamte.string(from: inputdate)
-      }
-      return finalstring
+
+extension CommonFunctions{
+    static func getImage(_ name : String, quality: Image_Quality) -> String{
+        if name == ""{
+            return ""
+        }else{
+            if name.contains("http") || name.contains("fb") || name.contains("google"){
+                return name
+            }else{
+                return "\(appConstantURL().BASE_URL)local/file?filename=\(name)\(quality.rawValue)"
+            }
+        }
     }
 }
+

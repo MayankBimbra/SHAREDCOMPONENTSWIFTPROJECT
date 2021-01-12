@@ -39,7 +39,7 @@ class contactUsVC: headerVC {
     
     // MARK:- VARIABLES
     var selectedValue = "+971"
-    var countryCode = ""
+    var countryCode = "+971"
     var keyboardHeight : CGFloat = 0
     var contactUsVM = ContactUsVM.shared
 
@@ -234,7 +234,8 @@ extension contactUsVC{
             self?.selectedValue = country.phoneCode
             self?.countryCode = country.code.rawValue
         }
-        self.present(counListing, animated: true, completion: nil)
+        let navController = UINavigationController(rootViewController: counListing)
+        self.present(navController, animated: true, completion: nil)
     }
     
     @objc func btnActSubmit(_ sender: UIButton){

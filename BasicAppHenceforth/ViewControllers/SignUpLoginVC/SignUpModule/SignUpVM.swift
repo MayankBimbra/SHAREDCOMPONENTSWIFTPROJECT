@@ -130,6 +130,6 @@ class SignUpVM {
             }else{
                 print(error)
             }
-        }, method: .POST, img: nil, imageParamater: "", headerPresent: false)
+        }, method: .PostWithJSON, img: nil, imageParamater: "", headerPresent: false)
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ESPullToRefresh
 
 class notificationVC: headerVC {
 
@@ -15,6 +16,8 @@ class notificationVC: headerVC {
     
     
     // MARK: - VARIABLES
+    var notificationVM : NotificationVM = NotificationVM.shared
+    var notificationData : [NotificationC] = []
     
     
     // MARK: - OVERRIDE FUNCTIONS
@@ -28,7 +31,16 @@ class notificationVC: headerVC {
 // MARK: - SET UP UI
 extension notificationVC{
     func setUpUI(){
+        notificationVM.controller = self
         lblHeader.text = L10n.NotificationHeader.description
+        
+        notificationVM.fetchNotificationAPI()
+        
+        tblView.es.addPullToRefresh {
+            self.notificationVM.pageNumber = 1
+            self.notificationVM.canPaginate = true
+            self.notificationVM.fetchNotificationAPI()
+        }
     }
 }
 
@@ -41,20 +53,25 @@ extension notificationVC: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return notificationData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.notificationTVC.getValues(), for: indexPath) as! notificationTVC
-        if indexPath.row == 0{
-            cell.cellUnread()
-        }else{
-            cell.cellRead()
-        }
+        cell.setData(notificationData[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath.row)
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if self.notificationVM.apiHitOnce{
+            if !self.notificationVM.apiHitting && self.notificationVM.canPaginate && indexPath.row == notificationData.count - 3{
+                self.notificationVM.pageNumber += 1
+                self.notificationVM.fetchNotificationAPI()
+            }
+        }
     }
 }

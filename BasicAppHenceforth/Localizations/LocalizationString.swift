@@ -152,9 +152,11 @@ enum L10n {
     case PleaseEnterNewPassword
     case PleaseEnterName
     case PleaseEnterMessage
-
+    case PleaseEnterWork
+    case PleaseEnterAboutYourself
     
     case PleaseEnterOTP
+    case NA
 }
 
 
@@ -393,10 +395,15 @@ extension L10n: CustomStringConvertible{
             return L10n.tr("Please Enter Name")
         case .PleaseEnterMessage:
             return L10n.tr("Please Enter Message")
+        case .PleaseEnterWork:
+            return L10n.tr("Please Enter Work")
+        case .PleaseEnterAboutYourself:
+            return L10n.tr("Please Enter About Your Self")
 
         case .PleaseEnterOTP:
             return L10n.tr("Please Enter OTP")
-
+        case .NA:
+            return L10n.tr("NA")
         }
     }
     

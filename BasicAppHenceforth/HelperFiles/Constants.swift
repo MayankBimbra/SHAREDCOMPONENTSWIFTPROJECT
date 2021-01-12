@@ -35,3 +35,7 @@ struct DeviceInfo {
     var deviceType : String = "2"
     var fcmId : String = "Simulator"
 }
+
+class googleAuth {
+    let googleClientKey : String = "580674692835-sohnkdhcfs343l8diam2r2npfjbq1tq0.apps.googleusercontent.com"
+}

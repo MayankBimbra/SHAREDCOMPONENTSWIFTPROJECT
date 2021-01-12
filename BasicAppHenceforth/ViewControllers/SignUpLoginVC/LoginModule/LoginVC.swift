@@ -16,9 +16,9 @@ class LoginVC: UIViewController {
     @IBOutlet weak var tfPassword: SkyFloatingLabelTextField!
     @IBOutlet weak var btnLogin: LoadingButton!
     @IBOutlet weak var lblOrContinue: UILabel!
-    @IBOutlet weak var btnAppleLogin: UIButton!
-    @IBOutlet weak var btnGoogleLogin: UIButton!
-    @IBOutlet weak var btnFbLogin: UIButton!
+    @IBOutlet weak var btnAppleLogin: LoadingButton!
+    @IBOutlet weak var btnGoogleLogin: LoadingButton!
+    @IBOutlet weak var btnFbLogin: LoadingButton!
     @IBOutlet weak var lblAttributtedLogin: ActiveLabel!
     @IBOutlet weak var btnSkip: UIButton!
     @IBOutlet weak var lblWelcome: UILabel!
@@ -27,7 +27,9 @@ class LoginVC: UIViewController {
     
     // MARK: - Variables
     var loginVM = LoginVM.shared
+    var socialVM = SocialVM.shared
     var btneye : UIButton!
+    
     
     // MARK: - OVERRIDE FUNCTIONS
     override func viewDidLoad() {
@@ -41,6 +43,7 @@ class LoginVC: UIViewController {
 extension LoginVC{
     func setUpUI(){
         loginVM.controller = self
+        socialVM.controller = self
         btnSkip.setTitle(L10n.SKIP.description, for: .normal)
         btnSkip.titleLabel?.font = UIFont.MontserratSemiBold(Size.Medium.sizeValue())
 
@@ -85,7 +88,13 @@ extension LoginVC{
                 
         btnSkip.addTarget(self, action: #selector(btnActSkip(_:)), for: .touchUpInside)
         btnLogin.addTarget(self, action: #selector(btnActLogin(_:)), for: .touchUpInside)
-        btnAppleLogin.addTarget(self, action: #selector(btnActAppleLogin(_:)), for: .touchUpInside)
+        if #available(iOS 13.0, *) {
+            btnAppleLogin.isHidden = false
+            btnAppleLogin.addTarget(self, action: #selector(btnActAppleLogin(_:)), for: .touchUpInside)
+        } else {
+            btnAppleLogin.isHidden = true
+            // Fallback on earlier versions
+        }
         btnGoogleLogin.addTarget(self, action: #selector(btnActGoogleLogin(_:)), for: .touchUpInside)
         btnFbLogin.addTarget(self, action: #selector(btnActFBLogin(_:)), for: .touchUpInside)
         btnForgotPassword.addTarget(self, action: #selector(btnActForgotPassword(_:)), for: .touchUpInside)
@@ -135,24 +144,55 @@ extension LoginVC{
     }
     
     @objc func btnActLogin(_ sender: Any) {
+        self.view.endEditing(true)
         self.loginVM.checkLoginValidations()
-//        let vc = tabbarVC.instantiateFromAppStoryboard(appStoryboard: .Tabbar)
-//        self.navigationController?.pushViewController(vc, animated: true)
     }
     
+    
+    @available(iOS 13.0, *)
     @objc func btnActAppleLogin(_ sender: Any) {
-        let vc = tabbarVC.instantiateFromAppStoryboard(appStoryboard: .Tabbar)
-        self.navigationController?.pushViewController(vc, animated: true)
+        self.view.endEditing(true)
+        btnAppleLogin.showLoading()
+        self.view.isUserInteractionEnabled = false
+        appleLoginClass.shared.appleLogin(self) { (result) in
+            self.socialVM.socialLoginAPI(fbId: nil, googleID: nil, appleID: result.id ?? "", firstName: result.firstName ?? "", lastName: result.lastName ?? "", email: result.email ?? "") {
+                self.btnAppleLogin.hideLoading()
+                self.view.isUserInteractionEnabled = true
+            }
+        } failure: {
+            self.btnAppleLogin.hideLoading()
+            self.view.isUserInteractionEnabled = true
+        }
     }
     
     @objc func btnActGoogleLogin(_ sender: Any) {
-        let vc = tabbarVC.instantiateFromAppStoryboard(appStoryboard: .Tabbar)
-        self.navigationController?.pushViewController(vc, animated: true)
+        self.view.endEditing(true)
+        btnGoogleLogin.showLoading()
+        self.view.isUserInteractionEnabled = false
+        googleLoginClass.shared.googleLogin(self) { (result) in
+            self.socialVM.socialLoginAPI(fbId: nil, googleID: result.id ?? "", appleID: nil, firstName: result.firstName ?? "", lastName: result.lastName ?? "", email: result.email ?? "") {
+                self.btnGoogleLogin.hideLoading()
+                self.view.isUserInteractionEnabled = true
+            }
+        } failure: {
+            self.btnGoogleLogin.hideLoading()
+            self.view.isUserInteractionEnabled = true
+        }
     }
     
     @objc func btnActFBLogin(_ sender: Any) {
-        let vc = tabbarVC.instantiateFromAppStoryboard(appStoryboard: .Tabbar)
-        self.navigationController?.pushViewController(vc, animated: true)
+        self.view.endEditing(true)
+        btnFbLogin.showLoading()
+        self.view.isUserInteractionEnabled = false
+        fbLoginClass.facebookLogin(view: self) { (result) in
+            self.socialVM.socialLoginAPI(fbId: result.id ?? "", googleID: nil, appleID: nil, firstName: result.firstName ?? "", lastName: result.lastName ?? "", email: result.email ?? "") {
+                self.btnFbLogin.hideLoading()
+                self.view.isUserInteractionEnabled = true
+            }            
+        } failure: { (error) in
+            self.btnFbLogin.hideLoading()
+            self.view.isUserInteractionEnabled = true
+        }
     }
     
     @objc func btnActForgotPassword(_ sender: Any) {

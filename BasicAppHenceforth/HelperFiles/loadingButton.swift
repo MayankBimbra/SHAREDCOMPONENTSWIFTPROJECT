@@ -11,11 +11,14 @@ import UIKit
 class LoadingButton: UIButton {
     
     var originalButtonText: String?
+    var originalButtonImage: UIImage?
     var activityIndicator: UIActivityIndicatorView!
     
     func showLoading() {
         originalButtonText = self.titleLabel?.text
+        originalButtonImage = self.currentImage
         self.setTitle("", for: .normal)
+        self.setImage(nil, for: .normal)
         
         if (activityIndicator == nil) {
             activityIndicator = createActivityIndicator()
@@ -26,6 +29,7 @@ class LoadingButton: UIButton {
     
     func hideLoading() {
         self.setTitle(originalButtonText, for: .normal)
+        self.setImage(originalButtonImage, for: .normal)
         if activityIndicator != nil{
             activityIndicator.stopAnimating()
         }

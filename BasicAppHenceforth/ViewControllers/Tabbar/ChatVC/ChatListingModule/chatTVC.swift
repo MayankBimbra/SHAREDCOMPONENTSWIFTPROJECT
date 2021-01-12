@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import YYWebImage
 
 class chatTVC: UITableViewCell {
 
@@ -21,7 +22,7 @@ class chatTVC: UITableViewCell {
         super.awakeFromNib()
         imgViewDP.layer.cornerRadius = imgViewDP.frame.height/2
         imgViewDP.clipsToBounds = true
-        imgViewDP.contentMode = .scaleAspectFit
+        imgViewDP.contentMode = .scaleAspectFill
         viewUnread.layer.cornerRadius = viewUnread.frame.height/2
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
             self.viewUnread.layer.cornerRadius = self.viewUnread.frame.height/2
@@ -36,14 +37,22 @@ class chatTVC: UITableViewCell {
         lblUnread.font = UIFont.MontserratBold(Size.Small.sizeValue())
         lblUnread.textColor = UIColor.appWhiteColor
 
-        lblName.text = "Julia"
-        lblDate.text = "10:00AM"
-        lblMsg.text = "Lorem ipsum dolor sit amet, conseciquence asdjksad sadasdas dasdas"
-        lblUnread.text = "1"
-
         // Initialization code
     }
 
+    func setData(_ data: ChatAPIElement){
+        lblName.text = "\(data.firstName ?? "") \(data.lastName ?? "")"
+        imgViewDP.yy_setImage(with: URL(string: CommonFunctions.getImage(data.profileImage ?? "", quality: .small)), placeholder: nil)
+        lblDate.text = "10:00AM"
+        lblMsg.text = data.message
+        lblUnread.text = "1"
+        if data.isRead ?? 0 == 1{
+            cellRead()
+        }else{
+            cellUnread()
+        }
+    }
+    
     func cellUnread(){
         lblDate.textColor = UIColor.appBlackColor
         lblMsg.textColor = UIColor.appBlackColor

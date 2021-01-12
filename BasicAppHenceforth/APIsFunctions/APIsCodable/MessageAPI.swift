@@ -10,4 +10,5 @@ import Foundation
 // MARK: - MessageAPI
 struct MessageAPI: Codable {
     var message: String?
+    var filename: String?
 }

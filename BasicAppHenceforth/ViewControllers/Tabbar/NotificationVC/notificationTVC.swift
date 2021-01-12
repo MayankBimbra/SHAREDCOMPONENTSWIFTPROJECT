@@ -24,8 +24,8 @@ class notificationTVC: UITableViewCell {
         lblDate.font = UIFont.MontserratMedium(Size.Small.sizeValue())
         lblDate.textColor = UIColor.textColorTwo
 
-        lblNotification.text = "Lorem ipsum dolor sit amet adipiscing elit. Etiam sodales metus. dsfsfds fsfsfdsfsdfsfd sdfsf dsf sdf sdf dsfsdfs dfsf s"
-        lblDate.text = "Today"
+//        lblNotification.text = "Lorem ipsum dolor sit amet adipiscing elit. Etiam sodales metus. dsfsfds fsfsfdsfsdfsfd sdfsf dsf sdf sdf dsfsdfs dfsf s"
+//        lblDate.text = "Today"
         
         // Initialization code
     }
@@ -44,6 +44,16 @@ class notificationTVC: UITableViewCell {
         self.contentView.backgroundColor = UIColor.appWhiteColor
         imgViewNotify.layer.borderColor = UIColor.bGColor.cgColor
         viewUnread.isHidden = true
+    }
+    
+    func setData(_ data : NotificationC){
+        if data.isRead == 1{
+            cellRead()
+        }else{
+            cellUnread()
+        }
+        lblNotification.text = data.title
+        lblDate.text = data.timeSince
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

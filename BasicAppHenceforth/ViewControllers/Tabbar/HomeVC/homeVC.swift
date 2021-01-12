@@ -55,6 +55,7 @@ extension homeVC{
         lblDescription.attributedText = CommonFunctions.sendAttText(["Lorem ipsum dolor sit amet, adipiscing elit."], fonts: [UIFont.MontserratRegular(Size.Medium.sizeValue())], color: [UIColor.appWhiteColor], alingment: .left, spacing: 4)
         imgProfilePic.layer.cornerRadius = 4
         
-        
+        imgProfilePic.yy_setImage(with: URL(string: CommonFunctions.getImage(userData.shared.profileImage, quality: .medium)), placeholder: nil)
+
     }
 }

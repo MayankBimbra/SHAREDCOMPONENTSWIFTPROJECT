@@ -24,6 +24,13 @@ target 'BasicAppHenceforth' do
   pod 'FlagPhoneNumber'
   pod 'DropDown'
   pod 'ActiveLabel'
+  
+  pod 'FacebookCore'
+  pod 'FacebookLogin'
+  pod 'FacebookShare'
+  pod 'YPImagePicker'
+  pod 'GoogleSignIn'
+  
   # Pods for BasicAppHenceforth
 
   target 'BasicAppHenceforthTests' do

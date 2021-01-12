@@ -24,14 +24,23 @@ class ProfileInnerVM {
         }
         
         self.controller!.lblNameJoining.attributedText = CommonFunctions.sendAttText(["\(L10n.HiText.description)\(userData.shared.firstName)", "\n\(L10n.JoinedText.description)October, 2020"], fonts: [UIFont.MontserratMedium(Size.XXXLarge.sizeValue()), UIFont.MontserratMedium(Size.Medium.sizeValue())], color: [UIColor.black, UIColor.textColorOne], alingment: .left, spacing: 4)
-        self.controller!.lblAboutDesc.attributedText = CommonFunctions.sendAttText([userData.shared.userDescription], fonts: [UIFont.MontserratMedium(Size.Medium.sizeValue())], color: [UIColor.textColorOne], alingment: .left, spacing: 4)
+        if userData.shared.userDescription == ""{
+            self.controller!.lblAboutDesc.attributedText = CommonFunctions.sendAttText([L10n.NA.description], fonts: [UIFont.MontserratMedium(Size.Medium.sizeValue())], color: [UIColor.textColorOne], alingment: .left, spacing: 4)
+        }else{
+            self.controller!.lblAboutDesc.attributedText = CommonFunctions.sendAttText([userData.shared.userDescription], fonts: [UIFont.MontserratMedium(Size.Medium.sizeValue())], color: [UIColor.textColorOne], alingment: .left, spacing: 4)
+        }
         self.controller!.lblEmailVerified.attributedText = CommonFunctions.sendAttText([userData.shared.email], fonts: [UIFont.MontserratMedium(Size.Medium.sizeValue())], color: [UIColor.appBlackColor], alingment: .left, spacing: 4)
         self.controller!.lblPhoneNumVerified.attributedText = CommonFunctions.sendAttText(["\(userData.shared.countryCode)\(userData.shared.phoneNumber)"], fonts: [UIFont.MontserratMedium(Size.Medium.sizeValue())], color: [UIColor.appBlackColor], alingment: .left, spacing: 4)
-        self.controller!.lblBusinessVerified.attributedText = CommonFunctions.sendAttText([userData.shared.designation], fonts: [UIFont.MontserratMedium(Size.Medium.sizeValue())], color: [UIColor.appBlackColor], alingment: .left, spacing: 4)
+        if userData.shared.designation == ""{
+            self.controller!.lblBusinessVerified.attributedText = CommonFunctions.sendAttText([L10n.NA.description], fonts: [UIFont.MontserratMedium(Size.Medium.sizeValue())], color: [UIColor.appBlackColor], alingment: .left, spacing: 4)
+        }else{
+            self.controller!.lblBusinessVerified.attributedText = CommonFunctions.sendAttText([userData.shared.designation], fonts: [UIFont.MontserratMedium(Size.Medium.sizeValue())], color: [UIColor.appBlackColor], alingment: .left, spacing: 4)
+        }
 
         controller?.imgViewEmailVerified.isHidden = (userData.shared.isEmailVerified == 1) ? false : true
         controller?.imgViewPhoneVerified.isHidden = (userData.shared.isPhoneVerified == 1) ? false : true
 
+        controller?.imgViewDP.yy_setImage(with: URL(string: CommonFunctions.getImage(userData.shared.profileImage, quality: .medium)), placeholder: nil)
     }
     
     func getProfileAPI(){

@@ -80,4 +80,36 @@ extension String {
         let nums: Set<Character> = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
         return Set(self).isSubset(of: nums)
     }
+    
+    public func toTime(inputFormate:String, outPutFormate:String) -> String{
+      var finalstring = ""
+      let InputdateForamte = DateFormatter()
+      InputdateForamte.dateFormat = inputFormate
+      let outputdateForamte = DateFormatter()
+      outputdateForamte.dateFormat = outPutFormate
+      if let inputdate = InputdateForamte.date(from: self){
+        finalstring = outputdateForamte.string(from: inputdate)
+      }
+      return finalstring
+    }
+    
+    var htmlToAttributedString: NSAttributedString? {
+        var modifiedString = self
+//        let modifiedString = "<style>body{text-align: right; }</style>\(self)";
+
+//        if selectedLanguage.code == languages[0].code{
+//            modifiedString = "<blockquote dir=rtl>\(self)"
+//        }
+        
+        guard let data = modifiedString.data(using: .utf8) else { return NSAttributedString() }
+//        guard let data = data(using: .utf8) else { return NSAttributedString() }
+        do {
+            return try NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding:String.Encoding.utf8.rawValue], documentAttributes: nil)
+        } catch {
+            return NSAttributedString()
+        }
+    }
+    var htmlToString: String {
+        return htmlToAttributedString?.string ?? ""
+    }
 }
