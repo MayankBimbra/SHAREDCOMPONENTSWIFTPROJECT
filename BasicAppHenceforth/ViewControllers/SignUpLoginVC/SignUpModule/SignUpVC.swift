@@ -167,7 +167,13 @@ extension SignUpVC: UITextFieldDelegate{
                                         img: Asset.ic_phone_number.image(),
                                         placeHolder: "              \(L10n.PhoneNumber.description)")
             self.phoneNumberIsError(false)
-            return newString.length <= 15
+//            return newString.length <= 15
+            let allowedCharacters = CharacterSet.decimalDigits
+            let characterSet = CharacterSet(charactersIn: string)
+            if allowedCharacters.isSuperset(of: characterSet){
+                return newString.length <= 15
+            }
+            return false
         }else if tfFirstName == textField || tfLastName == textField{
             if tfFirstName == textField{
                 CommonFunctions.normalSkyTF(tfFirstName,
@@ -305,6 +311,12 @@ extension SignUpVC{
         }
         let navController = UINavigationController(rootViewController: counListing)
         self.present(navController, animated: true, completion: nil)
+        
+//        self.navigationController?.pushViewController(counListing, animated: true)
+    }
+    
+    @objc func btnActCancel(_ sender: UIButton){
+        CommonFunctions.getTopMostViewController()?.dismiss(animated: true, completion: nil)
     }
     
     @objc func myMethodToHandleTap(_ sender : UITapGestureRecognizer){

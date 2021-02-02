@@ -10,16 +10,14 @@ import UIKit
 class phoneVerifySuccessVC: UIViewController {
 
     // MARK: - UI COMPONENTS
-    
-    
-    
-    // MARK: - VARIABLES
     @IBOutlet weak var outerView: UIView!
     @IBOutlet weak var innerView: UIView!
     @IBOutlet weak var lblDisplay: UILabel!
     @IBOutlet weak var viewCheckmark: checkmarkView!
     
     
+    // MARK: - VARIABLES
+    var fromEditProfile = false
     
     
     // MARK: - OVERRIDE FUNCTIONS
@@ -59,8 +57,17 @@ extension phoneVerifySuccessVC{
 
             } completion: { _ in
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
-                    let vc = tabbarVC.instantiateFromAppStoryboard(appStoryboard: .Tabbar)
-                    self.navigationController?.pushViewController(vc, animated: false)
+                    if self.fromEditProfile{
+                        let vcs = self.navigationController?.viewControllers ?? []
+                        for vc in vcs{
+                            if vc.isKind(of: editProfileVC.self){
+                                self.navigationController?.popToViewController(vc, animated: false)
+                            }
+                        }                        
+                    }else{
+                        let vc = tabbarVC.instantiateFromAppStoryboard(appStoryboard: .Tabbar)
+                        self.navigationController?.pushViewController(vc, animated: false)
+                    }
                 }
             }
         }

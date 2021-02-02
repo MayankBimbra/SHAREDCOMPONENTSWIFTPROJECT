@@ -157,6 +157,11 @@ enum L10n {
     
     case PleaseEnterOTP
     case NA
+    
+    case NoChatData
+    case NoNotificationData
+    
+    case Guest
 }
 
 
@@ -404,6 +409,15 @@ extension L10n: CustomStringConvertible{
             return L10n.tr("Please Enter OTP")
         case .NA:
             return L10n.tr("NA")
+            
+        case .NoChatData:
+            return L10n.tr("No Chats Yet")
+        case .NoNotificationData:
+            return L10n.tr("No Notification Yet")
+
+        case .Guest:
+            return L10n.tr("Guest")
+
         }
     }
     

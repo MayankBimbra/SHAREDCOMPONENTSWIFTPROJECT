@@ -104,6 +104,7 @@ class phoneVerificationVM {
             userData.shared.isPhoneVerified = 1
             userData.shared.dataSave()
             let vc = phoneVerifySuccessVC.instantiateFromAppStoryboard(appStoryboard: .Main)
+            vc.fromEditProfile = self.controller!.fromEditProfile
             self.controller!.navigationController?.pushViewController(vc, animated: false)
         }, failure: { (reload, error) in
             self.controller!.view.isUserInteractionEnabled = true

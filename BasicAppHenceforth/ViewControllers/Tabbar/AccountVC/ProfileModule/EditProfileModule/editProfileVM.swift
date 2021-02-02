@@ -108,7 +108,7 @@ class EditProfileVM {
         var params : [String : AnyObject] = [
             "first_name" : controller!.tfFirstName.text?.trimmingCharacters(in: .whitespacesAndNewlines) as AnyObject,
             "last_name" : controller!.tfLastName.text?.trimmingCharacters(in: .whitespacesAndNewlines) as AnyObject,
-            "email" : controller!.tfEmail.text?.trimmingCharacters(in: .whitespacesAndNewlines) as AnyObject,
+//            "email" : controller!.tfEmail.text?.trimmingCharacters(in: .whitespacesAndNewlines) as AnyObject,
 //            "phone_number" : controller!.tfPhoneNumber.text?.trimmingCharacters(in: .whitespacesAndNewlines) as AnyObject,
 //            "country_code" : controller!.countryCode.trimmingCharacters(in: .whitespacesAndNewlines) as AnyObject,
             "designation" : controller!.tfWork.text?.trimmingCharacters(in: .whitespacesAndNewlines) as AnyObject,
@@ -120,6 +120,10 @@ class EditProfileVM {
         }else{
             params["phone_number"] = controller!.tfPhoneNumber.text?.trimmingCharacters(in: .whitespacesAndNewlines) as AnyObject
             params["country_code"] = controller!.countryCode.trimmingCharacters(in: .whitespacesAndNewlines) as AnyObject
+        }
+        
+        if controller!.tfEmail.text! != userData.shared.email{
+            params["email"] = controller!.tfEmail.text?.trimmingCharacters(in: .whitespacesAndNewlines) as AnyObject
         }
         
         if controller?.uploadedPhotoURL != ""{
@@ -177,5 +181,34 @@ class EditProfileVM {
                 self.uploadingPhoto(img)
             }
         }, method: .PostWithImage, img: img, imageParamater: "file", headerPresent: true)
+    }
+    
+    func resendEmailVerify(){
+        if controller == nil{
+            return
+        }
+        
+        ApiHandler.callApiWithParameters(url: appConstantURL().emailVerifyURL, withParameters: [:], ofType: MessageAPI.self, success2: { (response) in
+            print(response)
+            CommonFunctions.toster(response.message ?? "")
+        }, failure: { (reload, error) in
+            if reload{
+                self.resendEmailVerify()
+            }
+        }, method: .POST, img: nil, imageParamater: "", headerPresent: true)
+    }
+    
+    func resendCodeAPI(){
+        if controller == nil{
+            return
+        }
+        
+        ApiHandler.callApiWithParameters(url: appConstantURL().resendPhoneVerifyURL, withParameters: [:], ofType: MessageAPI.self, success2: { (response) in
+            CommonFunctions.toster(response.message ?? "")
+        }, failure: { (reload, error) in
+            if reload{
+                self.resendCodeAPI()
+            }
+        }, method: .POST, img: nil, imageParamater: "", headerPresent: true)
     }
 }

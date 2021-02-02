@@ -17,7 +17,8 @@ class appConstantURL{
     let getProfileURL = "profile"
     let editProfileURL = "profile"
     let logoutURL = "logout"
-
+    let emailVerifyURL = "resend/verification-email"
+    
     let notificationAPI = "notification"
     let chatListingAPI = "chat/listing"
     let chatIntListingAPI = "chat/messages"

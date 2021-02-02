@@ -35,6 +35,7 @@ class userData: NSObject {
     var isPushNotified = 0
     var isSMSNotified = 0
     var status = 0
+    var createdAt = ""
 
     
     class var shared: userData{
@@ -74,6 +75,7 @@ class userData: NSObject {
         self.isPushNotified = data.isPushNotified ?? 0
         self.isSMSNotified = data.isSMSNotified ?? 0
         self.status = data.status ?? 0
+        self.createdAt = data.createdAt ?? ""
         
         dataSave()
     }
@@ -116,6 +118,7 @@ class userData: NSObject {
         newData.setValue(isPushNotified, forKey: "isPushNotified")
         newData.setValue(isSMSNotified, forKey: "isSMSNotified")
         newData.setValue(status, forKey: "status")
+        newData.setValue(createdAt, forKey: "createdAt")
         
         do {
             try context.save()
@@ -127,6 +130,33 @@ class userData: NSObject {
     }
     
     func deleteData(){
+        
+        self.accessToken = ""
+        
+        self.userId = 0
+        self.firstName = ""
+        self.lastName = ""
+        self.profileImage = ""
+        self.email = ""
+        self.fbId = ""
+        self.googleId = ""
+        self.appleId = ""
+        self.createdAt = ""
+        self.userDescription = ""
+        self.phoneNumber = 0
+        self.countryCode = ""
+        self.isEmailVerified = 0
+        self.isPhoneVerified = 0
+        self.isUserVerified = 0
+        self.isProfileCompleted = 0
+        self.userType = 0
+        self.dob = ""
+        self.designation = ""
+        self.isEmailNotified = 0
+        self.isPushNotified = 0
+        self.isSMSNotified = 0
+        self.status = 0
+        
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
         let DelAllReqVar = NSBatchDeleteRequest(fetchRequest: NSFetchRequest<NSFetchRequestResult>(entityName: "UserData"))
@@ -192,11 +222,16 @@ class userData: NSObject {
                         print("data get appleId \(appleId)")
                     }
 
+                    if let createdAt = result.value(forKey: "createdAt") as? String{
+                        self.createdAt = createdAt
+                        print("data get createdAt \(createdAt)")
+                    }
+
                     if let userDescription = result.value(forKey: "userDescription") as? String{
                         self.userDescription = userDescription
                         print("data get userDescription \(userDescription)")
                     }
-
+                    
                     if let phoneNumber = result.value(forKey: "phoneNumber") as? Int{
                         self.phoneNumber = phoneNumber
                         print("data get phoneNumber \(phoneNumber)")

@@ -40,7 +40,7 @@ extension UITextField {
     
     func disableAutoFill() {
         if #available(iOS 12, *) {
-            textContentType = .oneTimeCode
+            textContentType = .newPassword                
         } else {
             textContentType = .init(rawValue: "")
         }

@@ -14,6 +14,7 @@ open class FPNCountryListViewController: UITableViewController, UISearchResultsU
 	open var showCountryPhoneCode: Bool = true
 	open var searchController: UISearchController = UISearchController(searchResultsController: nil)
 	open var didSelect: ((FPNCountry) -> Void)?
+    
 
 	var results: [FPNCountry]?
 
@@ -50,6 +51,28 @@ open class FPNCountryListViewController: UITableViewController, UISearchResultsU
 			//				searchController.searchBar.sizeToFit()
 			tableView.tableHeaderView = searchController.searchBar
 		}
+        
+//        let btnCancel = UIButton()
+//        btnCancel.setTitle("Close", for: .normal)
+//        btnCancel.setTitleColor(.black, for: .normal)
+//        btnCancel.frame = CGRect(x: 0, y: 0, width: 80, height: 40)
+//        btnCancel.addTarget(self, action: #selector(btnActClose(_:)), for: .touchUpInside)
+//
+//        //Set Left Bar Button item
+//        let leftBarButton = UIBarButtonItem()
+//        leftBarButton.customView = btnCancel
+//        self.navigationItem.leftBarButtonItem = leftBarButton
+        
+        let btnClose = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(btnActClose(_:)))
+//        btnClose.tintColor = UIColor.black
+
+        if var existingButtons = navigationItem.leftBarButtonItems {
+            existingButtons.insert(btnClose, at: 0)
+            navigationItem.leftBarButtonItems = existingButtons
+        }else{
+            navigationItem.leftBarButtonItems = [btnClose]
+        }
+        
 		definesPresentationContext = true
 	}
 
@@ -134,4 +157,8 @@ open class FPNCountryListViewController: UITableViewController, UISearchResultsU
 	open func willDismissSearchController(_ searchController: UISearchController) {
 		results?.removeAll()
 	}
+    
+    @objc func btnActClose(_ sender: UIBarButtonItem){
+        self.dismiss(animated: true, completion: nil)
+    }
 }

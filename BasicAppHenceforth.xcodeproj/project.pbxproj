@@ -158,6 +158,8 @@
 		D1E466D025ADCF4100DD0764 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D1E466CF25ADCF4100DD0764 /* GoogleService-Info.plist */; };
 		D1E466DF25ADD40B00DD0764 /* appleLoginClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E466DE25ADD40B00DD0764 /* appleLoginClass.swift */; };
 		D1E7F50A25A5FA39003BDC50 /* profileInnerVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E7F50925A5FA39003BDC50 /* profileInnerVM.swift */; };
+		D1EEF8BD25B5692B005B788B /* CustomDateConvertor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EEF8BC25B5692B005B788B /* CustomDateConvertor.swift */; };
+		D1EEF8C225B57D3A005B788B /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1EEF8C125B57D3A005B788B /* AuthenticationServices.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -324,6 +326,8 @@
 		D1E466DA25ADD27600DD0764 /* BasicAppHenceforth.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BasicAppHenceforth.entitlements; sourceTree = "<group>"; };
 		D1E466DE25ADD40B00DD0764 /* appleLoginClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = appleLoginClass.swift; sourceTree = "<group>"; };
 		D1E7F50925A5FA39003BDC50 /* profileInnerVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = profileInnerVM.swift; sourceTree = "<group>"; };
+		D1EEF8BC25B5692B005B788B /* CustomDateConvertor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDateConvertor.swift; sourceTree = "<group>"; };
+		D1EEF8C125B57D3A005B788B /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
 		E86205B4337C5AEB12E79D35 /* Pods-BasicAppHenceforth.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BasicAppHenceforth.release.xcconfig"; path = "Target Support Files/Pods-BasicAppHenceforth/Pods-BasicAppHenceforth.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -332,6 +336,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1EEF8C225B57D3A005B788B /* AuthenticationServices.framework in Frameworks */,
 				7C3523FB49B536066918B7C7 /* Pods_BasicAppHenceforth.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -358,6 +363,7 @@
 		2741AB0AB8B5C8508CBCD516 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D1EEF8C125B57D3A005B788B /* AuthenticationServices.framework */,
 				CD88E597477D4E326AAC3886 /* Pods_BasicAppHenceforth.framework */,
 				185EE7DA52841F42A7C16F1E /* Pods_BasicAppHenceforth_BasicAppHenceforthUITests.framework */,
 				64F38CC16D1C2545879A8E62 /* Pods_BasicAppHenceforthTests.framework */,
@@ -625,6 +631,7 @@
 				D1E4668E25ADC17E00DD0764 /* googleLoginClass.swift */,
 				D1E466DE25ADD40B00DD0764 /* appleLoginClass.swift */,
 				D1E4668925AD852600DD0764 /* galleryPickerController.swift */,
+				D1EEF8BC25B5692B005B788B /* CustomDateConvertor.swift */,
 			);
 			path = HelperFiles;
 			sourceTree = "<group>";
@@ -1213,6 +1220,7 @@
 				D1866A2E2592318D00E0E8B0 /* notificationTVC.swift in Sources */,
 				BEC99143256CD85100F7975C /* Constants.swift in Sources */,
 				D1BDCD9925A991FD00029F66 /* ChatAPI.swift in Sources */,
+				D1EEF8BD25B5692B005B788B /* CustomDateConvertor.swift in Sources */,
 				BEC99120256CD80500F7975C /* commonFunction.swift in Sources */,
 				BEC9911D256CD80500F7975C /* VAMonthView.swift in Sources */,
 				D1866A0C2591D66600E0E8B0 /* loginAskPopUp.swift in Sources */,

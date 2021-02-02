@@ -13,6 +13,7 @@ class notificationVC: headerVC {
 
     // MARK: - UI COMPONENTS
     @IBOutlet weak var tblView: UITableView!
+    @IBOutlet weak var lblNoData: UILabel!
     
     
     // MARK: - VARIABLES
@@ -34,6 +35,8 @@ extension notificationVC{
         notificationVM.controller = self
         lblHeader.text = L10n.NotificationHeader.description
         
+        lblNoData.font = UIFont.MontserratSemiBold(Size.Medium.sizeValue())
+        lblNoData.text = L10n.NoNotificationData.description
         notificationVM.fetchNotificationAPI()
         
         tblView.es.addPullToRefresh {

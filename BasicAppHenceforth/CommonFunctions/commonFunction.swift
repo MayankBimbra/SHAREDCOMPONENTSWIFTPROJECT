@@ -103,6 +103,7 @@ class CommonFunctions {
     static func normalSkyTFBtn(_ tf : SkyFloatingLabelTextField, btn: UIButton, placeHolder : String){
         
         tf.disableAutoFill()
+        tf.passwordRules = .none
         
         let img1 = Asset.ic_eye_review.image().imageWithInsets(insets: UIEdgeInsets(top: 12, left: 6, bottom: 0, right: 6))?.withRenderingMode(.alwaysTemplate)
         let img2 = Asset.ic_hideeye_review.image().imageWithInsets(insets: UIEdgeInsets(top: 12, left: 6, bottom: 0, right: 6))?.withRenderingMode(.alwaysTemplate)

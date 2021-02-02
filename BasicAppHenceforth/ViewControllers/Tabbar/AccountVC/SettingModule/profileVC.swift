@@ -66,7 +66,11 @@ class profileVC: headerVC {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        lblName.text = "\(userData.shared.firstName) \(userData.shared.lastName)"
+        if userData.shared.accessToken == ""{
+            lblName.text = L10n.Guest.description
+        }else{
+            lblName.text = "\(userData.shared.firstName) \(userData.shared.lastName)"
+        }
         imgViewDP.yy_setImage(with: URL(string: CommonFunctions.getImage(userData.shared.profileImage, quality: .medium)), placeholder: nil)
     }
 }
@@ -122,7 +126,17 @@ extension profileVC{
         btnTermsCond.addTarget(self, action: #selector(btnActTermsCond(_:)), for: .touchUpInside)
         btnLogOut.addTarget(self, action: #selector(btnActLogOut(_:)), for: .touchUpInside)
         
-        lblName.text = "\(userData.shared.firstName) \(userData.shared.lastName)"
+        if userData.shared.accessToken == ""{
+            lblName.text = L10n.Guest.description
+            viewChangePass.isHidden = true
+            viewLogOut.isHidden = true
+        }else{
+            lblName.text = "\(userData.shared.firstName) \(userData.shared.lastName)"
+            viewChangePass.isHidden = false
+            viewLogOut.isHidden = false
+        }
+
+        
         
         imgViewDP.yy_setImage(with: URL(string: CommonFunctions.getImage(userData.shared.profileImage, quality: .medium)), placeholder: nil)
 
@@ -145,18 +159,42 @@ extension profileVC{
 // MARK: - EXTERNAL FUNCTIONS
 extension profileVC{
     @objc func btnActProfile(_ sender: UIButton){
-        let vc = profileInnerVC.instantiateFromAppStoryboard(appStoryboard: .Profile)
-        self.navigationController?.pushViewController(vc, animated: true)
+        if userData.shared.accessToken == ""{
+            let popOverVC = loginAskPopUp()
+            self.tabBarController?.addChild(popOverVC)
+            popOverVC.view.frame = (self.tabBarController?.view.frame)!
+            self.tabBarController?.view.addSubview(popOverVC.view)
+            popOverVC.didMove(toParent: self.tabBarController)
+        }else{
+            let vc = profileInnerVC.instantiateFromAppStoryboard(appStoryboard: .Profile)
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     @objc func btnActPersonalInfo(_ sender: UIButton){
-        let vc = profileInnerVC.instantiateFromAppStoryboard(appStoryboard: .Profile)
-        self.navigationController?.pushViewController(vc, animated: true)
+        if userData.shared.accessToken == ""{
+            let popOverVC = loginAskPopUp()
+            self.tabBarController?.addChild(popOverVC)
+            popOverVC.view.frame = (self.tabBarController?.view.frame)!
+            self.tabBarController?.view.addSubview(popOverVC.view)
+            popOverVC.didMove(toParent: self.tabBarController)
+        }else{
+            let vc = profileInnerVC.instantiateFromAppStoryboard(appStoryboard: .Profile)
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
 
     @objc func btnActNotification(_ sender: UIButton){
-        let vc = notificationAskVC.instantiateFromAppStoryboard(appStoryboard: .Account)
-        self.navigationController?.pushViewController(vc, animated: true)
+        if userData.shared.accessToken == ""{
+            let popOverVC = loginAskPopUp()
+            self.tabBarController?.addChild(popOverVC)
+            popOverVC.view.frame = (self.tabBarController?.view.frame)!
+            self.tabBarController?.view.addSubview(popOverVC.view)
+            popOverVC.didMove(toParent: self.tabBarController)
+        }else{
+            let vc = notificationAskVC.instantiateFromAppStoryboard(appStoryboard: .Account)
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
 
     @objc func btnActChangePass(_ sender: UIButton){

@@ -52,6 +52,7 @@ class ChatVM {
             }else{
                 self.controller!.chatData.append(contentsOf: response)
             }
+            self.controller?.lblNoData.isHidden = (self.controller?.chatData.count == 0) ? false : true
             self.controller!.tblView.es.stopPullToRefresh()
             self.controller!.tblView.es.stopLoadingMore()
             self.canPaginate = response.count == 10 ? true : false

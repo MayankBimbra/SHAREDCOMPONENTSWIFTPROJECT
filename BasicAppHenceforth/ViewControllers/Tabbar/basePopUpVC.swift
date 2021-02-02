@@ -24,13 +24,16 @@ class basePopUpVC: UIViewController {
     
     // MARK: - VARIABLES
     var animationType : AnimationType = .zoomInAnimation
+    var shouldDismissOnBack : Bool = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         backVw!.isUserInteractionEnabled = true
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapActClose(_:)))
-        backVw!.addGestureRecognizer(tapGesture)
+        if shouldDismissOnBack{
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapActClose(_:)))
+            backVw!.addGestureRecognizer(tapGesture)
+        }
 
         showAnimate()
 

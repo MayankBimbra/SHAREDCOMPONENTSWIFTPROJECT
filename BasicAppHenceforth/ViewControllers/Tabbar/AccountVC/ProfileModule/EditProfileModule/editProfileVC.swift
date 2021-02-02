@@ -98,13 +98,25 @@ extension editProfileVC{
         tfPhoneNumber.leftView = phoneVw
         tfPhoneNumber.leftViewMode = .always
 
-        let btnPhoneVerify = getVerifyBtn()
-        btnPhoneVerify.1.addTarget(self, action: #selector(btnActPhoneNumberVerify(_:)), for: .touchUpInside)
-        tfPhoneNumber.rightView = btnPhoneVerify.0
+        if userData.shared.isPhoneVerified == 1{
+            let imgPhoneVerify = getVerifyImage()
+            tfPhoneNumber.rightView = imgPhoneVerify
+        }else{
+            let btnPhoneVerify = getVerifyBtn()
+            btnPhoneVerify.1.addTarget(self, action: #selector(btnActPhoneNumberVerify(_:)), for: .touchUpInside)
+            tfPhoneNumber.rightView = btnPhoneVerify.0
+        }
+        
+        if userData.shared.isEmailVerified == 1{
+            let imgEmailVerify = getVerifyImage()
+            tfEmail.rightView = imgEmailVerify
+        }else{
+            let btnEmailVerify = getVerifyBtn()
+            btnEmailVerify.1.addTarget(self, action: #selector(btnActEmailVerify(_:)), for: .touchUpInside)
+            tfEmail.rightView = btnEmailVerify.0
+        }
+        
         tfPhoneNumber.rightViewMode = .always
-
-        let imgEmailVerify = getVerifyImage()
-        tfEmail.rightView = imgEmailVerify
         tfEmail.rightViewMode = .always
 
         tvAbout.font = UIFont.MontserratMedium(Size.Medium.sizeValue())
@@ -125,6 +137,8 @@ extension editProfileVC{
         btnPhoneNumber.addTarget(self, action: #selector(btnActCountryCode(_:)), for: .touchUpInside)
         btnDP.addTarget(self, action: #selector(btnActDP(_:)), for: .touchUpInside)
 
+        tfEmail.isUserInteractionEnabled = false
+        
     }
     
     func getVerifyBtn () -> (UIView, UIButton){
@@ -183,10 +197,16 @@ extension editProfileVC: UITextFieldDelegate{
         let newString: NSString =
             currentString.replacingCharacters(in: range, with: string) as NSString
         if tfPhoneNumber == textField{
+            
             self.phoneNumberIsError(false)
             CommonFunctions.normalSkyTF(tfPhoneNumber, img: nil,
                                         placeHolder: "              \(L10n.PhoneNumber.description)")
-            return newString.length <= 15
+            let allowedCharacters = CharacterSet.decimalDigits
+            let characterSet = CharacterSet(charactersIn: string)
+            if allowedCharacters.isSuperset(of: characterSet){
+                return newString.length <= 15
+            }
+            return false
         }else if tfFirstName == textField || tfLastName == textField{
             if tfFirstName == textField {
                 CommonFunctions.normalSkyTF(tfFirstName, img: nil,
@@ -277,7 +297,8 @@ extension editProfileVC{
     
     @objc func btnActEmailVerify(_ sender: UIButton){
         self.view.endEditing(true)
-
+        tfEmail.rightViewMode = .never
+        editProfileVM.resendEmailVerify()
     }
 
     @objc func btnActDP(_ sender: UIButton){
@@ -292,6 +313,13 @@ extension editProfileVC{
 
     @objc func btnActPhoneNumberVerify(_ sender: UIButton){
         self.view.endEditing(true)
+        tfPhoneNumber.rightViewMode = .never
+        editProfileVM.resendCodeAPI()
+        
+        let vc = phoneVerificationVC.instantiateFromAppStoryboard(appStoryboard: AppStoryboard.Main)
+        vc.fromEditProfile = true
+        self.navigationController?.pushViewController(vc, animated: true)
+
     }
 
     @objc func btnActCountryCode(_ sender: UIButton){

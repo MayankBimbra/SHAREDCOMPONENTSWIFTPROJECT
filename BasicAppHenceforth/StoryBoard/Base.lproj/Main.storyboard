@@ -295,7 +295,7 @@
                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mLO-4H-gNj" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
                                                                         <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
                                                                         <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="14"/>
-                                                                        <textInputTraits key="textInputTraits" returnKeyType="next" secureTextEntry="YES"/>
+                                                                        <textInputTraits key="textInputTraits" returnKeyType="next" secureTextEntry="YES" textContentType="password"/>
                                                                         <connections>
                                                                             <outlet property="delegate" destination="e6q-SW-tqR" id="bB4-Nb-qUl"/>
                                                                         </connections>
@@ -315,7 +315,7 @@
                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2iv-Iu-ZPE" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
                                                                         <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
                                                                         <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="14"/>
-                                                                        <textInputTraits key="textInputTraits" returnKeyType="next" secureTextEntry="YES"/>
+                                                                        <textInputTraits key="textInputTraits" returnKeyType="next" secureTextEntry="YES" textContentType="password"/>
                                                                         <connections>
                                                                             <outlet property="delegate" destination="e6q-SW-tqR" id="HPO-tI-hLu"/>
                                                                         </connections>
@@ -709,7 +709,7 @@
                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u3f-99-IMh" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
                                                                         <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
                                                                         <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="14"/>
-                                                                        <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
+                                                                        <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES" textContentType="password"/>
                                                                         <connections>
                                                                             <outlet property="delegate" destination="c3V-cN-wYY" id="9fg-uO-Tll"/>
                                                                         </connections>

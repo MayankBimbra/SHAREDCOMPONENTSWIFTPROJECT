@@ -23,7 +23,7 @@ class ProfileInnerVM {
             return
         }
         
-        self.controller!.lblNameJoining.attributedText = CommonFunctions.sendAttText(["\(L10n.HiText.description)\(userData.shared.firstName)", "\n\(L10n.JoinedText.description)October, 2020"], fonts: [UIFont.MontserratMedium(Size.XXXLarge.sizeValue()), UIFont.MontserratMedium(Size.Medium.sizeValue())], color: [UIColor.black, UIColor.textColorOne], alingment: .left, spacing: 4)
+        self.controller!.lblNameJoining.attributedText = CommonFunctions.sendAttText(["\(L10n.HiText.description)\(userData.shared.firstName)", "\n\(L10n.JoinedText.description)\(CustomDateConvertor.shared.getJoiningDate(userData.shared.createdAt))"], fonts: [UIFont.MontserratMedium(Size.XXXLarge.sizeValue()), UIFont.MontserratMedium(Size.Medium.sizeValue())], color: [UIColor.black, UIColor.textColorOne], alingment: .left, spacing: 4)
         if userData.shared.userDescription == ""{
             self.controller!.lblAboutDesc.attributedText = CommonFunctions.sendAttText([L10n.NA.description], fonts: [UIFont.MontserratMedium(Size.Medium.sizeValue())], color: [UIColor.textColorOne], alingment: .left, spacing: 4)
         }else{

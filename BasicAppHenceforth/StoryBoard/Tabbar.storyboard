@@ -15,10 +15,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--CHATS-->
+        <!--CHAT-->
         <scene sceneID="f9T-M4-Ci3">
             <objects>
-                <viewController storyboardIdentifier="chatVC" id="wbX-A7-Zvr" customClass="chatVC" customModule="BasicAppHenceforth" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="chatVC" title="CHAT" id="wbX-A7-Zvr" customClass="chatVC" customModule="BasicAppHenceforth" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ted-eD-1uY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -128,13 +128,22 @@
                                     <outlet property="delegate" destination="wbX-A7-Zvr" id="hSk-vn-xK2"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SVV-pt-exN">
+                                <rect key="frame" x="24" y="438" width="366" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" name="TextColorTwo"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="2XS-EX-Erj"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="2XS-EX-Erj" firstAttribute="bottom" secondItem="fbw-hl-FdI" secondAttribute="bottom" id="6Wj-mf-bQD"/>
                             <constraint firstItem="2XS-EX-Erj" firstAttribute="trailing" secondItem="fbw-hl-FdI" secondAttribute="trailing" id="MnG-hx-6m1"/>
+                            <constraint firstItem="SVV-pt-exN" firstAttribute="centerY" secondItem="Ted-eD-1uY" secondAttribute="centerY" id="UVy-Kb-33R"/>
+                            <constraint firstItem="2XS-EX-Erj" firstAttribute="trailing" secondItem="SVV-pt-exN" secondAttribute="trailing" constant="24" id="dix-c6-WVo"/>
                             <constraint firstItem="fbw-hl-FdI" firstAttribute="top" secondItem="2XS-EX-Erj" secondAttribute="top" constant="56" id="iYR-LW-4hC"/>
+                            <constraint firstItem="SVV-pt-exN" firstAttribute="leading" secondItem="2XS-EX-Erj" secondAttribute="leading" constant="24" id="onM-0N-R5D"/>
                             <constraint firstItem="fbw-hl-FdI" firstAttribute="leading" secondItem="2XS-EX-Erj" secondAttribute="leading" id="sJv-Pu-SEx"/>
                         </constraints>
                     </view>
@@ -142,6 +151,7 @@
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-4"/>
                     </tabBarItem>
                     <connections>
+                        <outlet property="lblNoData" destination="SVV-pt-exN" id="JGC-KH-aLy"/>
                         <outlet property="tblView" destination="fbw-hl-FdI" id="UPh-ng-0EI"/>
                     </connections>
                 </viewController>
@@ -711,10 +721,10 @@
             </objects>
             <point key="canvasLocation" x="-1172.4637681159422" y="1508.0357142857142"/>
         </scene>
-        <!--ALERTS-->
+        <!--NOTIFICATION-->
         <scene sceneID="6Ss-ui-dNg">
             <objects>
-                <viewController storyboardIdentifier="notificationVC" id="XIL-JN-beO" customClass="notificationVC" customModule="BasicAppHenceforth" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="notificationVC" title="NOTIFICATION" id="XIL-JN-beO" customClass="notificationVC" customModule="BasicAppHenceforth" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XM3-V7-oQP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -795,20 +805,30 @@
                                     <outlet property="delegate" destination="XIL-JN-beO" id="O8y-xu-s3v"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iSb-me-OGy">
+                                <rect key="frame" x="24" y="438" width="366" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" name="TextColorTwo"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="daV-Vp-U4j"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="iSb-me-OGy" firstAttribute="centerY" secondItem="XM3-V7-oQP" secondAttribute="centerY" id="6OA-Kd-8Fp"/>
+                            <constraint firstItem="iSb-me-OGy" firstAttribute="leading" secondItem="daV-Vp-U4j" secondAttribute="leading" constant="24" id="MFB-EC-JY6"/>
                             <constraint firstItem="NVa-2S-DOc" firstAttribute="top" secondItem="daV-Vp-U4j" secondAttribute="top" constant="56" id="ctx-lX-bEI"/>
                             <constraint firstItem="NVa-2S-DOc" firstAttribute="leading" secondItem="daV-Vp-U4j" secondAttribute="leading" id="dtP-gL-xC4"/>
                             <constraint firstItem="daV-Vp-U4j" firstAttribute="bottom" secondItem="NVa-2S-DOc" secondAttribute="bottom" id="hdc-bP-h0f"/>
                             <constraint firstItem="daV-Vp-U4j" firstAttribute="trailing" secondItem="NVa-2S-DOc" secondAttribute="trailing" id="m02-7v-39e"/>
+                            <constraint firstItem="daV-Vp-U4j" firstAttribute="trailing" secondItem="iSb-me-OGy" secondAttribute="trailing" constant="24" id="m4O-iZ-Qjz"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="ALERTS" image="alerts" selectedImage="alerts_select" id="84A-oN-fRD">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-4"/>
                     </tabBarItem>
                     <connections>
+                        <outlet property="lblNoData" destination="iSb-me-OGy" id="Ag6-SU-i3F"/>
                         <outlet property="tblView" destination="NVa-2S-DOc" id="KVl-ZM-z1R"/>
                     </connections>
                 </viewController>

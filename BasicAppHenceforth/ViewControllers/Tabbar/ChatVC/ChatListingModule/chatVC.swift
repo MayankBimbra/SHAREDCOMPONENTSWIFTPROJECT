@@ -12,6 +12,7 @@ class chatVC: headerVC {
 
     // MARK: - UI COMPONENTS
     @IBOutlet weak var tblView: UITableView!
+    @IBOutlet weak var lblNoData: UILabel!
     
     
     // MARK: - VARIABLES
@@ -32,6 +33,9 @@ extension chatVC{
     func setUpUI(){
         chatVM.controller = self
         lblHeader.text = L10n.ChatHeader.description
+
+        lblNoData.font = UIFont.MontserratSemiBold(Size.Medium.sizeValue())
+        lblNoData.text = L10n.NoChatData.description
 
         chatVM.fetchChatAPI()
         

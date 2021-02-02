@@ -25,6 +25,7 @@ class phoneVerificationVC: headerVC {
     
     
     // MARK: - VARAIBLES
+    var fromEditProfile = false
     var phoneVerifyVM = phoneVerificationVM.shared
 
     
@@ -33,6 +34,13 @@ class phoneVerificationVC: headerVC {
         isBackEnabled = true
         super.viewDidLoad()
         setUpUI()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        if phoneVerifyVM.timer != nil{
+            phoneVerifyVM.timer.invalidate()
+        }
     }
 }
 
@@ -172,7 +180,7 @@ extension phoneVerificationVC: UITextFieldDelegate, MyTextFieldDelegate{
 
 
 // MARK: - EXTERNAL FUNCTIONS
-extension phoneVerificationVC{
+extension phoneVerificationVC{    
     @objc func btnActNext(_ sender: UIButton){
         phoneVerifyVM.checkVerificationOTP()
     }

@@ -43,20 +43,20 @@ class chatTVC: UITableViewCell {
     func setData(_ data: ChatAPIElement){
         lblName.text = "\(data.firstName ?? "") \(data.lastName ?? "")"
         imgViewDP.yy_setImage(with: URL(string: CommonFunctions.getImage(data.profileImage ?? "", quality: .small)), placeholder: nil)
-        lblDate.text = "10:00AM"
+        lblDate.text = data.timeSince ?? ""
         lblMsg.text = data.message
-        lblUnread.text = "1"
         if data.isRead ?? 0 == 1{
             cellRead()
         }else{
-            cellUnread()
+            cellUnread(data.unreadCount ?? 0)
         }
     }
     
-    func cellUnread(){
+    func cellUnread(_ num: Int){
         lblDate.textColor = UIColor.appBlackColor
         lblMsg.textColor = UIColor.appBlackColor
         viewUnread.isHidden = false
+        lblUnread.text = "\(num)"
         self.contentView.backgroundColor = UIColor.unreadColor
     }
     
@@ -64,6 +64,7 @@ class chatTVC: UITableViewCell {
         lblDate.textColor = UIColor.textColorTwo
         lblMsg.textColor = UIColor.textColorOne
         viewUnread.isHidden = true
+        lblUnread.text = "0"
         self.contentView.backgroundColor = UIColor.appWhiteColor
     }
     

@@ -51,7 +51,15 @@ extension homeVC{
         }else{
             currentTime = L10n.GoodEvening.description
         }
-        lblGdMorning.attributedText = CommonFunctions.sendAttText([currentTime, ", ", "\(userData.shared.firstName)"], fonts: [UIFont.MontserratMedium(Size.Header.sizeValue()), UIFont.MontserratSemiBold(Size.Header.sizeValue()), UIFont.MontserratBold(Size.Header.sizeValue())], color: [UIColor.appWhiteColor, UIColor.appWhiteColor, UIColor.appWhiteColor], alingment: .left, spacing: 4)
+        
+        var name : String = ""
+        if userData.shared.accessToken == ""{
+            name = L10n.Guest.description
+        }else{
+            name = userData.shared.firstName
+        }
+        
+        lblGdMorning.attributedText = CommonFunctions.sendAttText([currentTime, ", ", name], fonts: [UIFont.MontserratMedium(Size.Header.sizeValue()), UIFont.MontserratSemiBold(Size.Header.sizeValue()), UIFont.MontserratBold(Size.Header.sizeValue())], color: [UIColor.appWhiteColor, UIColor.appWhiteColor, UIColor.appWhiteColor], alingment: .left, spacing: 4)
         lblDescription.attributedText = CommonFunctions.sendAttText(["Lorem ipsum dolor sit amet, adipiscing elit."], fonts: [UIFont.MontserratRegular(Size.Medium.sizeValue())], color: [UIColor.appWhiteColor], alingment: .left, spacing: 4)
         imgProfilePic.layer.cornerRadius = 4
         

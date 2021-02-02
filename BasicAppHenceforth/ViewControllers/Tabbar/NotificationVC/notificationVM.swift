@@ -52,6 +52,7 @@ class NotificationVM {
             }else{
                 self.controller!.notificationData.append(contentsOf: response.notifications ?? [])
             }
+            self.controller?.lblNoData.isHidden = (self.controller?.notificationData.count == 0) ? false : true
             self.controller!.tblView.es.stopPullToRefresh()
             self.controller!.tblView.es.stopLoadingMore()
             self.canPaginate = (response.notifications ?? []).count == 10 ? true : false

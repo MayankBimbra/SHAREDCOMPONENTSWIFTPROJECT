@@ -131,7 +131,13 @@ extension contactUsVC: UITextFieldDelegate{
             phoneNumberIsError(false)
             CommonFunctions.normalSkyTF(tfPhoneNumber, img: Asset.ic_phone_number.image(),
                                         placeHolder: "              \(L10n.PhoneNumber.description)")
-            return newString.length <= 15
+            let allowedCharacters = CharacterSet.decimalDigits
+            let characterSet = CharacterSet(charactersIn: string)
+            if allowedCharacters.isSuperset(of: characterSet){
+                return newString.length <= 15
+            }
+            return false
+//            return newString.length <= 15
         }else if tfName == textField{
             CommonFunctions.normalSkyTF(tfName, img: Asset.user.image(), placeHolder: L10n.Name.description)
             return newString.length <= 20
